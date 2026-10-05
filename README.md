@@ -6,3 +6,4 @@ Verwendete Technolgie:<br>
     CMAKE<br>
     jsoncons<br>
     C++<br>
+    wxFormBuilder<br>
