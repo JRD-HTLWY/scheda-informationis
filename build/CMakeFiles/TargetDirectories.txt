@@ -1,0 +1,3 @@
+/home/romeo/htl/itp/scheda-informationis/build/CMakeFiles/MeinProgramm.dir
+/home/romeo/htl/itp/scheda-informationis/build/CMakeFiles/edit_cache.dir
+/home/romeo/htl/itp/scheda-informationis/build/CMakeFiles/rebuild_cache.dir

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="MeinProgramm" />
+		<Option makefile_is_custom="1" />
+		<Option compiler="gcc" />
+		<Option virtualFolders="CMake Files/" />
+		<Build>
+			<Target title="all">
+				<Option output="MeinProgramm" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="" />
+				<Option object_output="/home/romeo/htl/itp/scheda-informationis/build/.objs" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Option use_console_runner="0" />
+				<MakeCommands>
+					<Build command='/bin/gmake -f &quot;/home/romeo/htl/itp/scheda-informationis/build/Makefile&quot;  VERBOSE=1 all' />
+					<CompileFile command='/bin/gmake -f &quot;/home/romeo/htl/itp/scheda-informationis/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;' />
+					<Clean command='/bin/gmake -f &quot;/home/romeo/htl/itp/scheda-informationis/build/Makefile&quot;  VERBOSE=1 clean' />
+					<DistClean command='/bin/gmake -f &quot;/home/romeo/htl/itp/scheda-informationis/build/Makefile&quot;  VERBOSE=1 clean' />
+					<AskRebuildNeeded command="$make -q -f $makefile $target" />
+					<SilentBuild command="$make -f $makefile $target &gt; $(CMD_NULL)" />
+				</MakeCommands>
+			</Target>
+			<Target title="MeinProgramm">
+				<Option output="/home/romeo/htl/itp/scheda-informationis/build/MeinProgramm" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="/home/romeo/htl/itp/scheda-informationis/build" />
+				<Option object_output="./" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-DWXUSINGDLL" />
+					<Add option="-D__WXGTK3__" />
+					<Add option="-D__WXGTK__" />
+					<Add option="-D_FILE_OFFSET_BITS=64" />
+					<Add directory="/usr/local/lib/wx/include/gtk3-unicode-3.3" />
+					<Add directory="/usr/local/include/wx-3.3" />
+				</Compiler>
+				<MakeCommands>
+					<Build command='/bin/gmake -f &quot;/home/romeo/htl/itp/scheda-informationis/build/Makefile&quot;  VERBOSE=1 MeinProgramm' />
+					<CompileFile command='/bin/gmake -f &quot;/home/romeo/htl/itp/scheda-informationis/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;' />
+					<Clean command='/bin/gmake -f &quot;/home/romeo/htl/itp/scheda-informationis/build/Makefile&quot;  VERBOSE=1 clean' />
+					<DistClean command='/bin/gmake -f &quot;/home/romeo/htl/itp/scheda-informationis/build/Makefile&quot;  VERBOSE=1 clean' />
+					<AskRebuildNeeded command="$make -q -f $makefile $target" />
+					<SilentBuild command="$make -f $makefile $target &gt; $(CMD_NULL)" />
+				</MakeCommands>
+			</Target>
+			<Target title="MeinProgramm/fast">
+				<Option output="/home/romeo/htl/itp/scheda-informationis/build/MeinProgramm" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="/home/romeo/htl/itp/scheda-informationis/build" />
+				<Option object_output="./" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-DWXUSINGDLL" />
+					<Add option="-D__WXGTK3__" />
+					<Add option="-D__WXGTK__" />
+					<Add option="-D_FILE_OFFSET_BITS=64" />
+					<Add directory="/usr/local/lib/wx/include/gtk3-unicode-3.3" />
+					<Add directory="/usr/local/include/wx-3.3" />
+				</Compiler>
+				<MakeCommands>
+					<Build command='/bin/gmake -f &quot;/home/romeo/htl/itp/scheda-informationis/build/Makefile&quot;  VERBOSE=1 MeinProgramm/fast' />
+					<CompileFile command='/bin/gmake -f &quot;/home/romeo/htl/itp/scheda-informationis/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;' />
+					<Clean command='/bin/gmake -f &quot;/home/romeo/htl/itp/scheda-informationis/build/Makefile&quot;  VERBOSE=1 clean' />
+					<DistClean command='/bin/gmake -f &quot;/home/romeo/htl/itp/scheda-informationis/build/Makefile&quot;  VERBOSE=1 clean' />
+					<AskRebuildNeeded command="$make -q -f $makefile $target" />
+					<SilentBuild command="$make -f $makefile $target &gt; $(CMD_NULL)" />
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option type="4" />
+				<Option compiler="gcc" />
+				<MakeCommands>
+					<Build command='/bin/gmake -f &quot;/home/romeo/htl/itp/scheda-informationis/build/Makefile&quot;  VERBOSE=1 edit_cache' />
+					<CompileFile command='/bin/gmake -f &quot;/home/romeo/htl/itp/scheda-informationis/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;' />
+					<Clean command='/bin/gmake -f &quot;/home/romeo/htl/itp/scheda-informationis/build/Makefile&quot;  VERBOSE=1 clean' />
+					<DistClean command='/bin/gmake -f &quot;/home/romeo/htl/itp/scheda-informationis/build/Makefile&quot;  VERBOSE=1 clean' />
+					<AskRebuildNeeded command="$make -q -f $makefile $target" />
+					<SilentBuild command="$make -f $makefile $target &gt; $(CMD_NULL)" />
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option type="4" />
+				<Option compiler="gcc" />
+				<MakeCommands>
+					<Build command='/bin/gmake -f &quot;/home/romeo/htl/itp/scheda-informationis/build/Makefile&quot;  VERBOSE=1 rebuild_cache' />
+					<CompileFile command='/bin/gmake -f &quot;/home/romeo/htl/itp/scheda-informationis/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;' />
+					<Clean command='/bin/gmake -f &quot;/home/romeo/htl/itp/scheda-informationis/build/Makefile&quot;  VERBOSE=1 clean' />
+					<DistClean command='/bin/gmake -f &quot;/home/romeo/htl/itp/scheda-informationis/build/Makefile&quot;  VERBOSE=1 clean' />
+					<AskRebuildNeeded command="$make -q -f $makefile $target" />
+					<SilentBuild command="$make -f $makefile $target &gt; $(CMD_NULL)" />
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="../CMakeLists.txt">
+			<Option virtualFolder="CMake Files/" />
+		</Unit>
+		<Unit filename="../main.cpp">
+			<Option target="MeinProgramm" />
+		</Unit>
+		<Extensions />
+	</Project>
+</CodeBlocks_project_file>
