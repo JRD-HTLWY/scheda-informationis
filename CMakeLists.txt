@@ -7,8 +7,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Alle .cpp und .h Dateien rekursiv finden
 file(GLOB_RECURSE SOURCES
-    "${CMAKE_CURRENT_SOURCE_DIR}/*.cpp"
-    "${CMAKE_CURRENT_SOURCE_DIR}/*.h"
+    "${CMAKE_CURRENT_SOURCE_DIR}/code/*.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/code/*.h"
 )
 
 # Ausführbare Datei erstellen
