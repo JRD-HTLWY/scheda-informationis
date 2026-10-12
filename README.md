@@ -19,7 +19,7 @@ Ein Ticketsystem bestehend aus einer Clientapp und einem CLI-Server fuer Linux.<
     * C++
     * wxFormBuilder
 
-<h2>Aufbau der Tickets</h2>
+#### Aufbau der Tickets<br/>
     * Titel
     * ID
     * Status
@@ -27,3 +27,4 @@ Ein Ticketsystem bestehend aus einer Clientapp und einem CLI-Server fuer Linux.<
     * Datum
     * Kunde
     * Inhalt
+---
