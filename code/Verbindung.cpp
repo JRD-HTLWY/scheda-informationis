@@ -1,10 +1,12 @@
 #include "Verbindung.h"
 
-Verbindung::Verbindung(const char* ip, int port)
+Verbindung::Verbindung(string ip, int port, function<void(string daten)> empfangsFunktion)
 {
     this->ip = ip;
     this->port = port;
     this->empfangsFunktion = empfangsFunktion;
+
+    thread empfangsThread(&Verbindung::empfange, this);
 }
 
 Verbindung::~Verbindung()
@@ -80,7 +82,7 @@ void Verbindung::sende(string daten){
     serverAddr.sin_family = AF_INET;
     serverAddr.sin_port = htons(port);
 
-    if(inet_pton(AF_INET, ip, &serverAddr.sin_addr) != 1){
+    if(inet_pton(AF_INET, ip.c_str(), &serverAddr.sin_addr) != 1){
         cerr << "Fehler: IP-Ungültig" << endl;
         close(sock);
         return;
@@ -101,7 +103,7 @@ void Verbindung::sende(string daten){
         if(bytes <= 0){
             perror("send");
             close(sock);
-            return
+            return;
         }
 
         gesendet += static_cast<size_t>(bytes);
