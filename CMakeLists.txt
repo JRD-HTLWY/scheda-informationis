@@ -9,6 +9,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 file(GLOB_RECURSE SOURCES
     "${CMAKE_CURRENT_SOURCE_DIR}/code/*.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/code/*.h"
+    "${CMAKE_CURRENT_SOURCE_DIR}/code/*.hpp"
 )
 
 # Ausführbare Datei erstellen
