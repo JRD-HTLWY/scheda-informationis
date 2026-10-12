@@ -13,7 +13,7 @@ class Verbindung
         virtual ~Verbindung();
 
         void empfange();
-        void sende();
+        void sende(string daten);
 
     protected:
 
