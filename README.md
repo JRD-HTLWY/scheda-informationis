@@ -5,5 +5,6 @@ Verwendete Technolgie:<br>
     JSON<br>
     CMAKE<br>
     jsoncons<br>
+    asio<br>
     C++<br>
     wxFormBuilder<br>
