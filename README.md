@@ -1,10 +1,11 @@
-Ein Ticketsystem bestehend aus einer Clientapp und einem CLI-Server fuer Linux.<br>
-Verwendete Technolgie:<br>
-    wxWidgets<br>
-    make<br>
-    JSON<br>
-    CMAKE<br>
-    jsoncons<br>
-    asio<br>
-    C++<br>
-    wxFormBuilder<br>
+# The client application for [scheda-informationis](https://github.com/JRD-HTLWY/scheda-informationis)
+
+Used technologies are:
+- wxWidgets
+- make
+- JSON
+- CMAKE
+- jsoncons
+- asio
+- C++
+- wxFormBuilder
