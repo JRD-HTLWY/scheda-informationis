@@ -18,3 +18,14 @@ Status is an enum and can have the following states:
 - 2: in progress
 - 3: resolved
 - 4: dropped
+
+
+Technologies used in this project:
+- wxWidgets
+- make
+- JSON
+- CMAKE
+- jsoncons
+- asio
+- C++
+- wxFormBuilder
