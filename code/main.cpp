@@ -47,6 +47,37 @@ void empfangeTickets(){
     }
 }
 
+bool anmelden(string nutzername, string passwort){
+    fstream kontenDatei("konten.txt", ios::out | ios::app);
+    string zeile;
+
+    string name;
+    string passw;
+    bool neuesKonto = true;
+
+    while(getline(kontenDatei, zeile)){
+        name = zeile.substr(0, zeile.find("@"));
+        passw = zeile.substr(zeile.find("@") + 1);
+
+        if(name == nutzername){
+            neuesKonto = false;
+            if(passw == passwort){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+    }
+
+    if(neuesKonto){
+        //Konto anlegen
+        kontenDatei << nutzername + "@" + passwort + "\n";
+    }
+
+    return true;
+}
+
 int main(){
     empfangeTickets();
 
