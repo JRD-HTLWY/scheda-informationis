@@ -1,11 +1,13 @@
-#include <iostream>
-#include <wx/crt.h>
+#include <wx/wx.h>
+#include "MyProjectBase.h"
 
-using namespace std;
+class MyApp : public wxApp {
+public:
+    bool OnInit() override {
+        MyFrame1* frame = new MyFrame1(nullptr);
+        frame->Show(true);
+        return true;
+    }
+};
 
-int main(int argc, char **argv)
-{
-  wxPrintf(wxT("A wxWidgets console application\n"));
-
-  return 0;
-}
+wxIMPLEMENT_APP(MyApp);
