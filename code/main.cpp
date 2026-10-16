@@ -7,10 +7,14 @@
 
 using namespace std;
 using asio::ip::tcp;
-
 using jsoncons::json;
 
+asio::io_context io;
+tcp::acceptor acceptor(io, tcp::endpoint(tcp::v4(), 443));
+tcp::socket socket(io);
+
 void init(){
+    //init der JSON-Datei
     fstream jsons("alleNachrichten.txt");
     stringstream alleNachrichtenBuf;
     alleNachrichtenBuf << jsons.rdbuf();
@@ -21,6 +25,8 @@ void init(){
     string initJSONArrayString;
     initJSONArray.dump(initJSONArrayString);
     jsons << initJSONArrayString;
+
+    //init der Verbindung
 }
 
 bool anmelden(string nutzername, string passwort){
@@ -55,15 +61,9 @@ bool anmelden(string nutzername, string passwort){
 }
 
 void empfangeTickets(){
-    asio::io_context io;
-
-    tcp::acceptor acceptor(io, tcp::endpoint(tcp::v4(), 443));
-
     asio::streambuf buffer;
 
     while(true){
-        tcp::socket socket(io);
-
         acceptor.accept(socket);
 
         auto endpoint = socket.remote_endpoint();
@@ -109,6 +109,10 @@ void empfangeTickets(){
             jsons.close();
         }
     }
+}
+
+void sendeTickets(){
+
 }
 
 int main(){
