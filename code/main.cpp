@@ -56,46 +56,6 @@ bool anmelden(string nutzername, string passwort){
     return true;
 }
 
-void befehlLesen(){
-    tcp::acceptor acceptor(io, tcp::endpoint(tcp::v4(), 8300));
-    tcp::socket socket(io);
-    auto endpoint = socket.remote_menpoint();
-    asio::streambuf buffer;
-
-    asio::read_until(socket, buffer, "\n");
-
-    asio::error_code ec;
-    size_t bytes;
-
-    if(ec){
-        if(ec == asio::error::eof){
-            cerr << "Fehler: Client hat die Verbindung beendet.\n";
-        }
-        else{
-            cerr << "Socket-Fehler: " << ec.message() << "\n";
-        }
-        break;
-    }
-
-    istream stream(&buffer);
-    string jsonString;
-    getline(stream, jsonString);
-
-    string befehl = jsonString.substr(0, jsonString.find("@"));
-    jsonString = jsonString.substr(jsonString.find("@")+1);
-    string name = jsonString.substr(0, jsonString.find("@"));
-    jsonString = jsonString.substr(jsonString.find("@")+1);
-    string passwort = jsonString.substr(0, jsonString.find("@"));
-    jsonString = jsonString.substr(jsonString.find("@")+1);//fertiges JSON ohne Anmeldeinfos
-
-    if(anmelden(name, passwort)){
-        //Befehl ausführen
-        if(befehl == "empfangeTickets"){
-            empfangeTickets();
-        }
-    }
-}
-
 void empfangeTickets(string jsonDaten){
     fstream jsons("alleNachrichten.txt");
     stringstream alleNachrichtenBuf;
@@ -110,18 +70,18 @@ void empfangeTickets(string jsonDaten){
 
 void sendeTickets(string ip, string nutzername){
     tcp::socket socket(io);
-    auto endpoint endpoint(asio::ip::make_address(ip), 8300);
+    auto endpoint = tcp::endpoint(asio::ip::make_address(ip), 8300);
 
     socket.connect(endpoint);
 
-    fstream json("alleNachrichten.txt");
+    fstream jsonDatei("alleNachrichten.txt");
     stringstream jsonStream;
-    jsonStream << json.rdbuf();
+    jsonStream << jsonDatei.rdbuf();
     json alleNachrichten = json::parse(jsonStream.str());
 
     json sendeDaten = json::array();
 
-    for(uint32 i = 0; i < alleNachrichten.size(); i++){//schickt nur Kundendaten
+    for(uint32_t i = 0; i < alleNachrichten.size(); i++){//schickt nur Kundendaten
         if(alleNachrichten[i]["customer"] == nutzername){
             sendeDaten.push_back(alleNachrichten[i]);
         }
@@ -130,8 +90,52 @@ void sendeTickets(string ip, string nutzername){
     asio::write(socket, asio::buffer(sendeDaten.to_string())); //senden
 }
 
+void befehlLesen(){
+    tcp::acceptor acceptor(io, tcp::endpoint(tcp::v4(), 8300));
+    tcp::socket socket(io);
+    auto endpoint = socket.remote_endpoint();
+    asio::streambuf buffer;
+
+    asio::read_until(socket, buffer, "\n");
+
+    asio::error_code ec;
+    size_t bytes;
+
+    if(ec){
+        if(ec == asio::error::eof){
+            cerr << "Fehler: Client hat die Verbindung beendet.\n";
+        }
+        else{
+            cerr << "Socket-Fehler: " << ec.message() << "\n";
+        }
+    }
+
+    istream stream(&buffer);
+    string jsonString;
+    getline(stream, jsonString);
+
+    string befehl = jsonString.substr(0, jsonString.find("@"));
+    jsonString = jsonString.substr(jsonString.find("@")+1);
+    string name = jsonString.substr(0, jsonString.find("@"));
+    jsonString = jsonString.substr(jsonString.find("@")+1);
+    string passwort = jsonString.substr(0, jsonString.find("@"));
+    jsonString = jsonString.substr(jsonString.find("@")+1);//fertiges JSON ohne Anmeldeinfos
+
+    string ip = endpoint.address().to_string();
+
+    if(anmelden(name, passwort)){
+        //Befehl ausführen
+        if(befehl == "empfangeTickets"){
+            empfangeTickets(jsonString);
+        }
+        if(befehl == "sendeTickets"){
+            sendeTickets(ip, name);
+        }
+    }
+}
+
 int main(){
-    empfangeTickets();
+    befehlLesen();
 
     return 0;
 }
