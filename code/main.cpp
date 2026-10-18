@@ -11,6 +11,8 @@ using jsoncons::json;
 
 asio::io_context io;
 
+//ID-Vergabe beheben
+
 void init(){
     //init der JSON-Datei
     fstream jsons("alleNachrichten.txt");
@@ -50,10 +52,28 @@ bool anmelden(string nutzername, string passwort){
 
     if(neuesKonto){
         //Konto anlegen
-        kontenDatei << nutzername + "@" + passwort + "\n";
+        kontenDatei << nutzername + "@" + passwort + "@\n";
     }
 
     return true;
+}
+
+bool- istSupport(string nutzername){//nur nach dem Anmelden verwenden, keine Passwortkontrolle!!!
+    fstream kontenDatei("konten.txt", ios::out | ios::app);
+    string zeile;
+
+    string name;
+
+    while(getline(kontenDatei, zeile)){
+        name = zeile.substr(0, zeile.find("@"));
+
+        if(name == nutzername){
+            if(zeile.rfind("@") != zeile.length()-1){
+                return true;
+            }
+        }
+    }
+    return false; //kann auch bedeuten dass das Konto nicht existiert
 }
 
 void empfangeTickets(string jsonDaten){
@@ -68,7 +88,7 @@ void empfangeTickets(string jsonDaten){
     jsons.close();
 }
 
-void sendeTickets(string ip, string nutzername){
+void sendeTickets(string ip, string nutzername, bool support){
     tcp::socket socket(io);
     auto endpoint = tcp::endpoint(asio::ip::make_address(ip), 8300);
 
@@ -81,9 +101,14 @@ void sendeTickets(string ip, string nutzername){
 
     json sendeDaten = json::array();
 
-    for(uint32_t i = 0; i < alleNachrichten.size(); i++){//schickt nur Kundendaten
-        if(alleNachrichten[i]["customer"] == nutzername){
-            sendeDaten.push_back(alleNachrichten[i]);
+    if(support){
+        asio::write(socket, asio::buffer(alleNachrichten.to_string()));//alle Tickets
+    }
+    else{
+        for(uint32_t i = 0; i < alleNachrichten.size(); i++){//schickt nur Kundendaten
+            if(alleNachrichten[i]["customer"] == nutzername){
+                sendeDaten.push_back(alleNachrichten[i]);
+            }
         }
     }
 
@@ -129,7 +154,19 @@ void befehlLesen(){
             empfangeTickets(jsonString);
         }
         if(befehl == "sendeTickets"){
-            sendeTickets(ip, name);
+            sendeTickets(ip, name, istSupport(name));
+        }
+    }
+}
+
+void antworteTicket(int id, string antwort){//nur fuer den Support
+    fstream alleNachrichten("alleNachrichten.txt");
+    stringstream alleNachrichtenBuf;
+    alleNachrichtenBuf << alleNachrichten.rdbuf();
+    json alleNachrichtenJSON = json::parse(alleNachrichtenBuf.str());
+
+    for(uint32_t i = 0; i < alleNachrichtenJSON.size(); i++){
+        if(alleNachrichtenJSON[i]["id"] == id){
         }
     }
 }
