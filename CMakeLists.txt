@@ -11,6 +11,7 @@ include(${wxWidgets_USE_FILE})
 
 add_executable(MeinProgramm
     main.cpp
+    MyProjectBase.cpp
 )
 
 target_link_libraries(MeinProgramm PRIVATE
