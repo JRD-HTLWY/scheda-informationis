@@ -143,6 +143,18 @@ void antworteTicket(int id, string name, string antwort){
             neueNachricht["name"] = name;
             neueNachricht["matter"] = antwort;
             alleNachrichtenJSON[i]["content"].push_back(neueNachricht);
+
+            bool supportEingetragen = false;
+            for(uint32_t j = 0; j < alleNachrichtenJSON[i]["support"].size(); j++){
+                if(alleNachrichtenJSON[i]["support"][j] == name){
+                    supportEingetragen = true;
+                    break;
+                }
+            }
+
+            if(!supportEingetragen){
+                alleNachrichtenJSON[i]["support"].push_back(name);
+            }
         }
     }
 
