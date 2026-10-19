@@ -2,6 +2,7 @@
 #include <string>
 #include <fstream>
 #include <array>
+#include <chrono>
 #include <asio.hpp>
 #include "lib/jsoncons/json.hpp"
 
@@ -12,6 +13,7 @@ using jsoncons::json;
 asio::io_context io;
 
 //ID-Vergabe beheben
+uint32_t globaleID = 0;
 
 void init(){
     //init der JSON-Datei
@@ -76,15 +78,23 @@ bool istSupport(string nutzername){//nur nach dem Anmelden verwenden, keine Pass
     return false; //kann auch bedeuten dass das Konto nicht existiert
 }
 
-void empfangeTickets(string jsonDaten){
+void empfangeTickets(string name, titel, string frage){
     fstream jsons("alleNachrichten.txt");
     stringstream alleNachrichtenBuf;
     alleNachrichtenBuf << jsons.rdbuf();
     json alleNachrichtenJSON = json::parse(alleNachrichtenBuf.str());
 
-    json jsonF = json::parse(jsonDaten);
+    json neueNachricht;
+    json["id"] = globaleID++;
+    json["title"] = titel;
+    json["status"] = 0;
+    json["date"] = chrono::system_clock::to_time_t;
+    json["customer"] = name;
+    json["support"] = "-";
+    json["question"] = frage;
+    json["answer"] = "-";
 
-    alleNachrichtenJSON.push_back(jsonF); //final hinzugefuegt
+    alleNachrichtenJSON.push_back(neueNachricht); //final hinzugefuegt
     jsons.close();
 }
 
@@ -175,15 +185,23 @@ void befehlLesen(){
     string passwort = jsonString.substr(0, jsonString.find("@"));
     jsonString = jsonString.substr(jsonString.find("@")+1);//fertiges JSON ohne Anmeldeinfos
 
+    json jsonJ = json::parse(jsonString);
+
     string ip = endpoint.address().to_string();
 
     if(anmelden(name, passwort)){
         //Befehl ausführen
         if(befehl == "empfangeTickets"){
-            empfangeTickets(jsonString);
+            empfangeTickets(name, jsonJ["title"], jsonJ["question"]);
         }
         if(befehl == "sendeTickets"){
             sendeTickets(ip, name, istSupport(name));
+        }
+        if(befehl == "antworteTicket"){
+            antworteTicket(jsonJ["id"], jsonJ["answer"]);
+        }
+        if(befehl == "loescheTicket"){
+            loescheTicket(jsonJ["id"]);
         }
     }
 }
