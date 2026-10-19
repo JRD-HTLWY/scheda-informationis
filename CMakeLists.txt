@@ -12,8 +12,9 @@ file(GLOB_RECURSE SOURCES
 )
 
 add_executable(MeinProgramm
-    main.cpp
+    code/main.cpp
     MyProjectBase.cpp
+)
 # Ausführbare Datei erstellen
 add_executable(MeinProjekt ${SOURCES}
         code/main.cpp
