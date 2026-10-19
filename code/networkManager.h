@@ -16,6 +16,7 @@
 #include <iostream>
 #include <istream>
 #include <map>
+#include <sstream>
 #include <stdexcept>
 #include <string>
 #include <utility>
@@ -24,8 +25,10 @@
  * Single-threaded TCP client for newline-delimited JSON requests.
  *
  * Call poll() regularly from the application's event loop to process network
- * events. Incoming JSON must contain a numeric "type" field. If no custom
- * error handler is set, errors are written to stderr.
+ * events. Incoming JSON may contain a numeric "type" field; requests without
+ * one are treated as pings. Pings are echoed by default and can be overridden
+ * with registerHandler(). If no custom error handler is set, errors are written
+ * to stderr.
  */
 class networkManager
 {
@@ -43,11 +46,16 @@ public:
 
     enum class RequestType : RequestId
     {
-        Ping = 1
+        Ping = 0,
+        Fetch = 1,
+        Pull = 2
     };
 
     /** Creates a disconnected client with a default stderr error handler. */
-    networkManager() : socket_(context_) {}
+    networkManager() : socket_(context_)
+    {
+        handlers_[RequestType::Ping] = [this](const Json& request) { handlePing(request); };
+    }
 
     networkManager(const networkManager&) = delete;
     networkManager& operator=(const networkManager&) = delete;
@@ -82,6 +90,14 @@ public:
     void sendRequest(const String& request)
     {
         asio::write(socket_, asio::buffer(request));
+    }
+
+    /** Echoes a ping request back to the peer as newline-delimited JSON. */
+    void handlePing(const Json& request)
+    {
+        std::ostringstream response;
+        response << request << '\n';
+        sendRequest(response.str());
     }
 
     /**
@@ -252,7 +268,9 @@ private:
     void dispatchIncomingRequest()
     {
         const auto request = parseIncomingRequest();
-        const auto typeId = request.at("type").as<RequestId>();
+        const auto typeId = request.contains("type")
+                                ? request.at("type").as<RequestId>()
+                                : static_cast<RequestId>(RequestType::Ping);
         const auto type = parseRequestType(typeId);
         const auto handler = handlers_.find(type);
         if (handler == handlers_.end())
@@ -275,6 +293,8 @@ private:
     static RequestType parseRequestType(const RequestId typeId)
     {
         if (typeId == static_cast<RequestId>(RequestType::Ping)) return RequestType::Ping;
+        if (typeId == static_cast<RequestId>(RequestType::Fetch)) return RequestType::Fetch;
+        if (typeId == static_cast<RequestId>(RequestType::Pull)) return RequestType::Pull;
         throw std::invalid_argument("Unknown request type: " + std::to_string(typeId));
     }
 };
