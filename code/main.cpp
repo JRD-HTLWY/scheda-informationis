@@ -58,7 +58,7 @@ bool anmelden(string nutzername, string passwort){
     return true;
 }
 
-bool- istSupport(string nutzername){//nur nach dem Anmelden verwenden, keine Passwortkontrolle!!!
+bool istSupport(string nutzername){//nur nach dem Anmelden verwenden, keine Passwortkontrolle!!!
     fstream kontenDatei("konten.txt", ios::out | ios::app);
     string zeile;
 
@@ -115,6 +115,31 @@ void sendeTickets(string ip, string nutzername, bool support){
     asio::write(socket, asio::buffer(sendeDaten.to_string())); //senden
 }
 
+void antworteTicket(int id, string antwort){//nur fuer den Support
+    fstream alleNachrichten("alleNachrichten.txt");
+    stringstream alleNachrichtenBuf;
+    alleNachrichtenBuf << alleNachrichten.rdbuf();
+    json alleNachrichtenJSON = json::parse(alleNachrichtenBuf.str());
+
+    for(uint32_t i = 0; i < alleNachrichtenJSON.size(); i++){
+        if(alleNachrichtenJSON[i]["id"] == id){ //nicht fertig!!!
+        }
+    }
+}
+
+void loescheTicket(int id){
+    fstream alleNachrichten("alleNachrichten.txt");
+    stringstream alleNachrichtenBuf;
+    alleNachrichtenBuf << alleNachrichten.rdbuf();
+    json alleNachrichtenJSON = json::parse(alleNachrichtenBuf.str());
+
+    for(uint32_t i = 0; i < alleNachrichtenJSON.size(); i++){
+        if(alleNachrichtenJSON[i]["id"] == id){
+            alleNachrichtenJSON.erase(alleNachrichtenJSON.begin() + i);
+        }
+    }
+}
+
 void befehlLesen(){
     tcp::acceptor acceptor(io, tcp::endpoint(tcp::v4(), 8300));
     tcp::socket socket(io);
@@ -155,18 +180,6 @@ void befehlLesen(){
         }
         if(befehl == "sendeTickets"){
             sendeTickets(ip, name, istSupport(name));
-        }
-    }
-}
-
-void antworteTicket(int id, string antwort){//nur fuer den Support
-    fstream alleNachrichten("alleNachrichten.txt");
-    stringstream alleNachrichtenBuf;
-    alleNachrichtenBuf << alleNachrichten.rdbuf();
-    json alleNachrichtenJSON = json::parse(alleNachrichtenBuf.str());
-
-    for(uint32_t i = 0; i < alleNachrichtenJSON.size(); i++){
-        if(alleNachrichtenJSON[i]["id"] == id){
         }
     }
 }
