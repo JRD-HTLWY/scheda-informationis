@@ -418,7 +418,7 @@ public:
     explicit TicketsFrame(wxWindow* parent = nullptr)
         : wxFrame(parent, wxID_ANY, _( "Ticket-Support" ), wxDefaultPosition,
                   wxSize(900, 600), wxDEFAULT_FRAME_STYLE) {
-        SetMinSize(wxSize(640, 440));
+        wxTopLevelWindowGTK::SetMinSize(wxSize(640, 440));
 
         auto* panel = new wxPanel(this, wxID_ANY);
         panel->SetBackgroundColour(wxColour(248, 250, 253));
@@ -489,12 +489,12 @@ public:
 };
 
 // Presents the ticket actions available after a successful login.
-class TicketActionsFrame : public wxFrame {
+class [[maybe_unused]] TicketActionsFrame : public wxFrame {
 public:
     explicit TicketActionsFrame()
         : wxFrame(nullptr, wxID_ANY, _( "Ticket-Support" ), wxDefaultPosition,
                   wxSize(900, 600), wxDEFAULT_FRAME_STYLE) {
-        SetMinSize(wxSize(640, 440));
+        wxTopLevelWindowGTK::SetMinSize(wxSize(640, 440));
 
         auto* panel = new wxPanel(this, wxID_ANY);
         panel->SetBackgroundColour(wxColour(248, 250, 253));
@@ -627,7 +627,7 @@ class MyApp : public wxApp {
 public:
     // Create and display the FormBuilder-generated home window at startup.
     bool OnInit() override {
-        HomeFrame* frame = new HomeFrame();
+        const auto frame = new HomeFrame();
         frame->Show(true);
         return true;
     }
