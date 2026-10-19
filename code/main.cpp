@@ -4,6 +4,8 @@
 #include <array>
 #include <chrono>
 #include <ctime>
+#include <thread>
+#include <atomic>
 #include <asio.hpp>
 #include "lib/jsoncons/json.hpp"
 
@@ -17,6 +19,8 @@ asio::io_context io;
 uint32_t globaleID = 0;
 auto zeit = chrono::system_clock::now();
 const uint32_t port = 8300;
+
+atomic<bool> stopGefordert{false};
 
 void init(){
     //init der JSON-Datei
@@ -243,6 +247,9 @@ void befehlLesen(){
                 loescheTicket(jsonJ["id"].as<int>());
             }
         }
+        if(stopGefordert.load()){
+            break;
+        }
     }
 }
 
@@ -259,6 +266,7 @@ int main(){
             cout << "upgrade <NAME> //upgrade a costumer to support\n";
             cout << "downgrade <NAME> //downgrade a support to a costumer\n";
             cout << "list-accounts //lists all accounts and displays the status\n";
+            cout << "exit //exit the program\n";
         }
         if(eingabe == "init"){
             init();
@@ -290,12 +298,22 @@ int main(){
                 }
             }
             if(eingabe.substr(0, 14) == "list-accounts " && eingabe.substr(14).find(" ") == string::npos){
-                //weiter machen
+                fstream kontenDatei("konten.txt");
+                string zeile;
+
+                while(getline(kontenDatei, zeile)){
+                    cout << zeile.substr(0, zeile.find("@")) << " " << zeile.substr(zeile.find("@")+1, zeile.rfind("@")-(zeile.find("@")+1)) << (zeile[zeile.length()-1] == '@' ? "-->Kunde" : "-->Supportmitglied") << "\n";
+                }
+            }
+            if(eingabe.substr(0, 4) == "exit"){
+                break;
             }
         }
         catch(const exception& e){
         }
     }
+
+    stopGefordert.store(true);
     zweiterThread.join();
 
     return 0;
