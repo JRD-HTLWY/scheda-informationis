@@ -3,6 +3,19 @@
 #include <wx/statline.h>
 #include "MyProjectBase.h"
 
+template <typename Handler>
+static void BindScrollBarEvents(wxScrollBar* scrollbar, Handler handler) {
+    scrollbar->Bind(wxEVT_SCROLL_TOP, handler);
+    scrollbar->Bind(wxEVT_SCROLL_BOTTOM, handler);
+    scrollbar->Bind(wxEVT_SCROLL_LINEUP, handler);
+    scrollbar->Bind(wxEVT_SCROLL_LINEDOWN, handler);
+    scrollbar->Bind(wxEVT_SCROLL_PAGEUP, handler);
+    scrollbar->Bind(wxEVT_SCROLL_PAGEDOWN, handler);
+    scrollbar->Bind(wxEVT_SCROLL_THUMBTRACK, handler);
+    scrollbar->Bind(wxEVT_SCROLL_THUMBRELEASE, handler);
+    scrollbar->Bind(wxEVT_SCROLL_CHANGED, handler);
+}
+
 class TicketDetailFrame : public wxFrame {
 public:
     explicit TicketDetailFrame(wxWindow* parent = nullptr)
@@ -91,8 +104,19 @@ public:
         messageLayout->AddSpacer(180);
         conversation->SetSizer(messageLayout);
         conversation->FitInside();
-        conversation->ShowScrollbars(wxSHOW_SB_DEFAULT, wxSHOW_SB_ALWAYS);
-        conversationLayout->Add(conversation, 1, wxEXPAND | wxALL, 12);
+        conversation->ShowScrollbars(wxSHOW_SB_NEVER, wxSHOW_SB_NEVER);
+        auto* conversationBody = new wxBoxSizer(wxHORIZONTAL);
+        conversationBody->Add(conversation, 1, wxEXPAND | wxALL, 12);
+        auto* conversationScrollbar = new wxScrollBar(
+            conversationPanel, wxID_ANY, wxDefaultPosition, wxSize(16, -1),
+            wxSB_VERTICAL);
+        conversationScrollbar->SetScrollbar(0, 20, 60, 20);
+        BindScrollBarEvents(conversationScrollbar, [conversation](wxScrollEvent& event) {
+            conversation->Scroll(0, event.GetPosition());
+        });
+        conversationBody->Add(conversationScrollbar, 0,
+                              wxEXPAND | wxTOP | wxRIGHT | wxBOTTOM, 12);
+        conversationLayout->Add(conversationBody, 1, wxEXPAND);
 
         auto* replyInput = new wxTextCtrl(conversationPanel, wxID_ANY, wxEmptyString,
                                           wxDefaultPosition, wxSize(-1, 44),
@@ -113,6 +137,16 @@ public:
         frameLayout->Add(panel, 1, wxEXPAND);
         SetSizer(frameLayout);
         Centre(wxBOTH);
+        CallAfter([conversation, conversationScrollbar]() {
+            conversation->FitInside();
+            const int virtualHeight = conversation->GetVirtualSize().GetHeight();
+            const int pageHeight = conversation->GetClientSize().GetHeight();
+            int range = (virtualHeight + 9) / 10;
+            int page = (pageHeight + 9) / 10;
+            if (page < 1) page = 1;
+            if (range < page) range = page;
+            conversationScrollbar->SetScrollbar(0, page, range, page);
+        });
     }
 };
 
@@ -151,6 +185,7 @@ public:
         auto* listPanel = new wxPanel(panel, wxID_ANY);
         listPanel->SetBackgroundColour(wxColour(255, 255, 255));
         auto* listPanelLayout = new wxBoxSizer(wxVERTICAL);
+        auto* listBodyLayout = new wxBoxSizer(wxHORIZONTAL);
         auto* ticketScroll = new wxScrolledWindow(listPanel, wxID_ANY,
                                                    wxDefaultPosition, wxDefaultSize,
                                                    wxVSCROLL | wxBORDER_NONE);
@@ -204,8 +239,17 @@ public:
 
         ticketScroll->SetSizer(ticketRows);
         ticketScroll->FitInside();
-        ticketScroll->ShowScrollbars(wxSHOW_SB_DEFAULT, wxSHOW_SB_ALWAYS);
-        listPanelLayout->Add(ticketScroll, 1, wxEXPAND | wxALL, 12);
+        ticketScroll->ShowScrollbars(wxSHOW_SB_NEVER, wxSHOW_SB_NEVER);
+        listBodyLayout->Add(ticketScroll, 1, wxEXPAND | wxALL, 12);
+        auto* listScrollbar = new wxScrollBar(
+            listPanel, wxID_ANY, wxDefaultPosition, wxSize(16, -1), wxSB_VERTICAL);
+        listScrollbar->SetScrollbar(0, 1, 10, 1);
+        BindScrollBarEvents(listScrollbar, [ticketScroll](wxScrollEvent& event) {
+            ticketScroll->Scroll(0, event.GetPosition());
+        });
+        listBodyLayout->Add(listScrollbar, 0,
+                            wxEXPAND | wxTOP | wxRIGHT | wxBOTTOM, 12);
+        listPanelLayout->Add(listBodyLayout, 1, wxEXPAND);
         listPanel->SetSizer(listPanelLayout);
         listPanel->SetMinSize(wxSize(620, 360));
 
@@ -215,6 +259,129 @@ public:
         panel->SetSizer(pageLayout);
         auto* frameLayout = new wxBoxSizer(wxVERTICAL);
         frameLayout->Add(panel, 1, wxEXPAND);
+        SetSizer(frameLayout);
+        Centre(wxBOTH);
+        CallAfter([ticketScroll, listScrollbar]() {
+            ticketScroll->FitInside();
+            const int virtualHeight = ticketScroll->GetVirtualSize().GetHeight();
+            const int pageHeight = ticketScroll->GetClientSize().GetHeight();
+            int range = (virtualHeight + 9) / 10;
+            int page = (pageHeight + 9) / 10;
+            if (page < 1) page = 1;
+            if (range < page) range = page;
+            listScrollbar->SetScrollbar(0, page, range, page);
+        });
+    }
+};
+
+class TicketsOverviewFrame : public wxFrame {
+public:
+    explicit TicketsOverviewFrame(wxWindow* parent = nullptr)
+        : wxFrame(parent, wxID_ANY, _( "Tickets" ), wxDefaultPosition,
+                  wxSize(1200, 800), wxDEFAULT_FRAME_STYLE) {
+        SetMinSize(wxSize(800, 600));
+        SetBackgroundColour(wxColour(190, 190, 190));
+
+        auto* panel = new wxPanel(this, wxID_ANY);
+        panel->SetBackgroundColour(wxColour(176, 176, 176));
+
+        auto* pageLayout = new wxBoxSizer(wxVERTICAL);
+        auto* header = new wxBoxSizer(wxHORIZONTAL);
+
+        auto* title = new wxStaticText(panel, wxID_ANY, _( "Tickets" ));
+        title->SetFont(wxFont(28, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL,
+                              wxFONTWEIGHT_NORMAL));
+        title->SetForegroundColour(wxColour(0, 0, 0));
+        header->Add(150, 0);
+        header->AddStretchSpacer(1);
+        header->Add(title, 0, wxALIGN_CENTER_VERTICAL);
+        header->AddStretchSpacer(1);
+
+        auto* username = new wxStaticText(panel, wxID_ANY, _( "Nutzername" ));
+        username->SetMinSize(wxSize(150, -1));
+        username->SetFont(wxFont(16, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL,
+                                 wxFONTWEIGHT_NORMAL));
+        username->SetForegroundColour(wxColour(0, 0, 0));
+        header->Add(username, 0, wxALIGN_RIGHT | wxALIGN_CENTER_VERTICAL);
+        pageLayout->Add(header, 0, wxEXPAND | wxLEFT | wxRIGHT | wxTOP, 52);
+        pageLayout->AddStretchSpacer(1);
+
+        auto* contentLayout = new wxBoxSizer(wxHORIZONTAL);
+        contentLayout->AddStretchSpacer(1);
+
+        auto* listPanel = new wxPanel(panel, wxID_ANY);
+        listPanel->SetBackgroundColour(wxColour(202, 198, 198));
+        auto* listPanelLayout = new wxBoxSizer(wxVERTICAL);
+        auto* ticketBodyLayout = new wxBoxSizer(wxHORIZONTAL);
+        auto* ticketRowsPanel = new wxPanel(listPanel, wxID_ANY);
+        ticketRowsPanel->SetBackgroundColour(wxColour(202, 198, 198));
+        auto* ticketRows = new wxBoxSizer(wxVERTICAL);
+        ticketRows->AddSpacer(8);
+
+        auto addTicketRow = [&]() {
+            auto* row = new wxPanel(ticketRowsPanel, wxID_ANY);
+            row->SetBackgroundColour(wxColour(202, 198, 198));
+            row->SetMinSize(wxSize(-1, 24));
+            auto* rowLayout = new wxBoxSizer(wxHORIZONTAL);
+
+            auto makeCell = [&](const wxString& label, int width) {
+                auto* cell = new wxStaticText(row, wxID_ANY, label);
+                cell->SetMinSize(wxSize(width, -1));
+                cell->SetFont(wxFont(10, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL,
+                                     wxFONTWEIGHT_NORMAL));
+                cell->SetForegroundColour(wxColour(0, 0, 0));
+                return cell;
+            };
+            auto* idCell = makeCell(_( "ID: $Nummer" ), 112);
+            auto* customerCell = makeCell(_( "Kunde:" ), 84);
+            auto* dateCell = makeCell(_( "Datum" ), 82);
+            auto* titleCell = makeCell(_( "Titel" ), 84);
+            auto* employeeCell = makeCell(_( "Bearbeiter" ), 80);
+
+            auto openTicket = [this](wxMouseEvent&) {
+                auto* detail = new TicketDetailFrame(this);
+                detail->Show(true);
+            };
+            row->Bind(wxEVT_LEFT_DCLICK, openTicket);
+            idCell->Bind(wxEVT_LEFT_DCLICK, openTicket);
+            customerCell->Bind(wxEVT_LEFT_DCLICK, openTicket);
+            dateCell->Bind(wxEVT_LEFT_DCLICK, openTicket);
+            titleCell->Bind(wxEVT_LEFT_DCLICK, openTicket);
+            employeeCell->Bind(wxEVT_LEFT_DCLICK, openTicket);
+
+            rowLayout->Add(idCell, 0, wxALIGN_CENTER_VERTICAL);
+            rowLayout->Add(customerCell, 0, wxALIGN_CENTER_VERTICAL);
+            rowLayout->Add(dateCell, 0, wxALIGN_CENTER_VERTICAL);
+            rowLayout->Add(titleCell, 0, wxALIGN_CENTER_VERTICAL);
+            rowLayout->Add(employeeCell, 0, wxALIGN_CENTER_VERTICAL);
+            row->SetSizer(rowLayout);
+            ticketRows->Add(row, 0, wxEXPAND | wxLEFT | wxRIGHT, 24);
+            ticketRows->AddSpacer(6);
+        };
+
+        addTicketRow();
+        addTicketRow();
+        addTicketRow();
+        ticketRowsPanel->SetSizer(ticketRows);
+
+        auto* scrollbar = new wxScrollBar(listPanel, wxID_ANY, wxDefaultPosition,
+                                          wxDefaultSize, wxSB_VERTICAL);
+        scrollbar->SetScrollbar(0, 1, 10, 1);
+        scrollbar->SetMinSize(wxSize(16, -1));
+        ticketBodyLayout->Add(ticketRowsPanel, 1, wxEXPAND);
+        ticketBodyLayout->Add(scrollbar, 0, wxEXPAND | wxLEFT, 8);
+        listPanelLayout->Add(ticketBodyLayout, 1, wxEXPAND | wxALL, 32);
+        listPanel->SetSizer(listPanelLayout);
+        listPanel->SetMinSize(wxSize(620, 360));
+
+        contentLayout->Add(listPanel, 4, wxEXPAND);
+        contentLayout->AddStretchSpacer(1);
+        pageLayout->Add(contentLayout, 5, wxEXPAND | wxLEFT | wxRIGHT, 24);
+        pageLayout->AddStretchSpacer(1);
+
+        panel->SetSizer(pageLayout);
+        auto* frameLayout = new wxBoxSizer(wxVERTICAL);
+        frameLayout->Add(panel, 1, wxEXPAND | wxALL, 10);
         SetSizer(frameLayout);
         Centre(wxBOTH);
     }
@@ -266,6 +433,13 @@ public:
         auto* closedTicketsButton = new wxButton(panel, wxID_ANY,
                                                  _( "geschlossene Tickets" ),
                                                  wxDefaultPosition, wxSize(420, 64));
+        auto* overviewButton = new wxButton(panel, wxID_ANY,
+                                            _( "Ticketübersicht anzeigen" ),
+                                            wxDefaultPosition, wxSize(420, 64));
+        overviewButton->Bind(wxEVT_BUTTON, [this](wxCommandEvent&) {
+            auto* overview = new TicketsOverviewFrame(this);
+            overview->Show(true);
+        });
         auto styleAndAddButton = [&](wxButton* button) {
             button->SetFont(wxFont(13, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL,
                                    wxFONTWEIGHT_BOLD));
@@ -274,6 +448,7 @@ public:
         styleAndAddButton(freeTicketsButton);
         styleAndAddButton(myTicketsButton);
         styleAndAddButton(closedTicketsButton);
+        styleAndAddButton(overviewButton);
         pageLayout->Add(ticketButtons, 0, wxALIGN_CENTER_HORIZONTAL | wxLEFT | wxRIGHT, 24);
 
         pageLayout->AddStretchSpacer(1);
