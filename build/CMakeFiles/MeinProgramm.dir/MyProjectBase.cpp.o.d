@@ -1,0 +1,379 @@
+CMakeFiles/MeinProgramm.dir/MyProjectBase.cpp.o: \
+ /home/GWAP/Documents/HTLWY/3AHIT/ITP/scheda-informationis/MyProjectBase.cpp \
+ /usr/include/stdc-predef.h \
+ /home/GWAP/Documents/HTLWY/3AHIT/ITP/scheda-informationis/MyProjectBase.h \
+ /home/GWAP/app/wxWidgets/include/wx/artprov.h \
+ /home/GWAP/app/wxWidgets/include/wx/string.h \
+ /home/GWAP/app/wxWidgets/include/wx/defs.h \
+ /home/GWAP/app/wxWidgets/include/wx/platform.h \
+ /home/GWAP/app/wxWidgets/include/wx/compiler.h \
+ /home/GWAP/app/wxWidgets/build-gtk/lib/wx/include/gtk3-unicode-3.3/wx/setup.h \
+ /home/GWAP/app/wxWidgets/include/wx/chkconf.h \
+ /home/GWAP/app/wxWidgets/include/wx/gtk/chkconf.h \
+ /home/GWAP/app/wxWidgets/include/wx/unix/chkconf.h \
+ /home/GWAP/app/wxWidgets/include/wx/version.h \
+ /home/GWAP/app/wxWidgets/include/wx/cpp.h \
+ /home/GWAP/app/wxWidgets/include/wx/dlimpexp.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/stddef.h \
+ /home/GWAP/app/wxWidgets/include/wx/types.h /usr/include/sys/types.h \
+ /usr/include/features.h /usr/include/features-time64.h \
+ /usr/include/bits/wordsize.h /usr/include/bits/timesize.h \
+ /usr/include/sys/cdefs.h /usr/include/bits/long-double.h \
+ /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h \
+ /usr/include/bits/types.h /usr/include/bits/typesizes.h \
+ /usr/include/bits/time64.h /usr/include/bits/types/clock_t.h \
+ /usr/include/bits/types/clockid_t.h /usr/include/bits/types/time_t.h \
+ /usr/include/bits/types/timer_t.h /usr/include/bits/stdint-intn.h \
+ /usr/include/endian.h /usr/include/bits/endian.h \
+ /usr/include/bits/endianness.h /usr/include/bits/byteswap.h \
+ /usr/include/bits/uintn-identity.h /usr/include/sys/select.h \
+ /usr/include/bits/select.h /usr/include/bits/types/sigset_t.h \
+ /usr/include/bits/types/__sigset_t.h \
+ /usr/include/bits/types/struct_timeval.h \
+ /usr/include/bits/types/struct_timespec.h \
+ /usr/include/bits/pthreadtypes.h /usr/include/bits/thread-shared-types.h \
+ /usr/include/bits/pthreadtypes-arch.h \
+ /usr/include/bits/atomic_wide_counter.h /usr/include/bits/struct_mutex.h \
+ /usr/include/bits/struct_rwlock.h \
+ /home/GWAP/app/wxWidgets/include/wx/debug.h /usr/include/assert.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/limits.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/syslimits.h \
+ /usr/include/limits.h /usr/include/bits/libc-header-start.h \
+ /usr/include/bits/posix1_lim.h /usr/include/bits/local_lim.h \
+ /usr/include/linux/limits.h \
+ /usr/include/bits/pthread_stack_min-dynamic.h \
+ /usr/include/bits/posix2_lim.h /usr/include/bits/xopen_lim.h \
+ /usr/include/bits/uio_lim.h \
+ /home/GWAP/app/wxWidgets/include/wx/chartype.h /usr/include/wchar.h \
+ /usr/include/bits/floatn.h /usr/include/bits/floatn-common.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/stdarg.h \
+ /usr/include/bits/wchar.h /usr/include/bits/types/wint_t.h \
+ /usr/include/bits/types/mbstate_t.h \
+ /usr/include/bits/types/__mbstate_t.h /usr/include/bits/types/__FILE.h \
+ /usr/include/bits/types/FILE.h /usr/include/bits/types/locale_t.h \
+ /usr/include/bits/types/__locale_t.h \
+ /home/GWAP/app/wxWidgets/include/wx/features.h /usr/include/string.h \
+ /usr/include/strings.h /home/GWAP/app/wxWidgets/include/wx/wxcrtbase.h \
+ /usr/include/stdio.h /usr/include/bits/types/__fpos_t.h \
+ /usr/include/bits/types/__fpos64_t.h \
+ /usr/include/bits/types/struct_FILE.h \
+ /usr/include/bits/types/cookie_io_functions_t.h \
+ /usr/include/bits/stdio_lim.h /usr/include/ctype.h /usr/include/wctype.h \
+ /usr/include/bits/wctype-wchar.h /usr/include/time.h \
+ /usr/include/bits/time.h /usr/include/bits/timex.h \
+ /usr/include/bits/types/struct_tm.h \
+ /usr/include/bits/types/struct_itimerspec.h \
+ /home/GWAP/app/wxWidgets/include/wx/strvararg.h \
+ /home/GWAP/app/wxWidgets/include/wx/strconv.h \
+ /home/GWAP/app/wxWidgets/include/wx/buffer.h \
+ /home/GWAP/app/wxWidgets/include/wx/iosfwrap.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/iosfwd \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/requires_hosted.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/x86_64-pc-linux-gnu/bits/c++config.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/x86_64-pc-linux-gnu/bits/os_defines.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/x86_64-pc-linux-gnu/bits/cpu_defines.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/pstl/pstl_config.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/stringfwd.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/memoryfwd.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/postypes.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/cwchar \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/stdlib.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/cstdlib \
+ /usr/include/stdlib.h /usr/include/bits/waitflags.h \
+ /usr/include/bits/waitstatus.h /usr/include/alloca.h \
+ /usr/include/bits/stdlib-float.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/std_abs.h \
+ /home/GWAP/app/wxWidgets/include/wx/fontenc.h \
+ /home/GWAP/app/wxWidgets/include/wx/unichar.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/string \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/char_traits.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/type_traits \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/version.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/allocator.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/x86_64-pc-linux-gnu/bits/c++allocator.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/new_allocator.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/new \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/exception.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/functexcept.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/exception_defines.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/move.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/cpp_type_traits.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/localefwd.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/x86_64-pc-linux-gnu/bits/c++locale.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/clocale \
+ /usr/include/locale.h /usr/include/bits/locale.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/cctype \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/ostream_insert.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/cxxabi_forced.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/stl_iterator_base_funcs.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/concept_check.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/debug/assertions.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/stl_iterator_base_types.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/stl_iterator.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/ext/type_traits.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/ptr_traits.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/stl_function.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/backward/binders.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/ext/numeric_traits.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/stl_algobase.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/stl_pair.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/utility.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/debug/debug.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/predefined_ops.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bit \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/concepts \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/refwrap.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/invoke.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/range_access.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/initializer_list \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/basic_string.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/ext/alloc_traits.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/alloc_traits.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/stl_construct.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/string_view \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/functional_hash.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/hash_bytes.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/string_view.tcc \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/ext/string_conversions.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/cstdio \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/cerrno \
+ /usr/include/errno.h /usr/include/bits/errno.h \
+ /usr/include/linux/errno.h /usr/include/asm/errno.h \
+ /usr/include/asm-generic/errno.h /usr/include/asm-generic/errno-base.h \
+ /usr/include/bits/types/error_t.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/charconv.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/basic_string.tcc \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/memory_resource.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/cstddef \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/uses_allocator.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/uses_allocator_args.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/tuple \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/utility \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/stl_relops.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/vector \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/stl_uninitialized.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/stl_vector.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/stl_bvector.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/vector.tcc \
+ /home/GWAP/app/wxWidgets/include/wx/stringops.h \
+ /home/GWAP/app/wxWidgets/include/wx/beforestd.h \
+ /home/GWAP/app/wxWidgets/include/wx/afterstd.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/functional \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/std_function.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/typeinfo \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/unordered_map \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/unordered_map.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/hashtable.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/hashtable_policy.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/ext/aligned_buffer.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/enable_special_members.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/node_handle.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/erase_if.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/array \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/compare \
+ /home/GWAP/app/wxWidgets/include/wx/bitmap.h \
+ /home/GWAP/app/wxWidgets/include/wx/gdicmn.h \
+ /home/GWAP/app/wxWidgets/include/wx/list.h \
+ /home/GWAP/app/wxWidgets/include/wx/object.h \
+ /home/GWAP/app/wxWidgets/include/wx/xti.h \
+ /home/GWAP/app/wxWidgets/include/wx/rtti.h \
+ /home/GWAP/app/wxWidgets/include/wx/flags.h \
+ /home/GWAP/app/wxWidgets/include/wx/xti2.h \
+ /home/GWAP/app/wxWidgets/include/wx/vector.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/algorithm \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/stl_algo.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/algorithmfwd.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/stl_heap.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/uniform_int_dist.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/stl_tempbuf.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/pstl/glue_algorithm_defs.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/pstl/execution_defs.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/iterator \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/stream_iterator.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/streambuf_iterator.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/streambuf \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/ios_base.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/ext/atomicity.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/x86_64-pc-linux-gnu/bits/gthr.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/x86_64-pc-linux-gnu/bits/gthr-default.h \
+ /usr/include/pthread.h /usr/include/sched.h /usr/include/bits/sched.h \
+ /usr/include/linux/sched/types.h /usr/include/linux/types.h \
+ /usr/include/asm/types.h /usr/include/asm-generic/types.h \
+ /usr/include/asm-generic/int-ll64.h /usr/include/asm/bitsperlong.h \
+ /usr/include/asm-generic/bitsperlong.h /usr/include/linux/posix_types.h \
+ /usr/include/linux/stddef.h /usr/include/asm/posix_types.h \
+ /usr/include/asm/posix_types_64.h /usr/include/asm-generic/posix_types.h \
+ /usr/include/bits/types/struct_sched_param.h /usr/include/bits/cpu-set.h \
+ /usr/include/bits/setjmp.h \
+ /usr/include/bits/types/struct___jmp_buf_tag.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/x86_64-pc-linux-gnu/bits/atomic_word.h \
+ /usr/include/sys/single_threaded.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/locale_classes.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/locale_classes.tcc \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/system_error \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/x86_64-pc-linux-gnu/bits/error_constants.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/stdexcept \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/exception \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/exception_ptr.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/cxxabi_init_exception.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/nested_exception.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/streambuf.tcc \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/list \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/stl_list.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/allocated_ptr.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/list.tcc \
+ /home/GWAP/app/wxWidgets/include/wx/math.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/math.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/cmath \
+ /usr/include/math.h /usr/include/bits/math-vector.h \
+ /usr/include/bits/libm-simd-decl-stubs.h \
+ /usr/include/bits/flt-eval-method.h /usr/include/bits/fp-logb.h \
+ /usr/include/bits/fp-fast.h /usr/include/bits/mathcalls-macros.h \
+ /usr/include/bits/mathcalls-helper-functions.h \
+ /usr/include/bits/mathcalls.h /usr/include/bits/mathcalls-narrow.h \
+ /usr/include/bits/iscanonical.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/specfun.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/limits \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/tr1/gamma.tcc \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/tr1/special_function_util.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/tr1/bessel_function.tcc \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/tr1/beta_function.tcc \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/tr1/ell_integral.tcc \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/tr1/exp_integral.tcc \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/tr1/hypergeometric.tcc \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/tr1/legendre_function.tcc \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/tr1/modified_bessel_func.tcc \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/tr1/poly_hermite.tcc \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/tr1/poly_laguerre.tcc \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/tr1/riemann_zeta.tcc \
+ /home/GWAP/app/wxWidgets/include/wx/colour.h \
+ /home/GWAP/app/wxWidgets/include/wx/gdiobj.h \
+ /home/GWAP/app/wxWidgets/include/wx/variant.h \
+ /home/GWAP/app/wxWidgets/include/wx/arrstr.h \
+ /home/GWAP/app/wxWidgets/include/wx/dynarray.h \
+ /home/GWAP/app/wxWidgets/include/wx/longlong.h \
+ /home/GWAP/app/wxWidgets/include/wx/datetime.h \
+ /home/GWAP/app/wxWidgets/include/wx/anystr.h \
+ /home/GWAP/app/wxWidgets/include/wx/any.h \
+ /home/GWAP/app/wxWidgets/include/wx/meta/if.h \
+ /home/GWAP/app/wxWidgets/include/wx/typeinfo.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/cstring \
+ /home/GWAP/app/wxWidgets/include/wx/gtk/colour.h \
+ /home/GWAP/app/wxWidgets/include/wx/image.h \
+ /home/GWAP/app/wxWidgets/include/wx/hashmap.h \
+ /home/GWAP/app/wxWidgets/include/wx/wxcrt.h \
+ /home/GWAP/app/wxWidgets/include/wx/stream.h \
+ /home/GWAP/app/wxWidgets/include/wx/filefn.h /usr/include/sys/stat.h \
+ /usr/include/bits/stat.h /usr/include/bits/struct_stat.h \
+ /usr/include/bits/statx.h /usr/include/linux/stat.h \
+ /usr/include/bits/statx-generic.h \
+ /usr/include/bits/types/struct_statx_timestamp.h \
+ /usr/include/bits/types/struct_statx.h /usr/include/unistd.h \
+ /usr/include/bits/posix_opt.h /usr/include/bits/environments.h \
+ /usr/include/bits/confname.h /usr/include/bits/getopt_posix.h \
+ /usr/include/bits/getopt_core.h /usr/include/bits/unistd_ext.h \
+ /usr/include/linux/close_range.h /usr/include/dirent.h \
+ /usr/include/bits/dirent.h /usr/include/bits/dirent_ext.h \
+ /usr/include/fcntl.h /usr/include/bits/fcntl.h \
+ /usr/include/bits/fcntl-linux.h /usr/include/bits/types/struct_iovec.h \
+ /usr/include/bits/cloexec.h /usr/include/linux/falloc.h \
+ /usr/include/linux/openat2.h /usr/include/bits/openat2.h \
+ /home/GWAP/app/wxWidgets/include/wx/imagbmp.h \
+ /home/GWAP/app/wxWidgets/include/wx/imagpng.h \
+ /home/GWAP/app/wxWidgets/include/wx/versioninfo.h \
+ /home/GWAP/app/wxWidgets/include/wx/imaggif.h \
+ /home/GWAP/app/wxWidgets/include/wx/imagpcx.h \
+ /home/GWAP/app/wxWidgets/include/wx/imagjpeg.h \
+ /home/GWAP/app/wxWidgets/include/wx/imagtga.h \
+ /home/GWAP/app/wxWidgets/include/wx/imagtiff.h \
+ /home/GWAP/app/wxWidgets/include/wx/imagpnm.h \
+ /home/GWAP/app/wxWidgets/include/wx/imagxpm.h \
+ /home/GWAP/app/wxWidgets/include/wx/imagwebp.h \
+ /home/GWAP/app/wxWidgets/include/wx/imagiff.h \
+ /home/GWAP/app/wxWidgets/include/wx/gtk/bitmap.h \
+ /home/GWAP/app/wxWidgets/include/wx/icon.h \
+ /home/GWAP/app/wxWidgets/include/wx/iconloc.h \
+ /home/GWAP/app/wxWidgets/include/wx/generic/icon.h \
+ /home/GWAP/app/wxWidgets/include/wx/iconbndl.h \
+ /home/GWAP/app/wxWidgets/include/wx/bmpbndl.h \
+ /home/GWAP/app/wxWidgets/include/wx/xrc/xmlres.h \
+ /home/GWAP/app/wxWidgets/include/wx/filesys.h \
+ /home/GWAP/app/wxWidgets/include/wx/filename.h \
+ /home/GWAP/app/wxWidgets/include/wx/intl.h \
+ /home/GWAP/app/wxWidgets/include/wx/localedefs.h \
+ /home/GWAP/app/wxWidgets/include/wx/translation.h \
+ /home/GWAP/app/wxWidgets/include/wx/language.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/memory \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/stl_raw_storage_iter.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/align.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/unique_ptr.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/shared_ptr.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/shared_ptr_base.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/ext/concurrence.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/shared_ptr_atomic.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/atomic_base.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/bits/atomic_lockfree_defines.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/backward/auto_ptr.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15/include/g++-v15/pstl/glue_memory_defs.h \
+ /home/GWAP/app/wxWidgets/include/wx/file.h \
+ /home/GWAP/app/wxWidgets/include/wx/convauto.h \
+ /home/GWAP/app/wxWidgets/include/wx/xrc/xmlreshandler.h \
+ /home/GWAP/app/wxWidgets/include/wx/imaglist.h \
+ /home/GWAP/app/wxWidgets/include/wx/generic/imaglist.h \
+ /home/GWAP/app/wxWidgets/include/wx/window.h \
+ /home/GWAP/app/wxWidgets/include/wx/event.h \
+ /home/GWAP/app/wxWidgets/include/wx/clntdata.h \
+ /home/GWAP/app/wxWidgets/include/wx/geometry.h \
+ /home/GWAP/app/wxWidgets/include/wx/utils.h \
+ /home/GWAP/app/wxWidgets/include/wx/meta/implicitconversion.h \
+ /home/GWAP/app/wxWidgets/include/wx/busycursor.h \
+ /home/GWAP/app/wxWidgets/include/wx/mousestate.h \
+ /home/GWAP/app/wxWidgets/include/wx/kbdstate.h \
+ /home/GWAP/app/wxWidgets/include/wx/platinfo.h \
+ /home/GWAP/app/wxWidgets/include/wx/itemid.h \
+ /home/GWAP/app/wxWidgets/include/wx/cursor.h \
+ /home/GWAP/app/wxWidgets/include/wx/gtk/cursor.h \
+ /home/GWAP/app/wxWidgets/include/wx/thread.h \
+ /home/GWAP/app/wxWidgets/include/wx/tracker.h \
+ /home/GWAP/app/wxWidgets/include/wx/recguard.h \
+ /home/GWAP/app/wxWidgets/include/wx/sharedptr.h \
+ /home/GWAP/app/wxWidgets/include/wx/atomic.h \
+ /home/GWAP/app/wxWidgets/include/wx/meta/convertible.h \
+ /home/GWAP/app/wxWidgets/include/wx/meta/removeref.h \
+ /home/GWAP/app/wxWidgets/include/wx/font.h \
+ /home/GWAP/app/wxWidgets/include/wx/gtk/font.h \
+ /home/GWAP/app/wxWidgets/include/wx/region.h \
+ /home/GWAP/app/wxWidgets/include/wx/gtk/region.h \
+ /home/GWAP/app/wxWidgets/include/wx/validate.h \
+ /home/GWAP/app/wxWidgets/include/wx/windowid.h \
+ /home/GWAP/app/wxWidgets/include/wx/palette.h \
+ /home/GWAP/app/wxWidgets/include/wx/generic/paletteg.h \
+ /home/GWAP/app/wxWidgets/include/wx/accel.h \
+ /home/GWAP/app/wxWidgets/include/wx/gtk/accel.h \
+ /home/GWAP/app/wxWidgets/include/wx/generic/accel.h \
+ /home/GWAP/app/wxWidgets/include/wx/gtk/window.h \
+ /home/GWAP/app/wxWidgets/include/wx/stattext.h \
+ /home/GWAP/app/wxWidgets/include/wx/control.h \
+ /home/GWAP/app/wxWidgets/include/wx/gtk/control.h \
+ /home/GWAP/app/wxWidgets/include/wx/gtk/stattext.h \
+ /home/GWAP/app/wxWidgets/include/wx/button.h \
+ /home/GWAP/app/wxWidgets/include/wx/anybutton.h \
+ /home/GWAP/app/wxWidgets/include/wx/gtk/anybutton.h \
+ /home/GWAP/app/wxWidgets/include/wx/gtk/button.h \
+ /home/GWAP/app/wxWidgets/include/wx/settings.h \
+ /home/GWAP/app/wxWidgets/include/wx/sizer.h \
+ /home/GWAP/app/wxWidgets/include/wx/frame.h \
+ /home/GWAP/app/wxWidgets/include/wx/toplevel.h \
+ /home/GWAP/app/wxWidgets/include/wx/nonownedwnd.h \
+ /home/GWAP/app/wxWidgets/include/wx/gtk/nonownedwnd.h \
+ /home/GWAP/app/wxWidgets/include/wx/weakref.h \
+ /home/GWAP/app/wxWidgets/include/wx/meta/int2type.h \
+ /home/GWAP/app/wxWidgets/include/wx/gtk/toplevel.h \
+ /home/GWAP/app/wxWidgets/include/wx/statusbr.h \
+ /home/GWAP/app/wxWidgets/include/wx/generic/statusbr.h \
+ /home/GWAP/app/wxWidgets/include/wx/pen.h \
+ /home/GWAP/app/wxWidgets/include/wx/peninfobase.h \
+ /home/GWAP/app/wxWidgets/include/wx/gtk/pen.h \
+ /home/GWAP/app/wxWidgets/include/wx/gtk/frame.h \
+ /home/GWAP/app/wxWidgets/include/wx/panel.h \
+ /home/GWAP/app/wxWidgets/include/wx/containr.h

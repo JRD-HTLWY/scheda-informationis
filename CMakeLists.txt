@@ -11,6 +11,9 @@ file(GLOB_RECURSE SOURCES
         "${CMAKE_CURRENT_SOURCE_DIR}/code/*.h"
 )
 
+add_executable(MeinProgramm
+    main.cpp
+    MyProjectBase.cpp
 # Ausführbare Datei erstellen
 add_executable(MeinProjekt ${SOURCES}
         code/main.cpp
