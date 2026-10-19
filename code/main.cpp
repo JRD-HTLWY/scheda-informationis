@@ -20,16 +20,15 @@ const uint32_t port = 8300;
 
 void init(){
     //init der JSON-Datei
-    fstream jsons("alleNachrichten.txt");
-    stringstream alleNachrichtenBuf;
-    alleNachrichtenBuf << jsons.rdbuf();
-    json alleNachrichtenJSON = json::parse(alleNachrichtenBuf.str());
+    fstream jsons("alleNachrichten.txt", ios::out | ios::trunc);
 
     json initJSONArray = json::array();
 
-    string initJSONArrayString;
-    initJSONArray.dump(initJSONArrayString);
-    jsons << initJSONArrayString;
+    //string initJSONArrayString;
+    //initJSONArray.dump(initJSONArrayString);
+    jsons << initJSONArray.to_string();
+
+    jsons.close();
 }
 
 bool anmelden(string nutzername, string passwort){
@@ -98,7 +97,8 @@ void empfangeTickets(string name, string titel, string frage){
     neueNachricht["question"] = frage;
     neueNachricht["answer"] = "-";
 
-    alleNachrichtenJSON.push_back(neueNachricht); //final hinzugefuegt
+    alleNachrichtenJSON.push_back(neueNachricht);
+    jsons << alleNachrichtenJSON.to_string();//final hinzugefuegt
     jsons.close();
 }
 
@@ -127,6 +127,8 @@ void sendeTickets(string ip, string nutzername, bool support){
     }
 
     asio::write(socket, asio::buffer(sendeDaten.to_string())); //senden
+
+    jsonDatei.close();
 }
 
 void antworteTicket(int id, string antwort){//nur fuer den Support
@@ -140,6 +142,10 @@ void antworteTicket(int id, string antwort){//nur fuer den Support
             alleNachrichtenJSON[i]["answer"] = antwort;
         }
     }
+
+    alleNachrichten << alleNachrichtenJSON.to_string();
+
+    alleNachrichten.close();
 }
 
 void loescheTicket(int id){
@@ -156,6 +162,10 @@ void loescheTicket(int id){
             return;
         }
     }
+
+    alleNachrichten << alleNachrichtenJSON.to_string();
+
+    alleNachrichten.close();
 }
 
 void befehlLesen(){
@@ -223,7 +233,50 @@ void befehlLesen(){
 
 int main(){
     thread zweiterThread(befehlLesen);
+    cout << "scheda-informationis-Server ist gestartet!\n";
+    while(true){
+        string eingabe;
+        cout << ">";
+        getline(cin, eingabe);
 
+        if(eingabe == "help"){
+            cout << "init //init the data for the first time (It DELETES EVERYTHING!!!)\n";
+            cout << "upgrade <NAME> //upgrade a costumer to support\n";
+            cout << "downgrade <NAME> //downgrade a support to a costumer\n";
+        }
+        if(eingabe == "init"){
+            init();
+            cout << "Please restart the server.\n";
+        }
+        try{
+            if((eingabe.substr(0, 8) == "upgrade ") && eingabe.substr(8).find(" ") == string::npos){
+                fstream kontenDatei("konten.txt", ios::in | ios::out);
+                string zeile;
+                vector<string> neueDatei;
+
+                while(getline(kontenDatei, zeile)){
+                    if(zeile.substr(0, zeile.find("@")) == eingabe.substr(8)){
+                        neueDatei.push_back(zeile + "S");
+                    }
+                    neueDatei.push_back(zeile);
+                }
+            }
+            if(eingabe.substr(0, 10) == "downgrade " && eingabe.substr(10).find(" ") == string::npos){
+                fstream kontenDatei("konten.txt", ios::in | ios::out);
+                string zeile;
+                vector<string> neueDatei;
+
+                while(getline(kontenDatei, zeile)){
+                    if(zeile.substr(0, zeile.find("@")) == eingabe.substr(8)){
+                        neueDatei.push_back(zeile.substr(0, zeile.length()-1));
+                    }
+                    neueDatei.push_back(zeile);
+                }
+            }
+        }
+        catch(const exception& e){
+        }
+    }
     zweiterThread.join();
 
     return 0;
