@@ -24,12 +24,12 @@
 /**
  * Single-threaded TCP client for newline-delimited JSON requests.
  *
- * Call poll() regularly from the application's event loop to process network
- * events. Incoming JSON may contain a numeric "type" field; requests without
- * one are treated as pings. Pings are echoed by default and can be overridden
- * with registerHandler(). If no custom error handler is set, errors are written
- * to stderr. The request-type enum can be customized by supplying it as the
- * networkManager template argument; custom enums must define Ping.
+ * Call poll() regularly from the application's event loop to process network events.
+ * Incoming JSON may contain a numeric "type" field; requests without one are treated as pings.
+ * Pings are echoed by default and can be overridden with registerHandler().
+ * If no custom error handler is set, errors are written to stderr.
+ * The request-type enum can be customized by supplying it as the networkManager template argument.
+ * When a peer closes the connection, the client retries the last endpoint while listening.
  */
 enum class NetworkRequestType : std::uint32_t
 {
@@ -69,10 +69,8 @@ public:
     {
         ErrorCode ignored;
         requestTimer_.cancel(ignored);
-        if (const ErrorCode closeResult = socket_.close(ignored); ignored || closeResult)
-        {
-            logError(std::make_exception_ptr(asio::system_error(ignored ? ignored : closeResult)));
-        }
+        reconnectTimer_.cancel(ignored);
+        if (const ErrorCode closeResult = socket_.close(ignored); ignored || closeResult) logError(std::make_exception_ptr(asio::system_error(ignored ? ignored : closeResult)));
     }
 
     /**
@@ -81,7 +79,10 @@ public:
      */
     void connectTo(const IpAddress& ipAddress, const Port port)
     {
-        socket_.connect(Tcp::endpoint(ipAddress, port));
+        const Tcp::endpoint endpoint(ipAddress, port);
+        socket_.connect(endpoint);
+        reconnectEndpoint_ = endpoint;
+        hasReconnectEndpoint_ = true;
     }
 
     /**
@@ -157,11 +158,14 @@ private:
     asio::io_context context_;
     Tcp::socket socket_;
     asio::steady_timer requestTimer_{context_};
+    asio::steady_timer reconnectTimer_{context_};
     asio::streambuf incoming_{maxIncomingBytes_};
+    Tcp::endpoint reconnectEndpoint_;
     HandlerMap handlers_;
     ErrorHandler errorHandler_;
     bool listening_ = false;
     bool requestTimedOut_ = false;
+    bool hasReconnectEndpoint_ = false;
 
     void readNextRequest()
     {
@@ -211,6 +215,11 @@ private:
         }
         if (error)
         {
+            if (isConnectionClosed(error))
+            {
+                recoverConnection(std::make_exception_ptr(asio::system_error(error)));
+                return;
+            }
             reportError(std::make_exception_ptr(asio::system_error(error)));
             return;
         }
@@ -220,22 +229,70 @@ private:
             dispatchIncomingRequest();
             if (listening_) readNextRequest();
         }
+        catch (const asio::system_error& exception)
+        {
+            if (isConnectionClosed(exception.code())) recoverConnection(std::current_exception());
+            else reportError(std::current_exception());
+        }
         catch (...)
         {
             reportError(std::current_exception());
         }
     }
 
-    void reportError(const ExceptionPtr& error) noexcept
+    static bool isConnectionClosed(const ErrorCode& error) noexcept
     {
-        listening_ = false;
+        return error == asio::error::eof ||
+               error == asio::error::connection_reset ||
+               error == asio::error::connection_aborted ||
+               error == asio::error::broken_pipe ||
+               error == asio::error::not_connected;
+    }
+
+    void recoverConnection(const ExceptionPtr& error)
+    {
+        if (!listening_) return;
+
+        incoming_.consume(incoming_.size());
+
         ErrorCode ignored;
         requestTimer_.cancel(ignored);
-        if (const ErrorCode cancelResult = socket_.cancel(ignored); ignored || cancelResult)
-        {
-            logError(std::make_exception_ptr(asio::system_error(ignored ? ignored : cancelResult)));
-        }
+        if (const ErrorCode closeResult = socket_.close(ignored); ignored || closeResult) logError(std::make_exception_ptr(asio::system_error(ignored ? ignored : closeResult)));
 
+        notifyError(error);
+        scheduleReconnect();
+    }
+
+    void scheduleReconnect()
+    {
+        if (!listening_ || !hasReconnectEndpoint_) return;
+
+        reconnectTimer_.expires_after(std::chrono::seconds(1));
+        reconnectTimer_.async_wait([this](const ErrorCode& error) {
+            if (error == asio::error::operation_aborted || !listening_) return;
+            if (error)
+            {
+                reportError(std::make_exception_ptr(asio::system_error(error)));
+                return;
+            }
+
+            socket_.async_connect(reconnectEndpoint_, [this](const ErrorCode& connectError) {
+                if (!listening_) return;
+                if (connectError)
+                {
+                    ErrorCode ignored;
+                    if (const ErrorCode closeResult = socket_.close(ignored); ignored || closeResult) logError(std::make_exception_ptr(asio::system_error(ignored ? ignored : closeResult)));
+                    notifyError(std::make_exception_ptr(asio::system_error(connectError)));
+                    scheduleReconnect();
+                    return;
+                }
+                readNextRequest();
+            });
+        });
+    }
+
+    void notifyError(const ExceptionPtr& error) const noexcept
+    {
         try
         {
             if (errorHandler_) errorHandler_(error);
@@ -245,6 +302,17 @@ private:
         {
             logError(std::current_exception());
         }
+    }
+
+    void reportError(const ExceptionPtr& error) noexcept
+    {
+        listening_ = false;
+        ErrorCode ignored;
+        requestTimer_.cancel(ignored);
+        reconnectTimer_.cancel(ignored);
+        if (const ErrorCode cancelResult = socket_.cancel(ignored); ignored || cancelResult) logError(std::make_exception_ptr(asio::system_error(ignored ? ignored : cancelResult)));
+
+        notifyError(error);
     }
 
     static void logError(const ExceptionPtr& error) noexcept
