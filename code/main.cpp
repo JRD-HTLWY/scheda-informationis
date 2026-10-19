@@ -16,6 +16,7 @@ asio::io_context io;
 //ID-Vergabe beheben
 uint32_t globaleID = 0;
 auto zeit = chrono::system_clock::now();
+const port = 8300;
 
 void init(){
     //init der JSON-Datei
@@ -103,7 +104,7 @@ void empfangeTickets(string name, string titel, string frage){
 
 void sendeTickets(string ip, string nutzername, bool support){
     tcp::socket socket(io);
-    auto endpoint = tcp::endpoint(asio::ip::make_address(ip), 8300);
+    auto endpoint = tcp::endpoint(asio::ip::make_address(ip), port);
 
     socket.connect(endpoint);
 
@@ -158,7 +159,7 @@ void loescheTicket(int id){
 }
 
 void befehlLesen(){
-    tcp::acceptor acceptor(io, tcp::endpoint(tcp::v4(), 8300));
+    tcp::acceptor acceptor(io, tcp::endpoint(tcp::v4(), port));
     tcp::socket socket(io);
     auto endpoint = socket.remote_endpoint();
     asio::streambuf buffer;
@@ -210,7 +211,9 @@ void befehlLesen(){
 }
 
 int main(){
-    befehlLesen();
+    thread zweiterThread(befehlLesen);
+
+
 
     return 0;
 }
