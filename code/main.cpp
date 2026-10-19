@@ -16,7 +16,7 @@ asio::io_context io;
 //ID-Vergabe beheben
 uint32_t globaleID = 0;
 auto zeit = chrono::system_clock::now();
-const port = 8300;
+const uint32_t port = 8300;
 
 void init(){
     //init der JSON-Datei
@@ -160,52 +160,63 @@ void loescheTicket(int id){
 
 void befehlLesen(){
     tcp::acceptor acceptor(io, tcp::endpoint(tcp::v4(), port));
-    tcp::socket socket(io);
-    auto endpoint = socket.remote_endpoint();
-    asio::streambuf buffer;
 
-    asio::read_until(socket, buffer, "\n");
+    while(true){
+        tcp::socket socket(io);
+        acceptor.accept(socket);
+        auto endpoint = socket.remote_endpoint();
+        asio::streambuf buffer;
 
-    asio::error_code ec;
-    size_t bytes;
+        asio::error_code ec;
+        asio::read_until(socket, buffer, "\n", ec);
 
-    if(ec){
-        if(ec == asio::error::eof){
-            cerr << "Fehler: Client hat die Verbindung beendet.\n";
+        size_t bytes;
+
+        if(ec){
+            if(ec == asio::error::eof || ec == asio::error::connection_reset){
+                cerr << "Fehler: Client hat die Verbindung beendet.\n";
+            }
+            else{
+                cerr << "Socket-Fehler: " << ec.message() << "\n";
+            }
         }
-        else{
-            cerr << "Socket-Fehler: " << ec.message() << "\n";
+
+        istream stream(&buffer);
+        string jsonString;
+        getline(stream, jsonString);
+
+        string befehl = jsonString.substr(0, jsonString.find("@"));
+        jsonString = jsonString.substr(jsonString.find("@")+1);
+        string name = jsonString.substr(0, jsonString.find("@"));
+        jsonString = jsonString.substr(jsonString.find("@")+1);
+        string passwort = jsonString.substr(0, jsonString.find("@"));
+        jsonString = jsonString.substr(jsonString.find("@")+1);//fertiges JSON ohne Anmeldeinfos
+
+        json jsonJ;
+        try{
+            jsonJ = json::parse(jsonString);
         }
-    }
-
-    istream stream(&buffer);
-    string jsonString;
-    getline(stream, jsonString);
-
-    string befehl = jsonString.substr(0, jsonString.find("@"));
-    jsonString = jsonString.substr(jsonString.find("@")+1);
-    string name = jsonString.substr(0, jsonString.find("@"));
-    jsonString = jsonString.substr(jsonString.find("@")+1);
-    string passwort = jsonString.substr(0, jsonString.find("@"));
-    jsonString = jsonString.substr(jsonString.find("@")+1);//fertiges JSON ohne Anmeldeinfos
-
-    json jsonJ = json::parse(jsonString);
-
-    string ip = endpoint.address().to_string();
-
-    if(anmelden(name, passwort)){
-        //Befehl ausführen
-        if(befehl == "empfangeTickets"){
-            empfangeTickets(name, jsonJ["title"].to_string(), jsonJ["question"].to_string());
+        catch(const exception& e){
+            cerr << "JSON konnte nicht uebersetzt werden.\n";
+            continue;
         }
-        if(befehl == "sendeTickets"){
-            sendeTickets(ip, name, istSupport(name));
-        }
-        if(befehl == "antworteTicket"){
-            antworteTicket(jsonJ["id"].as<int>(), jsonJ["answer"].to_string());
-        }
-        if(befehl == "loescheTicket"){
-            loescheTicket(jsonJ["id"].as<int>());
+
+        string ip = endpoint.address().to_string();
+
+        if(anmelden(name, passwort)){
+            //Befehl ausführen
+            if(befehl == "empfangeTickets"){
+                empfangeTickets(name, jsonJ["title"].to_string(), jsonJ["question"].to_string());
+            }
+            if(befehl == "sendeTickets"){
+                sendeTickets(ip, name, istSupport(name));
+            }
+            if(befehl == "antworteTicket"){
+                antworteTicket(jsonJ["id"].as<int>(), jsonJ["answer"].to_string());
+            }
+            if(befehl == "loescheTicket"){
+                loescheTicket(jsonJ["id"].as<int>());
+            }
         }
     }
 }
@@ -213,7 +224,7 @@ void befehlLesen(){
 int main(){
     thread zweiterThread(befehlLesen);
 
-
+    zweiterThread.join();
 
     return 0;
 }
