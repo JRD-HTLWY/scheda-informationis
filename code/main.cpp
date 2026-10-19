@@ -3,6 +3,7 @@
 #include <wx/statline.h>
 #include "MyProjectBase.h"
 
+// Route every scrollbar action through one handler for the associated view.
 template <typename Handler>
 static void BindScrollBarEvents(wxScrollBar* scrollbar, Handler handler) {
     scrollbar->Bind(wxEVT_SCROLL_TOP, handler);
@@ -16,6 +17,7 @@ static void BindScrollBarEvents(wxScrollBar* scrollbar, Handler handler) {
     scrollbar->Bind(wxEVT_SCROLL_CHANGED, handler);
 }
 
+// Shows a ticket's details, conversation, reply input, and footer actions.
 class TicketDetailFrame : public wxFrame {
 public:
     explicit TicketDetailFrame(wxWindow* parent = nullptr)
@@ -29,6 +31,7 @@ public:
         auto* pageLayout = new wxBoxSizer(wxVERTICAL);
         auto* header = new wxBoxSizer(wxHORIZONTAL);
 
+        // Center the ticket title while keeping the username aligned to the right.
         auto* title = new wxStaticText(panel, wxID_ANY, _( "Ticket" ));
         title->SetFont(wxFont(24, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL,
                               wxFONTWEIGHT_BOLD));
@@ -46,6 +49,7 @@ public:
         header->Add(username, 0, wxALIGN_RIGHT | wxALIGN_CENTER_VERTICAL);
         pageLayout->Add(header, 0, wxEXPAND | wxLEFT | wxRIGHT | wxTOP, 28);
 
+        // Group the ticket's key fields in a lightly tinted metadata panel.
         auto* detailsPanel = new wxPanel(panel, wxID_ANY);
         detailsPanel->SetBackgroundColour(wxColour(237, 243, 250));
         auto* detailsLayout = new wxBoxSizer(wxVERTICAL);
@@ -79,6 +83,7 @@ public:
         pageLayout->Add(detailsPanel, 0, wxALIGN_LEFT | wxLEFT | wxRIGHT | wxTOP, 24);
         detailsPanel->SetMinSize(wxSize(360, -1));
 
+        // Keep the conversation independently scrollable above the reply field.
         auto* conversationPanel = new wxPanel(panel, wxID_ANY);
         conversationPanel->SetBackgroundColour(wxColour(255, 255, 255));
         auto* conversationLayout = new wxBoxSizer(wxVERTICAL);
@@ -104,6 +109,7 @@ public:
         messageLayout->AddSpacer(180);
         conversation->SetSizer(messageLayout);
         conversation->FitInside();
+        // The adjacent scrollbar controls this view, so hide its built-in bars.
         conversation->ShowScrollbars(wxSHOW_SB_NEVER, wxSHOW_SB_NEVER);
         auto* conversationBody = new wxBoxSizer(wxHORIZONTAL);
         conversationBody->Add(conversation, 1, wxEXPAND | wxALL, 12);
@@ -148,6 +154,7 @@ public:
         frameLayout->Add(panel, 1, wxEXPAND);
         SetSizer(frameLayout);
         Centre(wxBOTH);
+        // Wait for layout sizing before matching the scrollbar thumb to the view.
         CallAfter([conversation, conversationScrollbar]() {
             conversation->FitInside();
             const int virtualHeight = conversation->GetVirtualSize().GetHeight();
@@ -161,6 +168,7 @@ public:
     }
 };
 
+// Displays ticket rows and opens a detail window when a row is double-clicked.
 class TicketsListFrame : public wxFrame {
 public:
     explicit TicketsListFrame(wxWindow* parent = nullptr)
@@ -204,6 +212,7 @@ public:
         ticketScroll->SetScrollRate(0, 10);
 
         auto* ticketRows = new wxBoxSizer(wxVERTICAL);
+        // Give each ticket consistent columns and one shared double-click action.
         auto addTicketRow = [&](const wxString& id, const wxString& customer,
                                 const wxString& date, const wxString& subject) {
             auto* row = new wxPanel(ticketScroll, wxID_ANY);
@@ -250,6 +259,7 @@ public:
 
         ticketScroll->SetSizer(ticketRows);
         ticketScroll->FitInside();
+        // Use an external scrollbar alongside the row view.
         ticketScroll->ShowScrollbars(wxSHOW_SB_NEVER, wxSHOW_SB_NEVER);
         listBodyLayout->Add(ticketScroll, 1, wxEXPAND | wxALL, 12);
         auto* listScrollbar = new wxScrollBar(
@@ -272,6 +282,7 @@ public:
         frameLayout->Add(panel, 1, wxEXPAND);
         SetSizer(frameLayout);
         Centre(wxBOTH);
+        // Compute the visible page size after the frame and its children are laid out.
         CallAfter([ticketScroll, listScrollbar]() {
             ticketScroll->FitInside();
             const int virtualHeight = ticketScroll->GetVirtualSize().GetHeight();
@@ -285,6 +296,7 @@ public:
     }
 };
 
+// Recreates the gray ticket overview mockup with its ticket rows and scrollbar.
 class TicketsOverviewFrame : public wxFrame {
 public:
     explicit TicketsOverviewFrame(wxWindow* parent = nullptr)
@@ -329,6 +341,7 @@ public:
         auto* ticketRows = new wxBoxSizer(wxVERTICAL);
         ticketRows->AddSpacer(8);
 
+        // Add a row of ticket fields and let any field open the detail window.
         auto addTicketRow = [&]() {
             auto* row = new wxPanel(ticketRowsPanel, wxID_ANY);
             row->SetBackgroundColour(wxColour(202, 198, 198));
@@ -375,6 +388,7 @@ public:
         addTicketRow();
         ticketRowsPanel->SetSizer(ticketRows);
 
+        // This overview uses the native scrollbar control beside its row panel.
         auto* scrollbar = new wxScrollBar(listPanel, wxID_ANY, wxDefaultPosition,
                                           wxDefaultSize, wxSB_VERTICAL);
         scrollbar->SetScrollbar(0, 1, 10, 1);
@@ -398,6 +412,7 @@ public:
     }
 };
 
+// Main ticket menu for navigating to the ticket list and overview.
 class TicketsFrame : public wxFrame {
 public:
     explicit TicketsFrame(wxWindow* parent = nullptr)
@@ -431,6 +446,7 @@ public:
         pageLayout->AddStretchSpacer(1);
 
         auto* ticketButtons = new wxBoxSizer(wxVERTICAL);
+        // Keep the navigation buttons visually consistent in size and type.
         auto* freeTicketsButton = new wxButton(panel, wxID_ANY,
                                                _( "freie Tickets anzeigen" ),
                                                wxDefaultPosition, wxSize(420, 64));
@@ -472,6 +488,7 @@ public:
     }
 };
 
+// Presents the ticket actions available after a successful login.
 class TicketActionsFrame : public wxFrame {
 public:
     explicit TicketActionsFrame()
@@ -532,6 +549,7 @@ public:
     }
 };
 
+// Collects credentials and reports failed attempts until authentication is added.
 class LoginDialog : public wxDialog {
 public:
     explicit LoginDialog(wxWindow* parent)
@@ -567,6 +585,7 @@ public:
                                          wxDefaultPosition, wxSize(240, 56));
         loginButton->SetFont(wxFont(14, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL,
                                     wxFONTWEIGHT_BOLD));
+        // Authentication is not implemented yet, so each attempt shows the error.
         loginButton->Bind(wxEVT_BUTTON, [this](wxCommandEvent&) {
             ShowInvalidCredentialsMessage();
         });
@@ -583,8 +602,9 @@ public:
     }
 
 private:
+    // Display the login error without closing the dialog.
     void ShowInvalidCredentialsMessage() {
-        wxMessageBox(_( "falsche Anmeldeinfo!" ), _( "Login fehlgeschlagen" ),
+        wxMessageBox(_( "falsche Anmeldedaten!" ), _( "Login fehlgeschlagen" ),
                      wxOK | wxICON_ERROR, this);
     }
 };
@@ -596,15 +616,21 @@ public:
     }
 
 private:
+    // Open the modal login dialog and continue only if it reports success.
     void OnOpenLogin(wxCommandEvent&) {
         LoginDialog dialog(this);
         dialog.ShowModal();
     }
 };
 
-int main(int argc, char **argv)
-{
-  wxPrintf(wxT("A wxWidgets console application\n"));
+class MyApp : public wxApp {
+public:
+    // Create and display the FormBuilder-generated home window at startup.
+    bool OnInit() override {
+        HomeFrame* frame = new HomeFrame();
+        frame->Show(true);
+        return true;
+    }
+};
 
-  return 0;
-}
+wxIMPLEMENT_APP(MyApp);
