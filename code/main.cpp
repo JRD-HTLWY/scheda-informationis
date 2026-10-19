@@ -131,7 +131,7 @@ void sendeTickets(string ip, string nutzername, bool support){
     jsonDatei.close();
 }
 
-void antworteTicket(int id, string antwort){//nur fuer den Support
+void antworteTicket(int id, string name, string antwort){
     fstream alleNachrichten("alleNachrichten.txt");
     stringstream alleNachrichtenBuf;
     alleNachrichtenBuf << alleNachrichten.rdbuf();
@@ -139,7 +139,10 @@ void antworteTicket(int id, string antwort){//nur fuer den Support
 
     for(uint32_t i = 0; i < alleNachrichtenJSON.size(); i++){
         if(alleNachrichtenJSON[i]["id"] == id){
-            alleNachrichtenJSON[i]["answer"] = antwort;
+            json neueNachricht = json::object();
+            neueNachricht["name"] = name;
+            neueNachricht["matter"] = antwort;
+            alleNachrichtenJSON[i]["content"].push_back(neueNachricht);
         }
     }
 
@@ -222,7 +225,7 @@ void befehlLesen(){
                 sendeTickets(ip, name, istSupport(name));
             }
             if(befehl == "antworteTicket"){
-                antworteTicket(jsonJ["id"].as<int>(), jsonJ["answer"].to_string());
+                antworteTicket(jsonJ["id"].as<int>(), name, jsonJ["answer"].to_string());
             }
             if(befehl == "loescheTicket"){
                 loescheTicket(jsonJ["id"].as<int>());
@@ -243,6 +246,7 @@ int main(){
             cout << "init //init the data for the first time (It DELETES EVERYTHING!!!)\n";
             cout << "upgrade <NAME> //upgrade a costumer to support\n";
             cout << "downgrade <NAME> //downgrade a support to a costumer\n";
+            cout << "list-accounts //lists all accounts and displays the status\n";
         }
         if(eingabe == "init"){
             init();
@@ -255,7 +259,7 @@ int main(){
                 vector<string> neueDatei;
 
                 while(getline(kontenDatei, zeile)){
-                    if((zeile.substr(0, zeile.find("@")) == eingabe.substr(8)) && zeile[zeile.length()-1] == "@"){
+                    if((zeile.substr(0, zeile.find("@")) == eingabe.substr(8)) && zeile[zeile.length()-1] == '@'){
                         neueDatei.push_back(zeile + "S");
                     }
                     neueDatei.push_back(zeile);
@@ -267,11 +271,14 @@ int main(){
                 vector<string> neueDatei;
 
                 while(getline(kontenDatei, zeile)){
-                    if((zeile.substr(0, zeile.find("@")) == eingabe.substr(8)) && zeile[zeile.length()-1] != "@"){
+                    if((zeile.substr(0, zeile.find("@")) == eingabe.substr(8)) && zeile[zeile.length()-1] != '@'){
                         neueDatei.push_back(zeile.substr(0, zeile.length()-1));
                     }
                     neueDatei.push_back(zeile);
                 }
+            }
+            if(eingabe.substr(0, 14) == "list-accounts " && eingabe.substr(14).find(" ") == string::npos){
+                //weiter machen
             }
         }
         catch(const exception& e){
