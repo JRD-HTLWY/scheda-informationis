@@ -255,7 +255,7 @@ int main(){
                 vector<string> neueDatei;
 
                 while(getline(kontenDatei, zeile)){
-                    if(zeile.substr(0, zeile.find("@")) == eingabe.substr(8)){
+                    if((zeile.substr(0, zeile.find("@")) == eingabe.substr(8)) && zeile[zeile.length()-1] == "@"){
                         neueDatei.push_back(zeile + "S");
                     }
                     neueDatei.push_back(zeile);
@@ -267,7 +267,7 @@ int main(){
                 vector<string> neueDatei;
 
                 while(getline(kontenDatei, zeile)){
-                    if(zeile.substr(0, zeile.find("@")) == eingabe.substr(8)){
+                    if((zeile.substr(0, zeile.find("@")) == eingabe.substr(8)) && zeile[zeile.length()-1] != "@"){
                         neueDatei.push_back(zeile.substr(0, zeile.length()-1));
                     }
                     neueDatei.push_back(zeile);
