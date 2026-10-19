@@ -129,8 +129,19 @@ public:
 
         auto* backButton = new wxButton(panel, wxID_ANY, _( "zurück" ),
                                         wxDefaultPosition, wxSize(180, 42));
+        backButton->SetFont(wxFont(13, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL,
+                                   wxFONTWEIGHT_BOLD));
         backButton->Bind(wxEVT_BUTTON, [this](wxCommandEvent&) { Close(); });
-        pageLayout->Add(backButton, 0, wxLEFT | wxTOP | wxBOTTOM, 48);
+        auto* sendButton = new wxButton(panel, wxID_ANY, _( "Senden" ),
+                                        wxDefaultPosition, wxSize(180, 42));
+        sendButton->SetFont(wxFont(13, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL,
+                                   wxFONTWEIGHT_BOLD));
+        auto* actionLayout = new wxBoxSizer(wxHORIZONTAL);
+        actionLayout->Add(backButton, 0);
+        actionLayout->AddStretchSpacer(1);
+        actionLayout->Add(sendButton, 0);
+        pageLayout->Add(actionLayout, 0,
+                        wxEXPAND | wxLEFT | wxRIGHT | wxTOP | wxBOTTOM, 48);
 
         panel->SetSizer(pageLayout);
         auto* frameLayout = new wxBoxSizer(wxVERTICAL);
@@ -557,7 +568,7 @@ public:
         loginButton->SetFont(wxFont(14, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL,
                                     wxFONTWEIGHT_BOLD));
         loginButton->Bind(wxEVT_BUTTON, [this](wxCommandEvent&) {
-            EndModal(wxID_OK);
+            ShowInvalidCredentialsMessage();
         });
         layout->Add(loginButton, 0, wxALIGN_CENTER_HORIZONTAL | wxLEFT | wxRIGHT, 24);
 
@@ -569,6 +580,12 @@ public:
         SetSizer(frameLayout);
         wxTopLevelWindowGTK::SetMinSize(wxSize(440, 400));
         CentreOnParent();
+    }
+
+private:
+    void ShowInvalidCredentialsMessage() {
+        wxMessageBox(_( "falsche Anmeldeinfo!" ), _( "Login fehlgeschlagen" ),
+                     wxOK | wxICON_ERROR, this);
     }
 };
 
