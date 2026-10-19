@@ -122,7 +122,8 @@ void antworteTicket(int id, string antwort){//nur fuer den Support
     json alleNachrichtenJSON = json::parse(alleNachrichtenBuf.str());
 
     for(uint32_t i = 0; i < alleNachrichtenJSON.size(); i++){
-        if(alleNachrichtenJSON[i]["id"] == id){ //nicht fertig!!!
+        if(alleNachrichtenJSON[i]["id"] == id){
+            alleNachrichtenJSON[i]["answer"] = antwort;
         }
     }
 }
@@ -135,7 +136,10 @@ void loescheTicket(int id){
 
     for(uint32_t i = 0; i < alleNachrichtenJSON.size(); i++){
         if(alleNachrichtenJSON[i]["id"] == id){
-            alleNachrichtenJSON.erase(alleNachrichtenJSON.begin() + i);
+            auto arrayIT = alleNachrichtenJSON.array_range();
+            auto it = arrayIT.begin();
+            alleNachrichtenJSON.erase(it + i);
+            return;
         }
     }
 }
