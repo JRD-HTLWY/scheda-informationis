@@ -3,6 +3,7 @@
 #include <fstream>
 #include <array>
 #include <chrono>
+#include <ctime>
 #include <asio.hpp>
 #include "lib/jsoncons/json.hpp"
 
@@ -14,6 +15,7 @@ asio::io_context io;
 
 //ID-Vergabe beheben
 uint32_t globaleID = 0;
+auto zeit = chrono::system_clock::now();
 
 void init(){
     //init der JSON-Datei
@@ -78,21 +80,22 @@ bool istSupport(string nutzername){//nur nach dem Anmelden verwenden, keine Pass
     return false; //kann auch bedeuten dass das Konto nicht existiert
 }
 
-void empfangeTickets(string name, titel, string frage){
+void empfangeTickets(string name, string titel, string frage){
     fstream jsons("alleNachrichten.txt");
     stringstream alleNachrichtenBuf;
     alleNachrichtenBuf << jsons.rdbuf();
     json alleNachrichtenJSON = json::parse(alleNachrichtenBuf.str());
 
-    json neueNachricht;
-    json["id"] = globaleID++;
-    json["title"] = titel;
-    json["status"] = 0;
-    json["date"] = chrono::system_clock::to_time_t;
-    json["customer"] = name;
-    json["support"] = "-";
-    json["question"] = frage;
-    json["answer"] = "-";
+    json neueNachricht = json::object();
+    neueNachricht["id"] = globaleID++;
+    neueNachricht["title"] = titel;
+    neueNachricht["status"] = 0;
+    time_t zeitA = chrono::system_clock::to_time_t(zeit);
+    neueNachricht["date"] = ctime(&zeitA);
+    neueNachricht["customer"] = name;
+    neueNachricht["support"] = "-";
+    neueNachricht["question"] = frage;
+    neueNachricht["answer"] = "-";
 
     alleNachrichtenJSON.push_back(neueNachricht); //final hinzugefuegt
     jsons.close();
@@ -192,16 +195,16 @@ void befehlLesen(){
     if(anmelden(name, passwort)){
         //Befehl ausführen
         if(befehl == "empfangeTickets"){
-            empfangeTickets(name, jsonJ["title"], jsonJ["question"]);
+            empfangeTickets(name, jsonJ["title"].to_string(), jsonJ["question"].to_string());
         }
         if(befehl == "sendeTickets"){
             sendeTickets(ip, name, istSupport(name));
         }
         if(befehl == "antworteTicket"){
-            antworteTicket(jsonJ["id"], jsonJ["answer"]);
+            antworteTicket(jsonJ["id"].as<int>(), jsonJ["answer"].to_string());
         }
         if(befehl == "loescheTicket"){
-            loescheTicket(jsonJ["id"]);
+            loescheTicket(jsonJ["id"].as<int>());
         }
     }
 }
