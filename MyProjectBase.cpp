@@ -13,10 +13,10 @@ MyFrame1::MyFrame1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 {
 	this->SetSizeHints( wxSize( 480, 360 ), wxDefaultSize );
 
-	wxPanel* panel = new wxPanel( this, wxID_ANY );
+	auto panel = new wxPanel( this, wxID_ANY );
 	panel->SetBackgroundColour( wxColour( 248, 250, 253 ) );
 
-	wxBoxSizer* bSizer1 = new wxBoxSizer( wxVERTICAL );
+	auto* bSizer1 = new wxBoxSizer( wxVERTICAL );
 
 	bSizer1->AddStretchSpacer( 1 );
 
@@ -33,17 +33,16 @@ MyFrame1::MyFrame1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	bSizer1->AddStretchSpacer( 1 );
 
 	panel->SetSizer( bSizer1 );
-	wxBoxSizer* frameSizer = new wxBoxSizer( wxVERTICAL );
+	auto* frameSizer = new wxBoxSizer( wxVERTICAL );
 	frameSizer->Add( panel, 1, wxEXPAND );
 	this->SetSizer( frameSizer );
-	this->SetMinSize( wxSize( 480, 360 ) );
+	this->wxTopLevelWindowGTK::SetMinSize( wxSize( 480, 360 ) );
 	this->SetSize( wxSize( 640, 440 ) );
-	this->SetTitle( _( "Ticket-Support" ) );
+	this->wxTopLevelWindowGTK::SetTitle( _( "Ticket-Support" ) );
 	this->Centre( wxBOTH );
 
-	this->Layout();
+	this->wxTopLevelWindowBase::Layout();
 }
 
 MyFrame1::~MyFrame1()
-{
-}
+= default;
