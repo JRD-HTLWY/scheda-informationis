@@ -28,8 +28,18 @@
  * events. Incoming JSON may contain a numeric "type" field; requests without
  * one are treated as pings. Pings are echoed by default and can be overridden
  * with registerHandler(). If no custom error handler is set, errors are written
- * to stderr.
+ * to stderr. The request-type enum can be customized by supplying it as the
+ * networkManager template argument; custom enums must define Ping.
  */
+enum class NetworkRequestType : std::uint32_t
+{
+    Ping = 0,
+    Fetch = 1,
+    Pull = 2,
+    UserAuthorized = 3
+};
+
+template <typename RequestTypeT = NetworkRequestType>
 class networkManager
 {
 public:
@@ -43,13 +53,7 @@ public:
     using ErrorCode = asio::error_code;
     using RequestHandler = std::function<void(const Json&)>;
     using ErrorHandler = std::function<void(ExceptionPtr)>;
-
-    enum class RequestType : RequestId
-    {
-        Ping = 0,
-        Fetch = 1,
-        Pull = 2
-    };
+    using RequestType = RequestTypeT;
 
     /** Creates a disconnected client with a default stderr error handler. */
     networkManager() : socket_(context_)
@@ -234,14 +238,8 @@ private:
 
         try
         {
-            if (errorHandler_)
-            {
-                errorHandler_(error);
-            }
-            else
-            {
-                logError(error);
-            }
+            if (errorHandler_) errorHandler_(error);
+            else logError(error);
         }
         catch (...)
         {
@@ -268,15 +266,10 @@ private:
     void dispatchIncomingRequest()
     {
         const auto request = parseIncomingRequest();
-        const auto typeId = request.contains("type")
-                                ? request.at("type").as<RequestId>()
-                                : static_cast<RequestId>(RequestType::Ping);
-        const auto type = parseRequestType(typeId);
+        RequestId typeId = request.contains("type") ? typeId = request.at("type").template as<RequestId>() : 0;
+        const auto type = static_cast<RequestType>(typeId);
         const auto handler = handlers_.find(type);
-        if (handler == handlers_.end())
-        {
-            throw std::runtime_error("No handler registered for request type: " + std::to_string(typeId));
-        }
+        if (handler == handlers_.end()) throw std::runtime_error("No handler registered for request type: " + std::to_string(typeId));
 
         handler->second(request);
     }
@@ -290,13 +283,6 @@ private:
         return Json::parse(payload);
     }
 
-    static RequestType parseRequestType(const RequestId typeId)
-    {
-        if (typeId == static_cast<RequestId>(RequestType::Ping)) return RequestType::Ping;
-        if (typeId == static_cast<RequestId>(RequestType::Fetch)) return RequestType::Fetch;
-        if (typeId == static_cast<RequestId>(RequestType::Pull)) return RequestType::Pull;
-        throw std::invalid_argument("Unknown request type: " + std::to_string(typeId));
-    }
 };
 
 #endif //SCHEDA_INFORMATIONIS_NETWORKMANAGER_H
