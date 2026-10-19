@@ -1834,3 +1834,357 @@ events:
       CMAKE_SYSTEM_INCLUDE_PATH:
         - "/usr/include"
 ...
+
+---
+events:
+  -
+    kind: "find_package-v1"
+    backtrace:
+      - "CMakeLists.txt:16 (find_package)"
+    name: "wxWidgets"
+    configs:
+      -
+        filename: "wxWidgets.cps"
+        kind: "cps"
+      -
+        filename: "wxwidgets.cps"
+        kind: "cps"
+      -
+        filename: "wxWidgetsConfig.cmake"
+        kind: "cmake"
+      -
+        filename: "wxwidgets-config.cmake"
+        kind: "cmake"
+    version_request:
+      exact: false
+    settings:
+      required: "required_explicit"
+      quiet: false
+      global: false
+      policy_scope: true
+      bypass_provider: false
+      names:
+        - "wxWidgets"
+      path_suffixes:
+        - ""
+      paths:
+        CMAKE_FIND_USE_CMAKE_PATH: true
+        CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+        CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+        CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+        CMAKE_FIND_USE_INSTALL_PREFIX: true
+        CMAKE_FIND_USE_PACKAGE_ROOT_PATH: true
+        CMAKE_FIND_USE_CMAKE_PACKAGE_REGISTRY: true
+        CMAKE_FIND_USE_SYSTEM_PACKAGE_REGISTRY: true
+        CMAKE_FIND_ROOT_PATH_MODE: "BOTH"
+    candidates:
+      -
+        path: "/home/GWAP/Documents/HTLWY/3AHIT/ITP/scheda-informationis/build/CMakeFiles/pkgRedirects/wxWidgetsConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/home/GWAP/Documents/HTLWY/3AHIT/ITP/scheda-informationis/build/CMakeFiles/pkgRedirects/wxwidgets-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/home/GWAP/Documents/HTLWY/3AHIT/ITP/scheda-informationis/build/CMakeFiles/pkgRedirects/lib64/cps/wxWidgets.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/home/GWAP/Documents/HTLWY/3AHIT/ITP/scheda-informationis/build/CMakeFiles/pkgRedirects/lib64/cps/wxwidgets.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/home/GWAP/Documents/HTLWY/3AHIT/ITP/scheda-informationis/build/CMakeFiles/pkgRedirects/lib/cps/wxWidgets.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/home/GWAP/Documents/HTLWY/3AHIT/ITP/scheda-informationis/build/CMakeFiles/pkgRedirects/lib/cps/wxwidgets.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/home/GWAP/Documents/HTLWY/3AHIT/ITP/scheda-informationis/build/CMakeFiles/pkgRedirects/share/cps/wxWidgets.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/home/GWAP/Documents/HTLWY/3AHIT/ITP/scheda-informationis/build/CMakeFiles/pkgRedirects/share/cps/wxwidgets.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/home/GWAP/.codex/packages/app-server-daemon/releases/0.163.0-x86_64-unknown-linux-musl/codex-path/wxWidgetsConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/home/GWAP/.codex/packages/app-server-daemon/releases/0.163.0-x86_64-unknown-linux-musl/codex-path/wxwidgets-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/home/GWAP/.codex/packages/app-server-daemon/releases/0.163.0-x86_64-unknown-linux-musl/codex-path/lib64/cps/wxWidgets.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/home/GWAP/.codex/packages/app-server-daemon/releases/0.163.0-x86_64-unknown-linux-musl/codex-path/lib64/cps/wxwidgets.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/home/GWAP/.codex/packages/app-server-daemon/releases/0.163.0-x86_64-unknown-linux-musl/codex-path/lib/cps/wxWidgets.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/home/GWAP/.codex/packages/app-server-daemon/releases/0.163.0-x86_64-unknown-linux-musl/codex-path/lib/cps/wxwidgets.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/home/GWAP/.codex/packages/app-server-daemon/releases/0.163.0-x86_64-unknown-linux-musl/codex-path/share/cps/wxWidgets.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/home/GWAP/.codex/packages/app-server-daemon/releases/0.163.0-x86_64-unknown-linux-musl/codex-path/share/cps/wxwidgets.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/tqt3/wxWidgetsConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/tqt3/wxwidgets-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/tqt3/lib64/cps/wxWidgets.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/tqt3/lib64/cps/wxwidgets.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/tqt3/lib/cps/wxWidgets.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/tqt3/lib/cps/wxwidgets.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/tqt3/share/cps/wxWidgets.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/tqt3/share/cps/wxwidgets.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/local/wxWidgetsConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/local/wxwidgets-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/local/lib64/cps/wxWidgets.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/local/lib64/cps/wxwidgets.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/local/lib/cps/wxWidgets.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/local/lib/cps/wxwidgets.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/local/share/cps/wxWidgets.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/local/share/cps/wxwidgets.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/wxWidgetsConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/wxwidgets-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cps/wxWidgets.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cps/wxwidgets.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/lib/cps/wxWidgets.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/lib/cps/wxwidgets.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/share/cps/wxWidgets.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/share/cps/wxwidgets.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/opt/wxWidgetsConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/opt/wxwidgets-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/opt/lib64/cps/wxWidgets.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/opt/lib64/cps/wxwidgets.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/opt/lib/cps/wxWidgets.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/opt/lib/cps/wxwidgets.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/opt/share/cps/wxWidgets.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/opt/share/cps/wxwidgets.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/lib/llvm/22/wxWidgetsConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib/llvm/22/wxwidgets-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib/llvm/22/lib64/cps/wxWidgets.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/lib/llvm/22/lib64/cps/wxwidgets.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/lib/llvm/22/lib/cps/wxWidgets.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/lib/llvm/22/lib/cps/wxwidgets.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/lib/llvm/22/share/cps/wxWidgets.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/lib/llvm/22/share/cps/wxwidgets.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/trinity/14/wxWidgetsConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/trinity/14/wxwidgets-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/trinity/14/lib64/cps/wxWidgets.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/trinity/14/lib64/cps/wxwidgets.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/trinity/14/lib/cps/wxWidgets.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/trinity/14/lib/cps/wxwidgets.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/trinity/14/share/cps/wxWidgets.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/trinity/14/share/cps/wxwidgets.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/wxWidgetsConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/wxwidgets-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/lib64/cps/wxWidgets.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/lib64/cps/wxwidgets.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/lib/cps/wxWidgets.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/lib/cps/wxwidgets.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/share/cps/wxWidgets.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/share/cps/wxwidgets.cps"
+        mode: "cps"
+        reason: "no_exist"
+    found: null
+    search_context:
+      ENV{PATH}:
+        - "/home/GWAP/.codex/packages/app-server-daemon/releases/0.163.0-x86_64-unknown-linux-musl/codex-path"
+        - "/usr/tqt3/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/opt/bin"
+        - "/usr/lib/llvm/22/bin"
+        - "/usr/trinity/14/bin"
+      CMAKE_INSTALL_PREFIX: "/usr/local"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/usr"
+        - "/usr/local"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+...
