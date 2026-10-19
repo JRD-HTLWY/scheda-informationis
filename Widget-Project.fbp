@@ -70,7 +70,7 @@
           <property name="flag">wxEXPAND</property>
           <property name="proportion">1</property>
           <object class="wxPanel" expanded="true">
-            <property name="bg">248,250,253</property>
+            <property name="bg">202,236,251</property>
             <property name="context_help"></property>
             <property name="enabled">1</property>
             <property name="fg"></property>
@@ -136,12 +136,12 @@
                 <property name="flag">wxALIGN_CENTER_HORIZONTAL|wxLEFT|wxRIGHT</property>
                 <property name="proportion">0</property>
                 <object class="wxButton" expanded="true">
-                  <property name="bg"></property>
+                  <property name="bg">190,239,255</property>
                   <property name="context_help"></property>
                   <property name="context_menu">1</property>
                   <property name="default">0</property>
                   <property name="enabled">1</property>
-                  <property name="fg"></property>
+                  <property name="fg">29,57,82</property>
                   <property name="font">17, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, false, </property>
                   <property name="hidden">0</property>
                   <property name="id">wxID_ANY</property>
@@ -213,7 +213,7 @@
           <property name="flag">wxEXPAND</property>
           <property name="proportion">1</property>
           <object class="wxPanel" expanded="true">
-            <property name="bg">248,250,253</property>
+            <property name="bg">202,236,251</property>
             <property name="context_help"></property>
             <property name="enabled">1</property>
             <property name="fg"></property>
@@ -389,12 +389,12 @@
                 <property name="flag">wxALIGN_CENTER_HORIZONTAL|wxLEFT|wxRIGHT</property>
                 <property name="proportion">0</property>
                 <object class="wxButton" expanded="true">
-                  <property name="bg"></property>
+                  <property name="bg">190,239,255</property>
                   <property name="context_help"></property>
                   <property name="context_menu">1</property>
                   <property name="default">0</property>
                   <property name="enabled">1</property>
-                  <property name="fg"></property>
+                  <property name="fg">29,57,82</property>
                   <property name="font">14, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, false, </property>
                   <property name="hidden">0</property>
                   <property name="id">wxID_ANY</property>
@@ -428,317 +428,7 @@
         </object>
       </object>
     </object>
-    <object class="Frame" expanded="true">
-      <property name="aui_managed">0</property>
-      <property name="aui_manager_style">wxAUI_MGR_DEFAULT</property>
-      <property name="bg"></property>
-      <property name="center">wxBOTH</property>
-      <property name="context_help"></property>
-      <property name="context_menu">1</property>
-      <property name="drag_accept_files">0</property>
-      <property name="enabled">1</property>
-      <property name="event_handler">impl_virtual</property>
-      <property name="extra_style"></property>
-      <property name="font"></property>
-      <property name="hidden">0</property>
-      <property name="id">wxID_ANY</property>
-      <property name="maximum_size"></property>
-      <property name="minimum_size">640,440</property>
-      <property name="name">TicketsFrameBase</property>
-      <property name="pos"></property>
-      <property name="size">900,600</property>
-      <property name="style">wxDEFAULT_FRAME_STYLE</property>
-      <property name="subclass">; ; forward_declare</property>
-      <property name="title">Ticket-Support</property>
-      <property name="tooltip"></property>
-      <property name="two_step_creation">0</property>
-      <property name="window_extra_style"></property>
-      <property name="window_name"></property>
-      <property name="window_style">wxTAB_TRAVERSAL</property>
-      <property name="xrc_skip_sizer">1</property>
-      <object class="wxBoxSizer" expanded="true">
-        <property name="minimum_size"></property>
-        <property name="name">ticketsFrameSizer</property>
-        <property name="orient">wxVERTICAL</property>
-        <property name="permission">none</property>
-        <object class="sizeritem" expanded="true">
-          <property name="border">0</property>
-          <property name="flag">wxEXPAND</property>
-          <property name="proportion">1</property>
-          <object class="wxPanel" expanded="true">
-            <property name="bg">248,250,253</property>
-            <property name="context_help"></property>
-            <property name="enabled">1</property>
-            <property name="fg"></property>
-            <property name="font"></property>
-            <property name="hidden">0</property>
-            <property name="id">wxID_ANY</property>
-            <property name="maximum_size"></property>
-            <property name="minimum_size"></property>
-            <property name="name">ticketsPanel</property>
-            <property name="permission">none</property>
-            <property name="pos"></property>
-            <property name="size">-1,-1</property>
-            <property name="subclass"></property>
-            <property name="tooltip"></property>
-            <property name="window_extra_style"></property>
-            <property name="window_name"></property>
-            <property name="window_style">wxTAB_TRAVERSAL</property>
-            <object class="wxBoxSizer" expanded="true">
-              <property name="minimum_size"></property>
-              <property name="name">ticketsPageSizer</property>
-              <property name="orient">wxVERTICAL</property>
-              <property name="permission">none</property>
-              <object class="sizeritem" expanded="true">
-                <property name="border">28</property>
-                <property name="flag">wxEXPAND|wxLEFT|wxRIGHT|wxTOP</property>
-                <property name="proportion">0</property>
-                <object class="wxBoxSizer" expanded="true">
-                  <property name="minimum_size"></property>
-                  <property name="name">ticketsHeaderSizer</property>
-                  <property name="orient">wxHORIZONTAL</property>
-                  <property name="permission">none</property>
-                  <object class="sizeritem" expanded="true">
-                    <property name="border">0</property>
-                    <property name="flag"></property>
-                    <property name="proportion">0</property>
-                    <object class="spacer" expanded="true">
-                      <property name="height">0</property>
-                      <property name="permission">protected</property>
-                      <property name="width">120</property>
-                    </object>
-                  </object>
-                  <object class="sizeritem" expanded="true">
-                    <property name="border">0</property>
-                    <property name="flag">wxEXPAND</property>
-                    <property name="proportion">1</property>
-                    <object class="spacer" expanded="true">
-                      <property name="height">0</property>
-                      <property name="permission">protected</property>
-                      <property name="width">0</property>
-                    </object>
-                  </object>
-                  <object class="sizeritem" expanded="true">
-                    <property name="border">0</property>
-                    <property name="flag">wxALIGN_CENTER_VERTICAL</property>
-                    <property name="proportion">0</property>
-                    <object class="wxStaticText" expanded="true">
-                      <property name="bg"></property>
-                      <property name="enabled">1</property>
-                      <property name="fg">29,44,66</property>
-                      <property name="font">24, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, false, </property>
-                      <property name="hidden">0</property>
-                      <property name="id">wxID_ANY</property>
-                      <property name="label">Ticket-Support</property>
-                      <property name="markup">0</property>
-                      <property name="maximum_size"></property>
-                      <property name="minimum_size"></property>
-                      <property name="name">ticketsTitle</property>
-                      <property name="permission">protected</property>
-                      <property name="pos"></property>
-                      <property name="size"></property>
-                      <property name="style"></property>
-                      <property name="subclass">; ; forward_declare</property>
-                      <property name="tooltip"></property>
-                      <property name="window_extra_style"></property>
-                      <property name="window_name"></property>
-                      <property name="window_style"></property>
-                      <property name="wrap">-1</property>
-                    </object>
-                  </object>
-                  <object class="sizeritem" expanded="true">
-                    <property name="border">0</property>
-                    <property name="flag">wxEXPAND</property>
-                    <property name="proportion">1</property>
-                    <object class="spacer" expanded="true">
-                      <property name="height">0</property>
-                      <property name="permission">protected</property>
-                      <property name="width">0</property>
-                    </object>
-                  </object>
-                  <object class="sizeritem" expanded="true">
-                    <property name="border">0</property>
-                    <property name="flag">wxALIGN_RIGHT|wxALIGN_CENTER_VERTICAL</property>
-                    <property name="proportion">0</property>
-                    <object class="wxStaticText" expanded="true">
-                      <property name="bg"></property>
-                      <property name="enabled">1</property>
-                      <property name="fg">79,95,116</property>
-                      <property name="font">11, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, </property>
-                      <property name="hidden">0</property>
-                      <property name="id">wxID_ANY</property>
-                      <property name="label">Benutzername</property>
-                      <property name="markup">0</property>
-                      <property name="maximum_size"></property>
-                      <property name="minimum_size">120,-1</property>
-                      <property name="name">usernamePlaceholder</property>
-                      <property name="permission">protected</property>
-                      <property name="pos"></property>
-                      <property name="size"></property>
-                      <property name="style"></property>
-                      <property name="subclass">; ; forward_declare</property>
-                      <property name="tooltip"></property>
-                      <property name="window_extra_style"></property>
-                      <property name="window_name"></property>
-                      <property name="window_style"></property>
-                      <property name="wrap">-1</property>
-                    </object>
-                  </object>
-                </object>
-              </object>
-              <object class="sizeritem" expanded="true">
-                <property name="border">0</property>
-                <property name="flag">wxEXPAND</property>
-                <property name="proportion">1</property>
-                <object class="spacer" expanded="true">
-                  <property name="height">0</property>
-                  <property name="permission">protected</property>
-                  <property name="width">0</property>
-                </object>
-              </object>
-              <object class="sizeritem" expanded="true">
-                <property name="border">24</property>
-                <property name="flag">wxALIGN_CENTER_HORIZONTAL|wxLEFT|wxRIGHT</property>
-                <property name="proportion">0</property>
-                <object class="wxBoxSizer" expanded="true">
-                  <property name="minimum_size"></property>
-                  <property name="name">ticketButtonsSizer</property>
-                  <property name="orient">wxVERTICAL</property>
-                  <property name="permission">none</property>
-                  <object class="sizeritem" expanded="true">
-                    <property name="border">16</property>
-                    <property name="flag">wxEXPAND|wxBOTTOM</property>
-                    <property name="proportion">0</property>
-                    <object class="wxButton" expanded="true">
-                      <property name="bg"></property>
-                      <property name="context_help"></property>
-                      <property name="context_menu">1</property>
-                      <property name="default">0</property>
-                      <property name="enabled">1</property>
-                      <property name="fg"></property>
-                      <property name="font">13, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, false, </property>
-                      <property name="hidden">0</property>
-                      <property name="id">wxID_ANY</property>
-                      <property name="label">freie Tickets anzeigen</property>
-                      <property name="maximum_size"></property>
-                      <property name="minimum_size"></property>
-                      <property name="name">freeTicketsButton</property>
-                      <property name="permission">protected</property>
-                      <property name="pos"></property>
-                      <property name="size">420,64</property>
-                      <property name="style"></property>
-                      <property name="subclass"></property>
-                      <property name="tooltip"></property>
-                      <property name="window_extra_style"></property>
-                      <property name="window_name"></property>
-                      <property name="window_style"></property>
-                    </object>
-                  </object>
-                  <object class="sizeritem" expanded="true">
-                    <property name="border">16</property>
-                    <property name="flag">wxEXPAND|wxBOTTOM</property>
-                    <property name="proportion">0</property>
-                    <object class="wxButton" expanded="true">
-                      <property name="bg"></property>
-                      <property name="context_help"></property>
-                      <property name="context_menu">1</property>
-                      <property name="default">0</property>
-                      <property name="enabled">1</property>
-                      <property name="fg"></property>
-                      <property name="font">13, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, false, </property>
-                      <property name="hidden">0</property>
-                      <property name="id">wxID_ANY</property>
-                      <property name="label">deine Tickets anzeigen</property>
-                      <property name="maximum_size"></property>
-                      <property name="minimum_size"></property>
-                      <property name="name">myTicketsButton</property>
-                      <property name="permission">protected</property>
-                      <property name="pos"></property>
-                      <property name="size">420,64</property>
-                      <property name="style"></property>
-                      <property name="subclass"></property>
-                      <property name="tooltip"></property>
-                      <property name="window_extra_style"></property>
-                      <property name="window_name"></property>
-                      <property name="window_style"></property>
-                    </object>
-                  </object>
-                  <object class="sizeritem" expanded="true">
-                    <property name="border">16</property>
-                    <property name="flag">wxEXPAND|wxBOTTOM</property>
-                    <property name="proportion">0</property>
-                    <object class="wxButton" expanded="true">
-                      <property name="bg"></property>
-                      <property name="context_help"></property>
-                      <property name="context_menu">1</property>
-                      <property name="default">0</property>
-                      <property name="enabled">1</property>
-                      <property name="fg"></property>
-                      <property name="font">13, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, false, </property>
-                      <property name="hidden">0</property>
-                      <property name="id">wxID_ANY</property>
-                      <property name="label">geschlossene Tickets</property>
-                      <property name="maximum_size"></property>
-                      <property name="minimum_size"></property>
-                      <property name="name">closedTicketsButton</property>
-                      <property name="permission">protected</property>
-                      <property name="pos"></property>
-                      <property name="size">420,64</property>
-                      <property name="style"></property>
-                      <property name="subclass"></property>
-                      <property name="tooltip"></property>
-                      <property name="window_extra_style"></property>
-                      <property name="window_name"></property>
-                      <property name="window_style"></property>
-                    </object>
-                  </object>
-                  <object class="sizeritem" expanded="true">
-                    <property name="border">16</property>
-                    <property name="flag">wxEXPAND|wxBOTTOM</property>
-                    <property name="proportion">0</property>
-                    <object class="wxButton" expanded="true">
-                      <property name="bg" />
-                      <property name="context_help" />
-                      <property name="context_menu">1</property>
-                      <property name="default">0</property>
-                      <property name="enabled">1</property>
-                      <property name="fg" />
-                      <property name="font">13, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, false, </property>
-                      <property name="hidden">0</property>
-                      <property name="id">wxID_ANY</property>
-                      <property name="label">Ticketübersicht anzeigen</property>
-                      <property name="maximum_size" />
-                      <property name="minimum_size" />
-                      <property name="name">overviewButton</property>
-                      <property name="permission">protected</property>
-                      <property name="pos" />
-                      <property name="size">420,64</property>
-                      <property name="style" />
-                      <property name="subclass" />
-                      <property name="tooltip" />
-                      <property name="window_extra_style" />
-                      <property name="window_name" />
-                      <property name="window_style" />
-                    </object>
-                  </object>
 
-                </object>
-              </object>
-              <object class="sizeritem" expanded="true">
-                <property name="border">0</property>
-                <property name="flag">wxEXPAND</property>
-                <property name="proportion">1</property>
-                <object class="spacer" expanded="true">
-                  <property name="height">0</property>
-                  <property name="permission">protected</property>
-                  <property name="width">0</property>
-                </object>
-              </object>
-            </object>
-          </object>
-        </object>
-      </object>
-    </object>
     <object class="Frame" expanded="true">
       <property name="aui_managed">0</property>
       <property name="aui_manager_style">wxAUI_MGR_DEFAULT</property>
@@ -755,7 +445,7 @@
       <property name="id">wxID_ANY</property>
       <property name="maximum_size" />
       <property name="minimum_size">640,440</property>
-      <property name="name">TicketActionsFrameBase</property>
+      <property name="name">TicketMenuFrameBase</property>
       <property name="pos" />
       <property name="size">900,600</property>
       <property name="style">wxDEFAULT_FRAME_STYLE</property>
@@ -769,7 +459,7 @@
       <property name="xrc_skip_sizer">1</property>
       <object class="wxBoxSizer" expanded="true">
         <property name="minimum_size" />
-        <property name="name">ticketActionsFrameSizer</property>
+        <property name="name">ticketMenuFrameSizer</property>
         <property name="orient">wxVERTICAL</property>
         <property name="permission">none</property>
         <object class="sizeritem" expanded="true">
@@ -777,7 +467,7 @@
           <property name="flag">wxEXPAND</property>
           <property name="proportion">1</property>
           <object class="wxPanel" expanded="true">
-            <property name="bg">248,250,253</property>
+            <property name="bg">202,236,251</property>
             <property name="context_help" />
             <property name="enabled">1</property>
             <property name="fg" />
@@ -786,7 +476,7 @@
             <property name="id">wxID_ANY</property>
             <property name="maximum_size" />
             <property name="minimum_size" />
-            <property name="name">ticketActionsPanel</property>
+            <property name="name">ticketMenuPanel</property>
             <property name="permission">none</property>
             <property name="pos" />
             <property name="size">-1,-1</property>
@@ -797,7 +487,7 @@
             <property name="window_style">wxTAB_TRAVERSAL</property>
             <object class="wxBoxSizer" expanded="true">
               <property name="minimum_size" />
-              <property name="name">ticketActionsPageSizer</property>
+              <property name="name">ticketMenuPageSizer</property>
               <property name="orient">wxVERTICAL</property>
               <property name="permission">none</property>
               <object class="sizeritem" expanded="true">
@@ -806,7 +496,7 @@
                 <property name="proportion">0</property>
                 <object class="wxBoxSizer" expanded="true">
                   <property name="minimum_size" />
-                  <property name="name">ticketActionsHeaderSizer</property>
+                  <property name="name">ticketMenuHeaderSizer</property>
                   <property name="orient">wxHORIZONTAL</property>
                   <property name="permission">none</property>
                   <object class="sizeritem" expanded="true">
@@ -834,7 +524,7 @@
                     <property name="flag">wxALIGN_CENTER_VERTICAL</property>
                     <property name="proportion">0</property>
                     <object class="wxStaticText" expanded="true">
-                      <property name="bg" />
+                      <property name="bg"></property>
                       <property name="enabled">1</property>
                       <property name="fg">29,44,66</property>
                       <property name="font">24, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, false, </property>
@@ -844,7 +534,7 @@
                       <property name="markup">0</property>
                       <property name="maximum_size" />
                       <property name="minimum_size" />
-                      <property name="name">ticketActionsTitle</property>
+                      <property name="name">ticketMenuTitle</property>
                       <property name="permission">protected</property>
                       <property name="pos" />
                       <property name="size" />
@@ -874,7 +564,7 @@
                     <object class="wxStaticText" expanded="true">
                       <property name="bg" />
                       <property name="enabled">1</property>
-                      <property name="fg">79,95,116</property>
+                      <property name="fg">75,105,128</property>
                       <property name="font">11, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, </property>
                       <property name="hidden">0</property>
                       <property name="id">wxID_ANY</property>
@@ -882,7 +572,7 @@
                       <property name="markup">0</property>
                       <property name="maximum_size" />
                       <property name="minimum_size">120,-1</property>
-                      <property name="name">actionsUsernamePlaceholder</property>
+                      <property name="name">ticketMenuUsername</property>
                       <property name="permission">protected</property>
                       <property name="pos" />
                       <property name="size" />
@@ -913,56 +603,27 @@
                 <property name="proportion">0</property>
                 <object class="wxBoxSizer" expanded="true">
                   <property name="minimum_size" />
-                  <property name="name">ticketActionsButtonsSizer</property>
+                  <property name="name">ticketMenuButtonsSizer</property>
                   <property name="orient">wxVERTICAL</property>
                   <property name="permission">none</property>
                   <object class="sizeritem" expanded="true">
-                    <property name="border">16</property>
-                    <property name="flag">wxEXPAND|wxBOTTOM</property>
+                    <property name="border">0</property>
+                    <property name="flag">wxEXPAND</property>
                     <property name="proportion">0</property>
                     <object class="wxButton" expanded="true">
-                      <property name="bg" />
+                      <property name="bg">190,239,255</property>
                       <property name="context_help" />
                       <property name="context_menu">1</property>
                       <property name="default">0</property>
                       <property name="enabled">1</property>
-                      <property name="fg" />
+                      <property name="fg">29,57,82</property>
                       <property name="font">13, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, false, </property>
                       <property name="hidden">0</property>
                       <property name="id">wxID_ANY</property>
-                      <property name="label">Ticket erstellen</property>
+                      <property name="label">Ticket anzeigen</property>
                       <property name="maximum_size" />
                       <property name="minimum_size" />
-                      <property name="name">createTicketButton</property>
-                      <property name="permission">protected</property>
-                      <property name="pos" />
-                      <property name="size">420,72</property>
-                      <property name="style" />
-                      <property name="subclass" />
-                      <property name="tooltip" />
-                      <property name="window_extra_style" />
-                      <property name="window_name" />
-                      <property name="window_style" />
-                    </object>
-                  </object>
-                  <object class="sizeritem" expanded="true">
-                    <property name="border">16</property>
-                    <property name="flag">wxEXPAND|wxBOTTOM</property>
-                    <property name="proportion">0</property>
-                    <object class="wxButton" expanded="true">
-                      <property name="bg" />
-                      <property name="context_help" />
-                      <property name="context_menu">1</property>
-                      <property name="default">0</property>
-                      <property name="enabled">1</property>
-                      <property name="fg" />
-                      <property name="font">13, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, false, </property>
-                      <property name="hidden">0</property>
-                      <property name="id">wxID_ANY</property>
-                      <property name="label">Meine Tickets anzeigen</property>
-                      <property name="maximum_size" />
-                      <property name="minimum_size" />
-                      <property name="name">myTicketsButton</property>
+                      <property name="name">showTicketButton</property>
                       <property name="permission">protected</property>
                       <property name="pos" />
                       <property name="size">420,72</property>
@@ -995,7 +656,7 @@
     <object class="Frame" expanded="true">
       <property name="aui_managed">0</property>
       <property name="aui_manager_style">wxAUI_MGR_DEFAULT</property>
-      <property name="bg">248,250,253</property>
+      <property name="bg">202,236,251</property>
       <property name="center">wxBOTH</property>
       <property name="context_help" />
       <property name="context_menu">1</property>
@@ -1030,7 +691,7 @@
           <property name="flag">wxEXPAND</property>
           <property name="proportion">1</property>
           <object class="wxPanel" expanded="true">
-            <property name="bg">248,250,253</property>
+            <property name="bg">202,236,251</property>
             <property name="context_help" />
             <property name="enabled">1</property>
             <property name="fg" />
@@ -1087,10 +748,10 @@
                     <property name="flag">wxALIGN_CENTER_VERTICAL</property>
                     <property name="proportion">0</property>
                     <object class="wxStaticText" expanded="true">
-                      <property name="bg" />
+                      <property name="bg"></property>
                       <property name="enabled">1</property>
                       <property name="fg">29,44,66</property>
-                      <property name="font">24, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, false, </property>
+                      <property name="font">28, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, false, </property>
                       <property name="hidden">0</property>
                       <property name="id">wxID_ANY</property>
                       <property name="label">Ticket</property>
@@ -1127,7 +788,7 @@
                     <object class="wxStaticText" expanded="true">
                       <property name="bg" />
                       <property name="enabled">1</property>
-                      <property name="fg">79,95,116</property>
+                      <property name="fg">75,105,128</property>
                       <property name="font">11, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, </property>
                       <property name="hidden">0</property>
                       <property name="id">wxID_ANY</property>
@@ -1155,7 +816,7 @@
                 <property name="flag">wxALIGN_LEFT|wxLEFT|wxRIGHT|wxTOP</property>
                 <property name="proportion">0</property>
                 <object class="wxPanel" expanded="true">
-                  <property name="bg">237,243,250</property>
+                  <property name="bg">229,246,253</property>
                   <property name="context_help" />
                   <property name="enabled">1</property>
                   <property name="fg" />
@@ -1308,7 +969,7 @@
                             <property name="enabled">1</property>
                             <property name="fg">29,44,66</property>
                             <property name="font" />
-                            <property name="hidden">0</property>
+                            <property name="hidden">1</property>
                             <property name="id">wxID_ANY</property>
                             <property name="label">/</property>
                             <property name="markup">0</property>
@@ -1336,7 +997,7 @@
                             <property name="enabled">1</property>
                             <property name="fg">38,145,82</property>
                             <property name="font" />
-                            <property name="hidden">0</property>
+                            <property name="hidden">1</property>
                             <property name="id">wxID_ANY</property>
                             <property name="label">offen</property>
                             <property name="markup">0</property>
@@ -1401,6 +1062,34 @@
                         <property name="maximum_size" />
                         <property name="minimum_size" />
                         <property name="name">ticketMetaEmployee</property>
+                        <property name="permission">protected</property>
+                        <property name="pos" />
+                        <property name="size" />
+                        <property name="style" />
+                        <property name="subclass">; ; forward_declare</property>
+                        <property name="tooltip" />
+                        <property name="window_extra_style" />
+                        <property name="window_name" />
+                        <property name="window_style" />
+                        <property name="wrap">-1</property>
+                      </object>
+                    </object>
+                    <object class="sizeritem" expanded="true">
+                      <property name="border">12</property>
+                      <property name="flag">wxLEFT|wxRIGHT|wxTOP</property>
+                      <property name="proportion">0</property>
+                      <object class="wxStaticText" expanded="true">
+                        <property name="bg" />
+                        <property name="enabled">1</property>
+                        <property name="fg">29,44,66</property>
+                        <property name="font" />
+                        <property name="hidden">0</property>
+                        <property name="id">wxID_ANY</property>
+                        <property name="label">Kunde: $Kunde</property>
+                        <property name="markup">0</property>
+                        <property name="maximum_size" />
+                        <property name="minimum_size" />
+                        <property name="name">ticketMetaCustomer</property>
                         <property name="permission">protected</property>
                         <property name="pos" />
                         <property name="size" />
@@ -1491,7 +1180,7 @@ Bearbeiter: $Antwort</property>
                           <property name="flag">wxEXPAND|wxLEFT</property>
                           <property name="proportion">0</property>
                           <object class="wxPanel" expanded="true">
-                            <property name="bg">237,243,250</property>
+                            <property name="bg">229,246,253</property>
                             <property name="context_help" />
                             <property name="enabled">1</property>
                             <property name="fg" />
@@ -1529,7 +1218,7 @@ Bearbeiter: $Antwort</property>
                                 <property name="flag">wxEXPAND</property>
                                 <property name="proportion">0</property>
                                 <object class="wxPanel" expanded="true">
-                                  <property name="bg">79,95,116</property>
+                                  <property name="bg">104,179,216</property>
                                   <property name="context_help" />
                                   <property name="enabled">1</property>
                                   <property name="fg" />
@@ -1608,12 +1297,12 @@ Bearbeiter: $Antwort</property>
                     <property name="flag" />
                     <property name="proportion">0</property>
                     <object class="wxButton" expanded="true">
-                      <property name="bg" />
+                      <property name="bg">190,239,255</property>
                       <property name="context_help" />
                       <property name="context_menu">1</property>
                       <property name="default">0</property>
                       <property name="enabled">1</property>
-                      <property name="fg" />
+                      <property name="fg">29,57,82</property>
                       <property name="font">13, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, false, </property>
                       <property name="hidden">0</property>
                       <property name="id">wxID_ANY</property>
@@ -1647,12 +1336,12 @@ Bearbeiter: $Antwort</property>
                     <property name="flag" />
                     <property name="proportion">0</property>
                     <object class="wxButton" expanded="true">
-                      <property name="bg" />
+                      <property name="bg">190,239,255</property>
                       <property name="context_help" />
                       <property name="context_menu">1</property>
                       <property name="default">0</property>
                       <property name="enabled">1</property>
-                      <property name="fg" />
+                      <property name="fg">29,57,82</property>
                       <property name="font">13, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, false, </property>
                       <property name="hidden">0</property>
                       <property name="id">wxID_ANY</property>
@@ -1695,10 +1384,10 @@ Bearbeiter: $Antwort</property>
       <property name="hidden">0</property>
       <property name="id">wxID_ANY</property>
       <property name="maximum_size" />
-      <property name="minimum_size">720,540</property>
-      <property name="name">TicketsListFrameBase</property>
+      <property name="minimum_size">980,540</property>
+      <property name="name">TicketsViewFrameBase</property>
       <property name="pos" />
-      <property name="size">900,680</property>
+      <property name="size">1200,680</property>
       <property name="style">wxDEFAULT_FRAME_STYLE</property>
       <property name="subclass">; ; forward_declare</property>
       <property name="title">Ticket-Support</property>
@@ -1710,7 +1399,7 @@ Bearbeiter: $Antwort</property>
       <property name="xrc_skip_sizer">1</property>
       <object class="wxBoxSizer" expanded="true">
         <property name="minimum_size" />
-        <property name="name">ticketsListFrameSizer</property>
+        <property name="name">ticketsViewFrameSizer</property>
         <property name="orient">wxVERTICAL</property>
         <property name="permission">none</property>
         <object class="sizeritem" expanded="true">
@@ -1718,7 +1407,7 @@ Bearbeiter: $Antwort</property>
           <property name="flag">wxEXPAND</property>
           <property name="proportion">1</property>
           <object class="wxPanel" expanded="true">
-            <property name="bg">248,250,253</property>
+            <property name="bg">202,236,251</property>
             <property name="context_help" />
             <property name="enabled">1</property>
             <property name="fg" />
@@ -1727,7 +1416,7 @@ Bearbeiter: $Antwort</property>
             <property name="id">wxID_ANY</property>
             <property name="maximum_size" />
             <property name="minimum_size" />
-            <property name="name">ticketsListPagePanel</property>
+            <property name="name">ticketsViewPagePanel</property>
             <property name="permission">none</property>
             <property name="pos" />
             <property name="size">-1,-1</property>
@@ -1738,7 +1427,7 @@ Bearbeiter: $Antwort</property>
             <property name="window_style">wxTAB_TRAVERSAL</property>
             <object class="wxBoxSizer" expanded="true">
               <property name="minimum_size" />
-              <property name="name">ticketsListPageSizer</property>
+              <property name="name">ticketsViewPageSizer</property>
               <property name="orient">wxVERTICAL</property>
               <property name="permission">none</property>
               <object class="sizeritem" expanded="true">
@@ -1747,7 +1436,7 @@ Bearbeiter: $Antwort</property>
                 <property name="proportion">0</property>
                 <object class="wxBoxSizer" expanded="true">
                   <property name="minimum_size" />
-                  <property name="name">ticketsListHeaderSizer</property>
+                  <property name="name">ticketsViewHeaderSizer</property>
                   <property name="orient">wxHORIZONTAL</property>
                   <property name="permission">none</property>
                   <object class="sizeritem" expanded="true">
@@ -1785,7 +1474,7 @@ Bearbeiter: $Antwort</property>
                       <property name="markup">0</property>
                       <property name="maximum_size" />
                       <property name="minimum_size" />
-                      <property name="name">ticketsListTitle</property>
+                      <property name="name">ticketsViewTitle</property>
                       <property name="permission">protected</property>
                       <property name="pos" />
                       <property name="size" />
@@ -1815,7 +1504,7 @@ Bearbeiter: $Antwort</property>
                     <object class="wxStaticText" expanded="true">
                       <property name="bg" />
                       <property name="enabled">1</property>
-                      <property name="fg">79,95,116</property>
+                      <property name="fg">75,105,128</property>
                       <property name="font">11, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, </property>
                       <property name="hidden">0</property>
                       <property name="id">wxID_ANY</property>
@@ -1823,7 +1512,7 @@ Bearbeiter: $Antwort</property>
                       <property name="markup">0</property>
                       <property name="maximum_size" />
                       <property name="minimum_size">120,-1</property>
-                      <property name="name">ticketsListUsername</property>
+                      <property name="name">ticketsViewUsername</property>
                       <property name="permission">protected</property>
                       <property name="pos" />
                       <property name="size" />
@@ -1850,8 +1539,8 @@ Bearbeiter: $Antwort</property>
               </object>
               <object class="sizeritem" expanded="true">
                 <property name="border">36</property>
-                <property name="flag">wxALIGN_CENTER_HORIZONTAL|wxLEFT|wxRIGHT</property>
-                <property name="proportion">0</property>
+                <property name="flag">wxEXPAND|wxLEFT|wxRIGHT</property>
+                <property name="proportion">1</property>
                 <object class="wxPanel" expanded="true">
                   <property name="bg">255,255,255</property>
                   <property name="context_help" />
@@ -1861,8 +1550,8 @@ Bearbeiter: $Antwort</property>
                   <property name="hidden">0</property>
                   <property name="id">wxID_ANY</property>
                   <property name="maximum_size" />
-                  <property name="minimum_size">620,360</property>
-                  <property name="name">ticketsListPanel</property>
+                  <property name="minimum_size">900,360</property>
+                  <property name="name">ticketsViewPanel</property>
                   <property name="permission">none</property>
                   <property name="pos" />
                   <property name="size">-1,-1</property>
@@ -1873,7 +1562,7 @@ Bearbeiter: $Antwort</property>
                   <property name="window_style">wxTAB_TRAVERSAL</property>
                   <object class="wxBoxSizer" expanded="true">
                     <property name="minimum_size" />
-                    <property name="name">ticketsListSizer</property>
+                    <property name="name">ticketsViewSizer</property>
                     <property name="orient">wxVERTICAL</property>
                     <property name="permission">none</property>
                     <object class="sizeritem" expanded="true">
@@ -1882,7 +1571,7 @@ Bearbeiter: $Antwort</property>
                       <property name="proportion">1</property>
                       <object class="wxBoxSizer" expanded="true">
                         <property name="minimum_size" />
-                        <property name="name">ticketsListBodySizer</property>
+                        <property name="name">ticketsViewBodySizer</property>
                         <property name="orient">wxHORIZONTAL</property>
                         <property name="permission">none</property>
                         <object class="sizeritem" expanded="true">
@@ -1898,17 +1587,17 @@ Bearbeiter: $Antwort</property>
                             <property name="id">wxID_ANY</property>
                             <property name="maximum_size" />
                             <property name="maxlength">0</property>
-                            <property name="minimum_size">580,330</property>
-                            <property name="name">ticketRowsText</property>
+                            <property name="minimum_size">860,330</property>
+                            <property name="name">ticketsViewRowsText</property>
                             <property name="permission">protected</property>
                             <property name="pos" />
                             <property name="size">-1,330</property>
-                            <property name="style">wxTE_MULTILINE|wxTE_READONLY</property>
+                            <property name="style">wxTE_MULTILINE|wxTE_READONLY|wxTE_DONTWRAP|wxHSCROLL</property>
                             <property name="subclass" />
                             <property name="tooltip" />
-                            <property name="value">ID: $Nummer    Kunde: $Kunde    Datum: $date    Titel: $Tickettitel
-    ID: $Nummer    Kunde: $Kunde    Datum: $date    Titel: $Tickettitel
-    ID: $Nummer    Kunde: $Kunde    Datum: $date    Titel: $Tickettitel
+                            <property name="value">ID: $Nummer    Kunde: $Kunde    Datum: $date    Titel: $Tickettitel    Bearbeiter: $employee    Status: $status
+    ID: $Nummer    Kunde: $Kunde    Datum: $date    Titel: $Tickettitel    Bearbeiter: $employee    Status: $status
+    ID: $Nummer    Kunde: $Kunde    Datum: $date    Titel: $Tickettitel    Bearbeiter: $employee    Status: $status
     </property>
                             <property name="window_extra_style" />
                             <property name="window_name" />
@@ -1920,7 +1609,7 @@ Bearbeiter: $Antwort</property>
                           <property name="flag">wxEXPAND|wxLEFT</property>
                           <property name="proportion">0</property>
                           <object class="wxPanel" expanded="true">
-                            <property name="bg">176,176,176</property>
+                            <property name="bg">229,246,253</property>
                             <property name="context_help" />
                             <property name="enabled">1</property>
                             <property name="fg" />
@@ -1929,7 +1618,7 @@ Bearbeiter: $Antwort</property>
                             <property name="id">wxID_ANY</property>
                             <property name="maximum_size" />
                             <property name="minimum_size">16,-1</property>
-                            <property name="name">ticketsListScrollbarTrack</property>
+                            <property name="name">ticketsViewScrollbarTrack</property>
                             <property name="permission">none</property>
                             <property name="pos" />
                             <property name="size">-1,-1</property>
@@ -1940,7 +1629,7 @@ Bearbeiter: $Antwort</property>
                             <property name="window_style">wxTAB_TRAVERSAL</property>
                             <object class="wxBoxSizer" expanded="true">
                               <property name="minimum_size" />
-                              <property name="name">ticketsListScrollbarSizer</property>
+                              <property name="name">ticketsViewScrollbarSizer</property>
                               <property name="orient">wxVERTICAL</property>
                               <property name="permission">none</property>
                               <object class="sizeritem" expanded="true">
@@ -1958,7 +1647,7 @@ Bearbeiter: $Antwort</property>
                                 <property name="flag">wxEXPAND</property>
                                 <property name="proportion">0</property>
                                 <object class="wxPanel" expanded="true">
-                                  <property name="bg">128,128,128</property>
+                                  <property name="bg">104,179,216</property>
                                   <property name="context_help" />
                                   <property name="enabled">1</property>
                                   <property name="fg" />
@@ -1967,7 +1656,7 @@ Bearbeiter: $Antwort</property>
                                   <property name="id">wxID_ANY</property>
                                   <property name="maximum_size" />
                                   <property name="minimum_size">16,100</property>
-                                  <property name="name">ticketsListScrollbarThumb</property>
+                                  <property name="name">ticketsViewScrollbarThumb</property>
                                   <property name="permission">none</property>
                                   <property name="pos" />
                                   <property name="size">-1,-1</property>
@@ -1992,922 +1681,6 @@ Bearbeiter: $Antwort</property>
                           </object>
                         </object>
                       </object>
-                    </object>
-                  </object>
-                </object>
-              </object>
-              <object class="sizeritem" expanded="true">
-                <property name="border">0</property>
-                <property name="flag">wxEXPAND</property>
-                <property name="proportion">1</property>
-                <object class="spacer" expanded="true">
-                  <property name="height">0</property>
-                  <property name="permission">protected</property>
-                  <property name="width">0</property>
-                </object>
-              </object>
-            </object>
-          </object>
-        </object>
-      </object>
-    </object>
-    <object class="Frame" expanded="true">
-      <property name="aui_managed">0</property>
-      <property name="aui_manager_style">wxAUI_MGR_DEFAULT</property>
-      <property name="bg">190,190,190</property>
-      <property name="center">wxBOTH</property>
-      <property name="context_help" />
-      <property name="context_menu">1</property>
-      <property name="drag_accept_files">0</property>
-      <property name="enabled">1</property>
-      <property name="event_handler">impl_virtual</property>
-      <property name="extra_style" />
-      <property name="font" />
-      <property name="hidden">0</property>
-      <property name="id">wxID_ANY</property>
-      <property name="maximum_size" />
-      <property name="minimum_size">800,600</property>
-      <property name="name">TicketsOverviewFrameBase</property>
-      <property name="pos" />
-      <property name="size">1200,800</property>
-      <property name="style">wxDEFAULT_FRAME_STYLE</property>
-      <property name="subclass">; ; forward_declare</property>
-      <property name="title">Tickets</property>
-      <property name="tooltip" />
-      <property name="two_step_creation">0</property>
-      <property name="window_extra_style" />
-      <property name="window_name" />
-      <property name="window_style">wxTAB_TRAVERSAL</property>
-      <property name="xrc_skip_sizer">1</property>
-      <object class="wxBoxSizer" expanded="true">
-        <property name="minimum_size" />
-        <property name="name">ticketsOverviewFrameSizer</property>
-        <property name="orient">wxVERTICAL</property>
-        <property name="permission">none</property>
-        <object class="sizeritem" expanded="true">
-          <property name="border">10</property>
-          <property name="flag">wxEXPAND|wxALL</property>
-          <property name="proportion">1</property>
-          <object class="wxPanel" expanded="true">
-            <property name="bg">176,176,176</property>
-            <property name="context_help" />
-            <property name="enabled">1</property>
-            <property name="fg" />
-            <property name="font" />
-            <property name="hidden">0</property>
-            <property name="id">wxID_ANY</property>
-            <property name="maximum_size" />
-            <property name="minimum_size" />
-            <property name="name">ticketsOverviewPagePanel</property>
-            <property name="permission">none</property>
-            <property name="pos" />
-            <property name="size">-1,-1</property>
-            <property name="subclass" />
-            <property name="tooltip" />
-            <property name="window_extra_style" />
-            <property name="window_name" />
-            <property name="window_style">wxTAB_TRAVERSAL</property>
-            <object class="wxBoxSizer" expanded="true">
-              <property name="minimum_size" />
-              <property name="name">ticketsOverviewPageSizer</property>
-              <property name="orient">wxVERTICAL</property>
-              <property name="permission">none</property>
-              <object class="sizeritem" expanded="true">
-                <property name="border">52</property>
-                <property name="flag">wxEXPAND|wxLEFT|wxRIGHT|wxTOP</property>
-                <property name="proportion">0</property>
-                <object class="wxBoxSizer" expanded="true">
-                  <property name="minimum_size" />
-                  <property name="name">ticketsOverviewHeaderSizer</property>
-                  <property name="orient">wxHORIZONTAL</property>
-                  <property name="permission">none</property>
-                  <object class="sizeritem" expanded="true">
-                    <property name="border">0</property>
-                    <property name="flag" />
-                    <property name="proportion">0</property>
-                    <object class="spacer" expanded="true">
-                      <property name="height">0</property>
-                      <property name="permission">protected</property>
-                      <property name="width">150</property>
-                    </object>
-                  </object>
-                  <object class="sizeritem" expanded="true">
-                    <property name="border">0</property>
-                    <property name="flag">wxEXPAND</property>
-                    <property name="proportion">1</property>
-                    <object class="spacer" expanded="true">
-                      <property name="height">0</property>
-                      <property name="permission">protected</property>
-                      <property name="width">0</property>
-                    </object>
-                  </object>
-                  <object class="sizeritem" expanded="true">
-                    <property name="border">0</property>
-                    <property name="flag">wxALIGN_CENTER_VERTICAL</property>
-                    <property name="proportion">0</property>
-                    <object class="wxStaticText" expanded="true">
-                      <property name="bg" />
-                      <property name="enabled">1</property>
-                      <property name="fg">0,0,0</property>
-                      <property name="font">28, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, </property>
-                      <property name="hidden">0</property>
-                      <property name="id">wxID_ANY</property>
-                      <property name="label">Tickets</property>
-                      <property name="markup">0</property>
-                      <property name="maximum_size" />
-                      <property name="minimum_size" />
-                      <property name="name">ticketsOverviewTitle</property>
-                      <property name="permission">protected</property>
-                      <property name="pos" />
-                      <property name="size" />
-                      <property name="style" />
-                      <property name="subclass" />
-                      <property name="tooltip" />
-                      <property name="window_extra_style" />
-                      <property name="window_name" />
-                      <property name="window_style" />
-                      <property name="wrap">-1</property>
-                    </object>
-                  </object>
-                  <object class="sizeritem" expanded="true">
-                    <property name="border">0</property>
-                    <property name="flag">wxEXPAND</property>
-                    <property name="proportion">1</property>
-                    <object class="spacer" expanded="true">
-                      <property name="height">0</property>
-                      <property name="permission">protected</property>
-                      <property name="width">0</property>
-                    </object>
-                  </object>
-                  <object class="sizeritem" expanded="true">
-                    <property name="border">0</property>
-                    <property name="flag">wxALIGN_RIGHT|wxALIGN_CENTER_VERTICAL</property>
-                    <property name="proportion">0</property>
-                    <object class="wxStaticText" expanded="true">
-                      <property name="bg" />
-                      <property name="enabled">1</property>
-                      <property name="fg">0,0,0</property>
-                      <property name="font">16, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, </property>
-                      <property name="hidden">0</property>
-                      <property name="id">wxID_ANY</property>
-                      <property name="label">Nutzername</property>
-                      <property name="markup">0</property>
-                      <property name="maximum_size" />
-                      <property name="minimum_size">150,-1</property>
-                      <property name="name">ticketsOverviewUsername</property>
-                      <property name="permission">protected</property>
-                      <property name="pos" />
-                      <property name="size" />
-                      <property name="style" />
-                      <property name="subclass" />
-                      <property name="tooltip" />
-                      <property name="window_extra_style" />
-                      <property name="window_name" />
-                      <property name="window_style" />
-                      <property name="wrap">-1</property>
-                    </object>
-                  </object>
-                </object>
-              </object>
-              <object class="sizeritem" expanded="true">
-                <property name="border">0</property>
-                <property name="flag">wxEXPAND</property>
-                <property name="proportion">1</property>
-                <object class="spacer" expanded="true">
-                  <property name="height">0</property>
-                  <property name="permission">protected</property>
-                  <property name="width">0</property>
-                </object>
-              </object>
-              <object class="sizeritem" expanded="true">
-                <property name="border">24</property>
-                <property name="flag">wxEXPAND|wxLEFT|wxRIGHT</property>
-                <property name="proportion">5</property>
-                <object class="wxBoxSizer" expanded="true">
-                  <property name="minimum_size" />
-                  <property name="name">ticketsOverviewContentSizer</property>
-                  <property name="orient">wxHORIZONTAL</property>
-                  <property name="permission">none</property>
-                  <object class="sizeritem" expanded="true">
-                    <property name="border">0</property>
-                    <property name="flag">wxEXPAND</property>
-                    <property name="proportion">1</property>
-                    <object class="spacer" expanded="true">
-                      <property name="height">0</property>
-                      <property name="permission">protected</property>
-                      <property name="width">0</property>
-                    </object>
-                  </object>
-                  <object class="sizeritem" expanded="true">
-                    <property name="border">0</property>
-                    <property name="flag">wxEXPAND</property>
-                    <property name="proportion">4</property>
-                    <object class="wxPanel" expanded="true">
-                      <property name="bg">202,198,198</property>
-                      <property name="context_help" />
-                      <property name="enabled">1</property>
-                      <property name="fg" />
-                      <property name="font" />
-                      <property name="hidden">0</property>
-                      <property name="id">wxID_ANY</property>
-                      <property name="maximum_size" />
-                      <property name="minimum_size">620,360</property>
-                      <property name="name">ticketsOverviewCard</property>
-                      <property name="permission">none</property>
-                      <property name="pos" />
-                      <property name="size">-1,-1</property>
-                      <property name="subclass" />
-                      <property name="tooltip" />
-                      <property name="window_extra_style" />
-                      <property name="window_name" />
-                      <property name="window_style">wxTAB_TRAVERSAL</property>
-                      <object class="wxBoxSizer" expanded="true">
-                        <property name="minimum_size" />
-                        <property name="name">ticketsOverviewCardSizer</property>
-                        <property name="orient">wxVERTICAL</property>
-                        <property name="permission">none</property>
-                        <object class="sizeritem" expanded="true">
-                          <property name="border">32</property>
-                          <property name="flag">wxEXPAND|wxALL</property>
-                          <property name="proportion">1</property>
-                          <object class="wxBoxSizer" expanded="true">
-                            <property name="minimum_size" />
-                            <property name="name">ticketsOverviewBodySizer</property>
-                            <property name="orient">wxHORIZONTAL</property>
-                            <property name="permission">none</property>
-                            <object class="sizeritem" expanded="true">
-                              <property name="border">0</property>
-                              <property name="flag">wxEXPAND</property>
-                              <property name="proportion">1</property>
-                              <object class="wxPanel" expanded="true">
-                                <property name="bg">202,198,198</property>
-                                <property name="context_help" />
-                                <property name="enabled">1</property>
-                                <property name="fg" />
-                                <property name="font" />
-                                <property name="hidden">0</property>
-                                <property name="id">wxID_ANY</property>
-                                <property name="maximum_size" />
-                                <property name="minimum_size" />
-                                <property name="name">ticketsOverviewRowsPanel</property>
-                                <property name="permission">none</property>
-                                <property name="pos" />
-                                <property name="size">-1,-1</property>
-                                <property name="subclass" />
-                                <property name="tooltip" />
-                                <property name="window_extra_style" />
-                                <property name="window_name" />
-                                <property name="window_style">wxTAB_TRAVERSAL</property>
-                                <object class="wxBoxSizer" expanded="true">
-                                  <property name="minimum_size" />
-                                  <property name="name">ticketsOverviewRowsSizer</property>
-                                  <property name="orient">wxVERTICAL</property>
-                                  <property name="permission">none</property>
-                                  <object class="sizeritem" expanded="true">
-                                    <property name="border">0</property>
-                                    <property name="flag" />
-                                    <property name="proportion">0</property>
-                                    <object class="spacer" expanded="true">
-                                      <property name="height">8</property>
-                                      <property name="permission">protected</property>
-                                      <property name="width">0</property>
-                                    </object>
-                                  </object>
-                                  <object class="sizeritem" expanded="true">
-                                    <property name="border">24</property>
-                                    <property name="flag">wxEXPAND|wxLEFT|wxRIGHT</property>
-                                    <property name="proportion">0</property>
-                                    <object class="wxPanel" expanded="true">
-                                      <property name="bg">202,198,198</property>
-                                      <property name="context_help" />
-                                      <property name="enabled">1</property>
-                                      <property name="fg" />
-                                      <property name="font" />
-                                      <property name="hidden">0</property>
-                                      <property name="id">wxID_ANY</property>
-                                      <property name="maximum_size" />
-                                      <property name="minimum_size">-1,24</property>
-                                      <property name="name">ticketRow1</property>
-                                      <property name="permission">none</property>
-                                      <property name="pos" />
-                                      <property name="size">-1,-1</property>
-                                      <property name="subclass" />
-                                      <property name="tooltip" />
-                                      <property name="window_extra_style" />
-                                      <property name="window_name" />
-                                      <property name="window_style">wxTAB_TRAVERSAL</property>
-                                      <object class="wxBoxSizer" expanded="true">
-                                        <property name="minimum_size" />
-                                        <property name="name">ticketRow1Sizer</property>
-                                        <property name="orient">wxHORIZONTAL</property>
-                                        <property name="permission">none</property>
-                                        <object class="sizeritem" expanded="true">
-                                          <property name="border">0</property>
-                                          <property name="flag">wxALIGN_CENTER_VERTICAL</property>
-                                          <property name="proportion">0</property>
-                                          <object class="wxStaticText" expanded="true">
-                                            <property name="bg" />
-                                            <property name="enabled">1</property>
-                                            <property name="fg">0,0,0</property>
-                                            <property name="font">10, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, </property>
-                                            <property name="hidden">0</property>
-                                            <property name="id">wxID_ANY</property>
-                                            <property name="label">ID: $Nummer</property>
-                                            <property name="markup">0</property>
-                                            <property name="maximum_size" />
-                                            <property name="minimum_size">112,-1</property>
-                                            <property name="name">ticketId1</property>
-                                            <property name="permission">protected</property>
-                                            <property name="pos" />
-                                            <property name="size" />
-                                            <property name="style" />
-                                            <property name="subclass" />
-                                            <property name="tooltip" />
-                                            <property name="window_extra_style" />
-                                            <property name="window_name" />
-                                            <property name="window_style" />
-                                            <property name="wrap">-1</property>
-                                          </object>
-                                        </object>
-                                        <object class="sizeritem" expanded="true">
-                                          <property name="border">0</property>
-                                          <property name="flag">wxALIGN_CENTER_VERTICAL</property>
-                                          <property name="proportion">0</property>
-                                          <object class="wxStaticText" expanded="true">
-                                            <property name="bg" />
-                                            <property name="enabled">1</property>
-                                            <property name="fg">0,0,0</property>
-                                            <property name="font">10, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, </property>
-                                            <property name="hidden">0</property>
-                                            <property name="id">wxID_ANY</property>
-                                            <property name="label">Kunde:</property>
-                                            <property name="markup">0</property>
-                                            <property name="maximum_size" />
-                                            <property name="minimum_size">84,-1</property>
-                                            <property name="name">ticketCustomer1</property>
-                                            <property name="permission">protected</property>
-                                            <property name="pos" />
-                                            <property name="size" />
-                                            <property name="style" />
-                                            <property name="subclass" />
-                                            <property name="tooltip" />
-                                            <property name="window_extra_style" />
-                                            <property name="window_name" />
-                                            <property name="window_style" />
-                                            <property name="wrap">-1</property>
-                                          </object>
-                                        </object>
-                                        <object class="sizeritem" expanded="true">
-                                          <property name="border">0</property>
-                                          <property name="flag">wxALIGN_CENTER_VERTICAL</property>
-                                          <property name="proportion">0</property>
-                                          <object class="wxStaticText" expanded="true">
-                                            <property name="bg" />
-                                            <property name="enabled">1</property>
-                                            <property name="fg">0,0,0</property>
-                                            <property name="font">10, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, </property>
-                                            <property name="hidden">0</property>
-                                            <property name="id">wxID_ANY</property>
-                                            <property name="label">Datum</property>
-                                            <property name="markup">0</property>
-                                            <property name="maximum_size" />
-                                            <property name="minimum_size">82,-1</property>
-                                            <property name="name">ticketDate1</property>
-                                            <property name="permission">protected</property>
-                                            <property name="pos" />
-                                            <property name="size" />
-                                            <property name="style" />
-                                            <property name="subclass" />
-                                            <property name="tooltip" />
-                                            <property name="window_extra_style" />
-                                            <property name="window_name" />
-                                            <property name="window_style" />
-                                            <property name="wrap">-1</property>
-                                          </object>
-                                        </object>
-                                        <object class="sizeritem" expanded="true">
-                                          <property name="border">0</property>
-                                          <property name="flag">wxALIGN_CENTER_VERTICAL</property>
-                                          <property name="proportion">0</property>
-                                          <object class="wxStaticText" expanded="true">
-                                            <property name="bg" />
-                                            <property name="enabled">1</property>
-                                            <property name="fg">0,0,0</property>
-                                            <property name="font">10, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, </property>
-                                            <property name="hidden">0</property>
-                                            <property name="id">wxID_ANY</property>
-                                            <property name="label">Titel</property>
-                                            <property name="markup">0</property>
-                                            <property name="maximum_size" />
-                                            <property name="minimum_size">84,-1</property>
-                                            <property name="name">ticketTitle1</property>
-                                            <property name="permission">protected</property>
-                                            <property name="pos" />
-                                            <property name="size" />
-                                            <property name="style" />
-                                            <property name="subclass" />
-                                            <property name="tooltip" />
-                                            <property name="window_extra_style" />
-                                            <property name="window_name" />
-                                            <property name="window_style" />
-                                            <property name="wrap">-1</property>
-                                          </object>
-                                        </object>
-                                        <object class="sizeritem" expanded="true">
-                                          <property name="border">0</property>
-                                          <property name="flag">wxALIGN_CENTER_VERTICAL</property>
-                                          <property name="proportion">0</property>
-                                          <object class="wxStaticText" expanded="true">
-                                            <property name="bg" />
-                                            <property name="enabled">1</property>
-                                            <property name="fg">0,0,0</property>
-                                            <property name="font">10, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, </property>
-                                            <property name="hidden">0</property>
-                                            <property name="id">wxID_ANY</property>
-                                            <property name="label">Bearbeiter</property>
-                                            <property name="markup">0</property>
-                                            <property name="maximum_size" />
-                                            <property name="minimum_size">80,-1</property>
-                                            <property name="name">ticketEmployee1</property>
-                                            <property name="permission">protected</property>
-                                            <property name="pos" />
-                                            <property name="size" />
-                                            <property name="style" />
-                                            <property name="subclass" />
-                                            <property name="tooltip" />
-                                            <property name="window_extra_style" />
-                                            <property name="window_name" />
-                                            <property name="window_style" />
-                                            <property name="wrap">-1</property>
-                                          </object>
-                                        </object>
-                                      </object>
-                                    </object>
-                                  </object>
-                                  <object class="sizeritem" expanded="true">
-                                    <property name="border">0</property>
-                                    <property name="flag" />
-                                    <property name="proportion">0</property>
-                                    <object class="spacer" expanded="true">
-                                      <property name="height">6</property>
-                                      <property name="permission">protected</property>
-                                      <property name="width">0</property>
-                                    </object>
-                                  </object>
-                                  <object class="sizeritem" expanded="true">
-                                    <property name="border">24</property>
-                                    <property name="flag">wxEXPAND|wxLEFT|wxRIGHT</property>
-                                    <property name="proportion">0</property>
-                                    <object class="wxPanel" expanded="true">
-                                      <property name="bg">202,198,198</property>
-                                      <property name="context_help" />
-                                      <property name="enabled">1</property>
-                                      <property name="fg" />
-                                      <property name="font" />
-                                      <property name="hidden">0</property>
-                                      <property name="id">wxID_ANY</property>
-                                      <property name="maximum_size" />
-                                      <property name="minimum_size">-1,24</property>
-                                      <property name="name">ticketRow2</property>
-                                      <property name="permission">none</property>
-                                      <property name="pos" />
-                                      <property name="size">-1,-1</property>
-                                      <property name="subclass" />
-                                      <property name="tooltip" />
-                                      <property name="window_extra_style" />
-                                      <property name="window_name" />
-                                      <property name="window_style">wxTAB_TRAVERSAL</property>
-                                      <object class="wxBoxSizer" expanded="true">
-                                        <property name="minimum_size" />
-                                        <property name="name">ticketRow2Sizer</property>
-                                        <property name="orient">wxHORIZONTAL</property>
-                                        <property name="permission">none</property>
-                                        <object class="sizeritem" expanded="true">
-                                          <property name="border">0</property>
-                                          <property name="flag">wxALIGN_CENTER_VERTICAL</property>
-                                          <property name="proportion">0</property>
-                                          <object class="wxStaticText" expanded="true">
-                                            <property name="bg" />
-                                            <property name="enabled">1</property>
-                                            <property name="fg">0,0,0</property>
-                                            <property name="font">10, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, </property>
-                                            <property name="hidden">0</property>
-                                            <property name="id">wxID_ANY</property>
-                                            <property name="label">ID: $Nummer</property>
-                                            <property name="markup">0</property>
-                                            <property name="maximum_size" />
-                                            <property name="minimum_size">112,-1</property>
-                                            <property name="name">ticketId2</property>
-                                            <property name="permission">protected</property>
-                                            <property name="pos" />
-                                            <property name="size" />
-                                            <property name="style" />
-                                            <property name="subclass" />
-                                            <property name="tooltip" />
-                                            <property name="window_extra_style" />
-                                            <property name="window_name" />
-                                            <property name="window_style" />
-                                            <property name="wrap">-1</property>
-                                          </object>
-                                        </object>
-                                        <object class="sizeritem" expanded="true">
-                                          <property name="border">0</property>
-                                          <property name="flag">wxALIGN_CENTER_VERTICAL</property>
-                                          <property name="proportion">0</property>
-                                          <object class="wxStaticText" expanded="true">
-                                            <property name="bg" />
-                                            <property name="enabled">1</property>
-                                            <property name="fg">0,0,0</property>
-                                            <property name="font">10, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, </property>
-                                            <property name="hidden">0</property>
-                                            <property name="id">wxID_ANY</property>
-                                            <property name="label">Kunde:</property>
-                                            <property name="markup">0</property>
-                                            <property name="maximum_size" />
-                                            <property name="minimum_size">84,-1</property>
-                                            <property name="name">ticketCustomer2</property>
-                                            <property name="permission">protected</property>
-                                            <property name="pos" />
-                                            <property name="size" />
-                                            <property name="style" />
-                                            <property name="subclass" />
-                                            <property name="tooltip" />
-                                            <property name="window_extra_style" />
-                                            <property name="window_name" />
-                                            <property name="window_style" />
-                                            <property name="wrap">-1</property>
-                                          </object>
-                                        </object>
-                                        <object class="sizeritem" expanded="true">
-                                          <property name="border">0</property>
-                                          <property name="flag">wxALIGN_CENTER_VERTICAL</property>
-                                          <property name="proportion">0</property>
-                                          <object class="wxStaticText" expanded="true">
-                                            <property name="bg" />
-                                            <property name="enabled">1</property>
-                                            <property name="fg">0,0,0</property>
-                                            <property name="font">10, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, </property>
-                                            <property name="hidden">0</property>
-                                            <property name="id">wxID_ANY</property>
-                                            <property name="label">Datum</property>
-                                            <property name="markup">0</property>
-                                            <property name="maximum_size" />
-                                            <property name="minimum_size">82,-1</property>
-                                            <property name="name">ticketDate2</property>
-                                            <property name="permission">protected</property>
-                                            <property name="pos" />
-                                            <property name="size" />
-                                            <property name="style" />
-                                            <property name="subclass" />
-                                            <property name="tooltip" />
-                                            <property name="window_extra_style" />
-                                            <property name="window_name" />
-                                            <property name="window_style" />
-                                            <property name="wrap">-1</property>
-                                          </object>
-                                        </object>
-                                        <object class="sizeritem" expanded="true">
-                                          <property name="border">0</property>
-                                          <property name="flag">wxALIGN_CENTER_VERTICAL</property>
-                                          <property name="proportion">0</property>
-                                          <object class="wxStaticText" expanded="true">
-                                            <property name="bg" />
-                                            <property name="enabled">1</property>
-                                            <property name="fg">0,0,0</property>
-                                            <property name="font">10, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, </property>
-                                            <property name="hidden">0</property>
-                                            <property name="id">wxID_ANY</property>
-                                            <property name="label">Titel</property>
-                                            <property name="markup">0</property>
-                                            <property name="maximum_size" />
-                                            <property name="minimum_size">84,-1</property>
-                                            <property name="name">ticketTitle2</property>
-                                            <property name="permission">protected</property>
-                                            <property name="pos" />
-                                            <property name="size" />
-                                            <property name="style" />
-                                            <property name="subclass" />
-                                            <property name="tooltip" />
-                                            <property name="window_extra_style" />
-                                            <property name="window_name" />
-                                            <property name="window_style" />
-                                            <property name="wrap">-1</property>
-                                          </object>
-                                        </object>
-                                        <object class="sizeritem" expanded="true">
-                                          <property name="border">0</property>
-                                          <property name="flag">wxALIGN_CENTER_VERTICAL</property>
-                                          <property name="proportion">0</property>
-                                          <object class="wxStaticText" expanded="true">
-                                            <property name="bg" />
-                                            <property name="enabled">1</property>
-                                            <property name="fg">0,0,0</property>
-                                            <property name="font">10, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, </property>
-                                            <property name="hidden">0</property>
-                                            <property name="id">wxID_ANY</property>
-                                            <property name="label">Bearbeiter</property>
-                                            <property name="markup">0</property>
-                                            <property name="maximum_size" />
-                                            <property name="minimum_size">80,-1</property>
-                                            <property name="name">ticketEmployee2</property>
-                                            <property name="permission">protected</property>
-                                            <property name="pos" />
-                                            <property name="size" />
-                                            <property name="style" />
-                                            <property name="subclass" />
-                                            <property name="tooltip" />
-                                            <property name="window_extra_style" />
-                                            <property name="window_name" />
-                                            <property name="window_style" />
-                                            <property name="wrap">-1</property>
-                                          </object>
-                                        </object>
-                                      </object>
-                                    </object>
-                                  </object>
-                                  <object class="sizeritem" expanded="true">
-                                    <property name="border">0</property>
-                                    <property name="flag" />
-                                    <property name="proportion">0</property>
-                                    <object class="spacer" expanded="true">
-                                      <property name="height">6</property>
-                                      <property name="permission">protected</property>
-                                      <property name="width">0</property>
-                                    </object>
-                                  </object>
-                                  <object class="sizeritem" expanded="true">
-                                    <property name="border">24</property>
-                                    <property name="flag">wxEXPAND|wxLEFT|wxRIGHT</property>
-                                    <property name="proportion">0</property>
-                                    <object class="wxPanel" expanded="true">
-                                      <property name="bg">202,198,198</property>
-                                      <property name="context_help" />
-                                      <property name="enabled">1</property>
-                                      <property name="fg" />
-                                      <property name="font" />
-                                      <property name="hidden">0</property>
-                                      <property name="id">wxID_ANY</property>
-                                      <property name="maximum_size" />
-                                      <property name="minimum_size">-1,24</property>
-                                      <property name="name">ticketRow3</property>
-                                      <property name="permission">none</property>
-                                      <property name="pos" />
-                                      <property name="size">-1,-1</property>
-                                      <property name="subclass" />
-                                      <property name="tooltip" />
-                                      <property name="window_extra_style" />
-                                      <property name="window_name" />
-                                      <property name="window_style">wxTAB_TRAVERSAL</property>
-                                      <object class="wxBoxSizer" expanded="true">
-                                        <property name="minimum_size" />
-                                        <property name="name">ticketRow3Sizer</property>
-                                        <property name="orient">wxHORIZONTAL</property>
-                                        <property name="permission">none</property>
-                                        <object class="sizeritem" expanded="true">
-                                          <property name="border">0</property>
-                                          <property name="flag">wxALIGN_CENTER_VERTICAL</property>
-                                          <property name="proportion">0</property>
-                                          <object class="wxStaticText" expanded="true">
-                                            <property name="bg" />
-                                            <property name="enabled">1</property>
-                                            <property name="fg">0,0,0</property>
-                                            <property name="font">10, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, </property>
-                                            <property name="hidden">0</property>
-                                            <property name="id">wxID_ANY</property>
-                                            <property name="label">ID: $Nummer</property>
-                                            <property name="markup">0</property>
-                                            <property name="maximum_size" />
-                                            <property name="minimum_size">112,-1</property>
-                                            <property name="name">ticketId3</property>
-                                            <property name="permission">protected</property>
-                                            <property name="pos" />
-                                            <property name="size" />
-                                            <property name="style" />
-                                            <property name="subclass" />
-                                            <property name="tooltip" />
-                                            <property name="window_extra_style" />
-                                            <property name="window_name" />
-                                            <property name="window_style" />
-                                            <property name="wrap">-1</property>
-                                          </object>
-                                        </object>
-                                        <object class="sizeritem" expanded="true">
-                                          <property name="border">0</property>
-                                          <property name="flag">wxALIGN_CENTER_VERTICAL</property>
-                                          <property name="proportion">0</property>
-                                          <object class="wxStaticText" expanded="true">
-                                            <property name="bg" />
-                                            <property name="enabled">1</property>
-                                            <property name="fg">0,0,0</property>
-                                            <property name="font">10, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, </property>
-                                            <property name="hidden">0</property>
-                                            <property name="id">wxID_ANY</property>
-                                            <property name="label">Kunde:</property>
-                                            <property name="markup">0</property>
-                                            <property name="maximum_size" />
-                                            <property name="minimum_size">84,-1</property>
-                                            <property name="name">ticketCustomer3</property>
-                                            <property name="permission">protected</property>
-                                            <property name="pos" />
-                                            <property name="size" />
-                                            <property name="style" />
-                                            <property name="subclass" />
-                                            <property name="tooltip" />
-                                            <property name="window_extra_style" />
-                                            <property name="window_name" />
-                                            <property name="window_style" />
-                                            <property name="wrap">-1</property>
-                                          </object>
-                                        </object>
-                                        <object class="sizeritem" expanded="true">
-                                          <property name="border">0</property>
-                                          <property name="flag">wxALIGN_CENTER_VERTICAL</property>
-                                          <property name="proportion">0</property>
-                                          <object class="wxStaticText" expanded="true">
-                                            <property name="bg" />
-                                            <property name="enabled">1</property>
-                                            <property name="fg">0,0,0</property>
-                                            <property name="font">10, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, </property>
-                                            <property name="hidden">0</property>
-                                            <property name="id">wxID_ANY</property>
-                                            <property name="label">Datum</property>
-                                            <property name="markup">0</property>
-                                            <property name="maximum_size" />
-                                            <property name="minimum_size">82,-1</property>
-                                            <property name="name">ticketDate3</property>
-                                            <property name="permission">protected</property>
-                                            <property name="pos" />
-                                            <property name="size" />
-                                            <property name="style" />
-                                            <property name="subclass" />
-                                            <property name="tooltip" />
-                                            <property name="window_extra_style" />
-                                            <property name="window_name" />
-                                            <property name="window_style" />
-                                            <property name="wrap">-1</property>
-                                          </object>
-                                        </object>
-                                        <object class="sizeritem" expanded="true">
-                                          <property name="border">0</property>
-                                          <property name="flag">wxALIGN_CENTER_VERTICAL</property>
-                                          <property name="proportion">0</property>
-                                          <object class="wxStaticText" expanded="true">
-                                            <property name="bg" />
-                                            <property name="enabled">1</property>
-                                            <property name="fg">0,0,0</property>
-                                            <property name="font">10, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, </property>
-                                            <property name="hidden">0</property>
-                                            <property name="id">wxID_ANY</property>
-                                            <property name="label">Titel</property>
-                                            <property name="markup">0</property>
-                                            <property name="maximum_size" />
-                                            <property name="minimum_size">84,-1</property>
-                                            <property name="name">ticketTitle3</property>
-                                            <property name="permission">protected</property>
-                                            <property name="pos" />
-                                            <property name="size" />
-                                            <property name="style" />
-                                            <property name="subclass" />
-                                            <property name="tooltip" />
-                                            <property name="window_extra_style" />
-                                            <property name="window_name" />
-                                            <property name="window_style" />
-                                            <property name="wrap">-1</property>
-                                          </object>
-                                        </object>
-                                        <object class="sizeritem" expanded="true">
-                                          <property name="border">0</property>
-                                          <property name="flag">wxALIGN_CENTER_VERTICAL</property>
-                                          <property name="proportion">0</property>
-                                          <object class="wxStaticText" expanded="true">
-                                            <property name="bg" />
-                                            <property name="enabled">1</property>
-                                            <property name="fg">0,0,0</property>
-                                            <property name="font">10, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, </property>
-                                            <property name="hidden">0</property>
-                                            <property name="id">wxID_ANY</property>
-                                            <property name="label">Bearbeiter</property>
-                                            <property name="markup">0</property>
-                                            <property name="maximum_size" />
-                                            <property name="minimum_size">80,-1</property>
-                                            <property name="name">ticketEmployee3</property>
-                                            <property name="permission">protected</property>
-                                            <property name="pos" />
-                                            <property name="size" />
-                                            <property name="style" />
-                                            <property name="subclass" />
-                                            <property name="tooltip" />
-                                            <property name="window_extra_style" />
-                                            <property name="window_name" />
-                                            <property name="window_style" />
-                                            <property name="wrap">-1</property>
-                                          </object>
-                                        </object>
-                                      </object>
-                                    </object>
-                                  </object>
-                                  <object class="sizeritem" expanded="true">
-                                    <property name="border">0</property>
-                                    <property name="flag" />
-                                    <property name="proportion">0</property>
-                                    <object class="spacer" expanded="true">
-                                      <property name="height">6</property>
-                                      <property name="permission">protected</property>
-                                      <property name="width">0</property>
-                                    </object>
-                                  </object>
-                                </object>
-                              </object>
-                            </object>
-                            <object class="sizeritem" expanded="true">
-                              <property name="border">8</property>
-                              <property name="flag">wxEXPAND|wxLEFT</property>
-                              <property name="proportion">0</property>
-                              <object class="wxPanel" expanded="true">
-                                <property name="bg">176,176,176</property>
-                                <property name="context_help" />
-                                <property name="enabled">1</property>
-                                <property name="fg" />
-                                <property name="font" />
-                                <property name="hidden">0</property>
-                                <property name="id">wxID_ANY</property>
-                                <property name="maximum_size" />
-                                <property name="minimum_size">16,-1</property>
-                                <property name="name">ticketsOverviewScrollbarTrack</property>
-                                <property name="permission">none</property>
-                                <property name="pos" />
-                                <property name="size">-1,-1</property>
-                                <property name="subclass" />
-                                <property name="tooltip" />
-                                <property name="window_extra_style" />
-                                <property name="window_name" />
-                                <property name="window_style">wxTAB_TRAVERSAL</property>
-                                <object class="wxBoxSizer" expanded="true">
-                                  <property name="minimum_size" />
-                                  <property name="name">ticketsOverviewScrollbarSizer</property>
-                                  <property name="orient">wxVERTICAL</property>
-                                  <property name="permission">none</property>
-                                  <object class="sizeritem" expanded="true">
-                                    <property name="border">0</property>
-                                    <property name="flag" />
-                                    <property name="proportion">0</property>
-                                    <object class="spacer" expanded="true">
-                                      <property name="height">24</property>
-                                      <property name="permission">protected</property>
-                                      <property name="width">0</property>
-                                    </object>
-                                  </object>
-                                  <object class="sizeritem" expanded="true">
-                                    <property name="border">0</property>
-                                    <property name="flag">wxEXPAND</property>
-                                    <property name="proportion">0</property>
-                                    <object class="wxPanel" expanded="true">
-                                      <property name="bg">128,128,128</property>
-                                      <property name="context_help" />
-                                      <property name="enabled">1</property>
-                                      <property name="fg" />
-                                      <property name="font" />
-                                      <property name="hidden">0</property>
-                                      <property name="id">wxID_ANY</property>
-                                      <property name="maximum_size" />
-                                      <property name="minimum_size">16,100</property>
-                                      <property name="name">ticketsOverviewScrollbarThumb</property>
-                                      <property name="permission">none</property>
-                                      <property name="pos" />
-                                      <property name="size">-1,-1</property>
-                                      <property name="subclass" />
-                                      <property name="tooltip" />
-                                      <property name="window_extra_style" />
-                                      <property name="window_name" />
-                                      <property name="window_style">wxTAB_TRAVERSAL</property>
-                                    </object>
-                                  </object>
-                                  <object class="sizeritem" expanded="true">
-                                    <property name="border">0</property>
-                                    <property name="flag">wxEXPAND</property>
-                                    <property name="proportion">1</property>
-                                    <object class="spacer" expanded="true">
-                                      <property name="height">0</property>
-                                      <property name="permission">protected</property>
-                                      <property name="width">0</property>
-                                    </object>
-                                  </object>
-                                </object>
-                              </object>
-                            </object>
-                          </object>
-                        </object>
-                      </object>
-                    </object>
-                  </object>
-                  <object class="sizeritem" expanded="true">
-                    <property name="border">0</property>
-                    <property name="flag">wxEXPAND</property>
-                    <property name="proportion">1</property>
-                    <object class="spacer" expanded="true">
-                      <property name="height">0</property>
-                      <property name="permission">protected</property>
-                      <property name="width">0</property>
                     </object>
                   </object>
                 </object>
