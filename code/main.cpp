@@ -21,7 +21,7 @@ public:
     explicit TicketDetailFrame(wxWindow* parent = nullptr)
         : wxFrame(parent, wxID_ANY, _( "Ticket-Support" ), wxDefaultPosition,
                   wxSize(900, 700), wxDEFAULT_FRAME_STYLE) {
-        SetMinSize(wxSize(720, 560));
+        wxTopLevelWindowGTK::SetMinSize(wxSize(720, 560));
 
         auto* panel = new wxPanel(this, wxID_ANY);
         panel->SetBackgroundColour(wxColour(248, 250, 253));
@@ -111,7 +111,7 @@ public:
             conversationPanel, wxID_ANY, wxDefaultPosition, wxSize(16, -1),
             wxSB_VERTICAL);
         conversationScrollbar->SetScrollbar(0, 20, 60, 20);
-        BindScrollBarEvents(conversationScrollbar, [conversation](wxScrollEvent& event) {
+        BindScrollBarEvents(conversationScrollbar, [conversation](const wxScrollEvent& event) {
             conversation->Scroll(0, event.GetPosition());
         });
         conversationBody->Add(conversationScrollbar, 0,
@@ -155,7 +155,7 @@ public:
     explicit TicketsListFrame(wxWindow* parent = nullptr)
         : wxFrame(parent, wxID_ANY, _( "Ticket-Support" ), wxDefaultPosition,
                   wxSize(900, 680), wxDEFAULT_FRAME_STYLE) {
-        SetMinSize(wxSize(720, 540));
+        wxTopLevelWindowGTK::SetMinSize(wxSize(720, 540));
 
         auto* panel = new wxPanel(this, wxID_ANY);
         panel->SetBackgroundColour(wxColour(248, 250, 253));
@@ -244,7 +244,7 @@ public:
         auto* listScrollbar = new wxScrollBar(
             listPanel, wxID_ANY, wxDefaultPosition, wxSize(16, -1), wxSB_VERTICAL);
         listScrollbar->SetScrollbar(0, 1, 10, 1);
-        BindScrollBarEvents(listScrollbar, [ticketScroll](wxScrollEvent& event) {
+        BindScrollBarEvents(listScrollbar, [ticketScroll](const wxScrollEvent& event) {
             ticketScroll->Scroll(0, event.GetPosition());
         });
         listBodyLayout->Add(listScrollbar, 0,
@@ -567,7 +567,7 @@ public:
         auto* frameLayout = new wxBoxSizer(wxVERTICAL);
         frameLayout->Add(panel, 1, wxEXPAND);
         SetSizer(frameLayout);
-        SetMinSize(wxSize(440, 400));
+        wxTopLevelWindowGTK::SetMinSize(wxSize(440, 400));
         CentreOnParent();
     }
 };
@@ -581,20 +581,13 @@ public:
 private:
     void OnOpenLogin(wxCommandEvent&) {
         LoginDialog dialog(this);
-        if (dialog.ShowModal() == wxID_OK) {
-            auto* actions = new TicketActionsFrame();
-            actions->Show(true);
-        }
+        dialog.ShowModal();
     }
 };
 
-class MyApp : public wxApp {
-public:
-    bool OnInit() override {
-        HomeFrame* frame = new HomeFrame();
-        frame->Show(true);
-        return true;
-    }
-};
+int main(int argc, char **argv)
+{
+  wxPrintf(wxT("A wxWidgets console application\n"));
 
-wxIMPLEMENT_APP(MyApp);
+  return 0;
+}
