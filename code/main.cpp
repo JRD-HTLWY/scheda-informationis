@@ -21,6 +21,7 @@ auto zeit = chrono::system_clock::now();
 const uint32_t port = 8300;
 
 atomic<bool> stopGefordert{false};
+asio::cancellation_signal stopSignal;
 
 void init(){
     //init der JSON-Datei
@@ -100,6 +101,8 @@ void empfangeTickets(string name, string titel, string frage){
     neueNachricht["support"] = "-";
     neueNachricht["question"] = frage;
     neueNachricht["answer"] = "-";
+    json content = json::array();
+    neueNachricht["content"] = content;
 
     alleNachrichtenJSON.push_back(neueNachricht);
     jsons << alleNachrichtenJSON.to_string();//final hinzugefuegt
@@ -190,16 +193,40 @@ void loescheTicket(int id){
 void befehlLesen(){
     tcp::acceptor acceptor(io, tcp::endpoint(tcp::v4(), port));
 
-    while(true){
-        tcp::socket socket(io);
-        acceptor.accept(socket);
+    tcp::socket socket(io);
+    asio::streambuf buffer;
+    asio::error_code ec;
+    asio::steady_timer timer(io);
+
+    acceptor.non_blocking(true);
+
+    while(!stopGefordert.load()){
+        acceptor.accept(socket, ec);
+
+        if(ec == asio::error::would_block || ec == asio::error::try_again){
+            this_thread::sleep_for(chrono::milliseconds(5000));
+            continue;
+        }
+
+        if(ec){
+            cerr << "Acceptor-Fehler: " << ec.message() << "\n";
+            continue;
+        }
+
+
         auto endpoint = socket.remote_endpoint();
-        asio::streambuf buffer;
 
-        asio::error_code ec;
-        asio::read_until(socket, buffer, "\n", ec);
 
-        size_t bytes;
+        asio::async_read_until(socket, buffer, '\n', [&](asio::error_code ec, size_t bytes)
+        {
+            timer.cancel();
+
+            if(ec){
+                cerr << "Verbindung abgebrochen! " << ec.message() << "\n";
+            }
+        });
+
+        //asio::read_until(socket, buffer, "\n", ec);
 
         if(ec){
             if(ec == asio::error::eof || ec == asio::error::connection_reset){
@@ -247,10 +274,9 @@ void befehlLesen(){
                 loescheTicket(jsonJ["id"].as<int>());
             }
         }
-        if(stopGefordert.load()){
-            break;
-        }
     }
+
+        //acceptor.accept(socket);
 }
 
 int main(){
