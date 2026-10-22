@@ -5,41 +5,29 @@
 #ifndef SCHEDA_INFORMATIONIS_NETWORKMANAGER_H
 #define SCHEDA_INFORMATIONIS_NETWORKMANAGER_H
 
-#include <jsoncons/json.hpp>
 #include <asio.hpp>
 
 #include <chrono>
 #include <cstddef>
-#include <cstdint>
 #include <exception>
 #include <functional>
 #include <iostream>
 #include <istream>
 #include <map>
-#include <sstream>
 #include <stdexcept>
 #include <string>
 #include <utility>
 
 /**
- * Single-threaded TCP client for newline-delimited JSON requests.
+ * Single-threaded TCP client for newline-delimited requests.
  *
  * Call poll() regularly from the application's event loop to process network events.
- * Incoming JSON may contain a numeric "type" field; requests without one are treated as pings.
+ * Requests start with a type followed by '@'; the remaining request data is passed
+ * to the matching handler without conversion.
  * Pings are echoed by default and can be overridden with registerHandler().
  * If no custom error handler is set, errors are written to stderr.
- * The request-type enum can be customized by supplying it as the networkManager template argument.
  * When a peer closes the connection, the client retries the last endpoint while listening.
  */
-enum class NetworkRequestType : std::uint32_t
-{
-    Ping = 0,
-    Fetch = 1,
-    Pull = 2,
-    UserAuthorized = 3
-};
-
-template <typename RequestTypeT = NetworkRequestType>
 class networkManager
 {
 public:
@@ -49,28 +37,22 @@ public:
     using ExceptionPtr = std::exception_ptr;
     using IpAddress = asio::ip::address;
     using Tcp = asio::ip::tcp;
-    using Json = jsoncons::json;
     using ErrorCode = asio::error_code;
-    using RequestHandler = std::function<void(const Json&)>;
+    using RequestHandler = std::function<void(const String&)>;
     using ErrorHandler = std::function<void(ExceptionPtr)>;
-    using RequestType = RequestTypeT;
 
     /** Creates a disconnected client with a default stderr error handler. */
     networkManager() : socket_(context_)
     {
-        handlers_[RequestType::Ping] = [this](const Json& request) { handlePing(request); };
+        handlers_.emplace("ping", [this](const String& request) { handlePing(request); });
     }
-
-    networkManager(const networkManager&) = delete;
-    networkManager& operator=(const networkManager&) = delete;
 
     /** Cancels pending operations before destroying the client resources. */
     ~networkManager()
     {
-        ErrorCode ignored;
-        requestTimer_.cancel(ignored);
-        reconnectTimer_.cancel(ignored);
-        if (const ErrorCode closeResult = socket_.close(ignored); ignored || closeResult) logError(std::make_exception_ptr(asio::system_error(ignored ? ignored : closeResult)));
+        cancelTimer(requestTimer_);
+        cancelTimer(reconnectTimer_);
+        closeSocket();
     }
 
     /**
@@ -88,8 +70,7 @@ public:
     /**
      * Writes the supplied bytes synchronously.
      *
-     * The caller provides the JSON serialization and framing, including the
-     * newline delimiter.
+     * The caller provides the request framing, including the newline delimiter.
      * @throws asio::system_error if the write fails.
      */
     void sendRequest(const String& request)
@@ -97,12 +78,10 @@ public:
         asio::write(socket_, asio::buffer(request));
     }
 
-    /** Echoes a ping request back to the peer as newline-delimited JSON. */
-    void handlePing(const Json& request)
+    /** Echoes a ping request back to the peer as newline-delimited data. */
+    void handlePing(const String& request)
     {
-        std::ostringstream response;
-        response << request << '\n';
-        sendRequest(response.str());
+        sendRequest(request + '\n');
     }
 
     /**
@@ -110,7 +89,7 @@ public:
      * Handlers run synchronously inside poll().
      * @throws std::invalid_argument if handler is empty.
      */
-    void registerHandler(const RequestType type, RequestHandler handler)
+    void registerHandler(const String& type, RequestHandler handler)
     {
         if (!handler) throw std::invalid_argument("Request handler must not be empty");
         handlers_[type] = std::move(handler);
@@ -150,7 +129,7 @@ public:
 
 private:
     using Duration = std::chrono::seconds;
-    using HandlerMap = std::map<RequestType, RequestHandler>;
+    using HandlerMap = std::map<String, RequestHandler>;
 
     static constexpr std::size_t maxIncomingBytes_ = 64 * 1024;
     static constexpr Duration requestTimeout_{30};
@@ -186,22 +165,12 @@ private:
         }
 
         requestTimedOut_ = true;
-        ErrorCode cancelError;
-        if (const ErrorCode cancelResult = socket_.cancel(cancelError); cancelError || cancelResult)
-        {
-            reportError(std::make_exception_ptr(asio::system_error(cancelError ? cancelError : cancelResult)));
-        }
+        cancelSocket();
     }
 
     void onReadComplete(const ErrorCode& error)
     {
-        ErrorCode cancelError;
-        requestTimer_.cancel(cancelError);
-        if (cancelError)
-        {
-            reportError(std::make_exception_ptr(asio::system_error(cancelError)));
-            return;
-        }
+        cancelTimer(requestTimer_);
 
         const bool timedOut = requestTimedOut_;
         requestTimedOut_ = false;
@@ -255,9 +224,8 @@ private:
 
         incoming_.consume(incoming_.size());
 
-        ErrorCode ignored;
-        requestTimer_.cancel(ignored);
-        if (const ErrorCode closeResult = socket_.close(ignored); ignored || closeResult) logError(std::make_exception_ptr(asio::system_error(ignored ? ignored : closeResult)));
+        cancelTimer(requestTimer_);
+        closeSocket();
 
         notifyError(error);
         scheduleReconnect();
@@ -268,27 +236,34 @@ private:
         if (!listening_ || !hasReconnectEndpoint_) return;
 
         reconnectTimer_.expires_after(std::chrono::seconds(1));
-        reconnectTimer_.async_wait([this](const ErrorCode& error) {
-            if (error == asio::error::operation_aborted || !listening_) return;
-            if (error)
-            {
-                reportError(std::make_exception_ptr(asio::system_error(error)));
-                return;
-            }
+        reconnectTimer_.async_wait([this](const ErrorCode& error) { onReconnectTimer(error); });
+    }
 
-            socket_.async_connect(reconnectEndpoint_, [this](const ErrorCode& connectError) {
-                if (!listening_) return;
-                if (connectError)
-                {
-                    ErrorCode ignored;
-                    if (const ErrorCode closeResult = socket_.close(ignored); ignored || closeResult) logError(std::make_exception_ptr(asio::system_error(ignored ? ignored : closeResult)));
-                    notifyError(std::make_exception_ptr(asio::system_error(connectError)));
-                    scheduleReconnect();
-                    return;
-                }
-                readNextRequest();
-            });
-        });
+    void onReconnectTimer(const ErrorCode& error)
+    {
+        if (error == asio::error::operation_aborted || !listening_) return;
+        if (error)
+        {
+            reportError(std::make_exception_ptr(asio::system_error(error)));
+            return;
+        }
+
+        socket_.async_connect(reconnectEndpoint_,
+                              [this](const ErrorCode& connectError) { onReconnectComplete(connectError); });
+    }
+
+    void onReconnectComplete(const ErrorCode& error)
+    {
+        if (!listening_) return;
+        if (error)
+        {
+            closeSocket();
+            notifyError(std::make_exception_ptr(asio::system_error(error)));
+            scheduleReconnect();
+            return;
+        }
+
+        readNextRequest();
     }
 
     void notifyError(const ExceptionPtr& error) const noexcept
@@ -307,10 +282,9 @@ private:
     void reportError(const ExceptionPtr& error) noexcept
     {
         listening_ = false;
-        ErrorCode ignored;
-        requestTimer_.cancel(ignored);
-        reconnectTimer_.cancel(ignored);
-        if (const ErrorCode cancelResult = socket_.cancel(ignored); ignored || cancelResult) logError(std::make_exception_ptr(asio::system_error(ignored ? ignored : cancelResult)));
+        cancelTimer(requestTimer_);
+        cancelTimer(reconnectTimer_);
+        cancelSocket();
 
         notifyError(error);
     }
@@ -331,24 +305,42 @@ private:
         }
     }
 
-    void dispatchIncomingRequest()
+    static void cancelTimer(asio::steady_timer& timer)
     {
-        const auto request = parseIncomingRequest();
-        RequestId typeId = request.contains("type") ? typeId = request.at("type").template as<RequestId>() : 0;
-        const auto type = static_cast<RequestType>(typeId);
-        const auto handler = handlers_.find(type);
-        if (handler == handlers_.end()) throw std::runtime_error("No handler registered for request type: " + std::to_string(typeId));
-
-        handler->second(request);
+        ErrorCode cancellationError;
+        timer.cancel(cancellationError);
+        if (cancellationError)
+            logError(std::make_exception_ptr(asio::system_error(cancellationError)));
     }
 
-    Json parseIncomingRequest()
+    void cancelSocket()
+    {
+        ErrorCode cancellationError;
+        if (const ErrorCode result = socket_.cancel(cancellationError); cancellationError || result)
+            logError(std::make_exception_ptr(asio::system_error(cancellationError ? cancellationError : result)));
+    }
+
+    void closeSocket()
+    {
+        ErrorCode closeError;
+        if (const ErrorCode result = socket_.close(closeError); closeError || result)
+            logError(std::make_exception_ptr(asio::system_error(closeError ? closeError : result)));
+    }
+
+    void dispatchIncomingRequest()
     {
         std::istream input(&incoming_);
-        String payload;
-        std::getline(input, payload);
-        if (!payload.empty() && payload.back() == '\r') payload.pop_back();
-        return Json::parse(payload);
+        String request;
+        std::getline(input, request);
+
+        const auto separator = request.find('@');
+        const String requestType = request.substr(0, separator);
+
+        const auto handler = handlers_.find(requestType);
+        if (handler == handlers_.end())
+            throw std::runtime_error("No handler registered for request type: " + requestType);
+
+        handler->second(request.substr(separator + 1));
     }
 
 };
