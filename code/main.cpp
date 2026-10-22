@@ -193,14 +193,15 @@ void loescheTicket(int id){
 void befehlLesen(){
     tcp::acceptor acceptor(io, tcp::endpoint(tcp::v4(), port));
 
-    tcp::socket socket(io);
-    asio::streambuf buffer;
-    asio::error_code ec;
-    asio::steady_timer timer(io);
-
-    acceptor.non_blocking(true);
-
     while(!stopGefordert.load()){
+        tcp::socket socket(io);
+        asio::streambuf buffer;
+        asio::error_code ec;
+        asio::steady_timer timer(io);
+        acceptor.non_blocking(true);
+
+        timer.expires_after(chrono::milliseconds(5000));
+
         acceptor.accept(socket, ec);
 
         if(ec == asio::error::would_block || ec == asio::error::try_again){
@@ -216,6 +217,11 @@ void befehlLesen(){
 
         auto endpoint = socket.remote_endpoint();
 
+        timer.async_wait([&](asio::error_code ec){
+            if(!ec){
+                socket.close();
+            }
+        });
 
         asio::async_read_until(socket, buffer, '\n', [&](asio::error_code ec, size_t bytes)
         {
