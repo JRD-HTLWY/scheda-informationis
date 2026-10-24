@@ -49,7 +49,7 @@ bool anmelden(string nutzername, string passwort){
 
     while(getline(kontenDatei, zeile)){
         name = zeile.substr(0, zeile.find("@"));
-        passw = zeile.substr(zeile.find("@") + 1, zeile.length()-(zeile.find("@") + 1));
+        passw = zeile.substr(zeile.find("@") + 1, zeile.rfind("@")-(zeile.find("@") + 1));
 
         if(name == nutzername){
             neuesKonto = false;
@@ -124,15 +124,14 @@ void sendeTickets(tcp::socket& socket, string nutzername, bool support){
     json sendeDaten = json::array();
 
     if(support){
-        asio::write(socket, asio::buffer(alleNachrichten.to_string()));//alle Tickets
-    }
+        asio::write(socket, asio::buffer(alleNachrichten.to_string() + "\n"));//alle Tickets
     else{
         for(uint32_t i = 0; i < alleNachrichten.size(); i++){//schickt nur Kundendaten
             if(alleNachrichten[i]["customer"] == nutzername){
                 sendeDaten.push_back(alleNachrichten[i]);
             }
         }
-        asio::write(socket, asio::buffer(sendeDaten.to_string())); //senden
+        asio::write(socket, asio::buffer(sendeDaten.to_string() + "\n")); //senden
     }
 
     jsonDatei.close();
@@ -171,10 +170,11 @@ void antworteTicket(int id, string name, string antwort){
     alleNachrichten2.close();
 }
 
-void loescheTicket(int id){
+void loescheTicket(string name, int id){
     fstream alleNachrichten("alleNachrichten.txt", ios::in);
     stringstream alleNachrichtenBuf;
     alleNachrichtenBuf << alleNachrichten.rdbuf();
+    alleNachrichten.close();
     json alleNachrichtenJSON = json::parse(alleNachrichtenBuf.str());
     json neuesJSON = json::array();
 
@@ -182,11 +182,15 @@ void loescheTicket(int id){
         if(alleNachrichtenJSON[i]["id"] != id){
             neuesJSON.push_back(alleNachrichtenJSON[i]);
         }
+        else if(alleNachrichtenJSON[i]["customer"].as<string>() != name){
+            neuesJSON.push_back(alleNachrichtenJSON[i]);
+        }
     }
 
-    alleNachrichten << neuesJSON.to_string();
+    fstream alleNachrichten2("alleNachrichten.txt", ios::trunc);
+    alleNachrichten2 << neuesJSON.to_string();
 
-    alleNachrichten.close();
+    alleNachrichten2.close();
 }
 
 void befehlLesen(){
@@ -216,22 +220,13 @@ void befehlLesen(){
 
         auto endpoint = socket.remote_endpoint();
 
-        timer.async_wait([&](asio::error_code ec){
-            if(!ec){
+        timer.async_wait([&](asio::error_code ecd){
+            if(!ecd){
                 socket.close();
             }
         });
 
-        asio::async_read_until(socket, buffer, '\n', [&](asio::error_code ec, size_t bytes)
-        {
-            timer.cancel();
-
-            if(ec){
-                cerr << "Verbindung abgebrochen! " << ec.message() << "\n";
-            }
-        });
-
-        //asio::read_until(socket, buffer, "\n", ec);
+        asio::read_until(socket, buffer, '\n', ec);
 
         if(ec){
             if(ec == asio::error::eof || ec == asio::error::connection_reset){
@@ -240,6 +235,7 @@ void befehlLesen(){
             else{
                 cerr << "Socket-Fehler: " << ec.message() << "\n";
             }
+            continue;
         }
 
         istream stream(&buffer);
@@ -264,20 +260,26 @@ void befehlLesen(){
 
         string ip = endpoint.address().to_string();
 
-        if(anmelden(name, passwort)){
-            //Befehl ausführen
-            if(befehl == "empfangeTickets"){
-                empfangeTickets(name, jsonJ["title"].as<string>(), jsonJ["question"].as<string>());
+        try{
+            if(anmelden(name, passwort)){
+                //Befehl ausführen
+                if(befehl == "empfangeTickets"){
+                    empfangeTickets(name, jsonJ["title"].as<string>(), jsonJ["question"].as<string>());
+                }
+                if(befehl == "sendeTickets"){
+                    sendeTickets(socket, name, istSupport(name));
+                }
+                if(befehl == "antworteTicket"){
+                    antworteTicket(jsonJ["id"].as<int>(), name, jsonJ["answer"].as<string>());
+                }
+                if(befehl == "loescheTicket"){
+                    loescheTicket(name, jsonJ["id"].as<int>());
+                }
             }
-            if(befehl == "sendeTickets"){
-                sendeTickets(socket, name, istSupport(name));
-            }
-            if(befehl == "antworteTicket"){
-                antworteTicket(jsonJ["id"].as<int>(), name, jsonJ["answer"].as<string>());
-            }
-            if(befehl == "loescheTicket"){
-                loescheTicket(jsonJ["id"].as<int>());
-            }
+        }
+        catch(const exception& e){
+            cerr << "Fehlerhafter Funktionsaufruf\n";
+            continue;
         }
     }
 
@@ -317,13 +319,16 @@ int main(){
                         neueDatei.push_back(zeile);
                     }
                 }
+                kontenDatei.close();
+                fstream kontenDatei2("konten.txt", ios::trunc);
 
                 for(uint32_t i = 0; i < neueDatei.size(); i++){
-                    kontenDatei << neueDatei[i] << "\n";
+                    kontenDatei2 << neueDatei[i] << "\n";
                 }
+                kontenDatei2.close();
             }
             if(eingabe.substr(0, 10) == "downgrade " && eingabe.substr(10).find(" ") == string::npos){
-                fstream kontenDatei("konten.txt", ios::in | ios::out);
+                fstream kontenDatei("konten.txt", ios::in);
                 string zeile;
                 vector<string> neueDatei;
 
@@ -335,18 +340,22 @@ int main(){
                         neueDatei.push_back(zeile);
                     }
                 }
+                kontenDatei.close();
+                fstream kontenDatei2("konten.txt", ios::trunc);
 
                 for(uint32_t i = 0; i < neueDatei.size(); i++){
-                    kontenDatei << neueDatei[i] << "\n";
+                    kontenDatei2 << neueDatei[i] << "\n";
                 }
+                kontenDatei2.close();
             }
-            if(eingabe.substr(0, 14) == "list-accounts" && eingabe.substr(14).find(" ") == string::npos){
-                fstream kontenDatei("konten.txt");
+            if(eingabe.substr(0, 13) == "list-accounts"){
+                fstream kontenDatei("konten.txt", ios::in);
                 string zeile;
 
                 while(getline(kontenDatei, zeile)){
                     cout << zeile.substr(0, zeile.find("@")) << " " << zeile.substr(zeile.find("@")+1, zeile.rfind("@")-(zeile.find("@")+1)) << (zeile[zeile.length()-1] == '@' ? "-->Kunde" : "-->Supportmitglied") << "\n";
                 }
+                kontenDatei.close();
             }
             if(eingabe.substr(0, 4) == "exit"){
                 break;
