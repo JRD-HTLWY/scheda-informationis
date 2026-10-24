@@ -7,6 +7,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_executable(MeinProgramm
     code/main.cpp MyProjectBase.cpp code/networkManager.h
+    code/netBridge.cpp code/netBridge.h
 )
 
 target_include_directories(MeinProgramm PRIVATE
