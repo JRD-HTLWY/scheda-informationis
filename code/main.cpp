@@ -1,5 +1,8 @@
 #include <iostream>
 #include <string>
+#include <sstream>
+#include <vector>
+#include <cstdint>
 #include <fstream>
 #include <array>
 #include <chrono>
