@@ -10,6 +10,10 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/home/GWAP/Documents/HTLWY/3AHIT/ITP/scheda-informationis/CMakeLists.txt"
   "CMakeFiles/4.3.4/CMakeCXXCompiler.cmake"
   "CMakeFiles/4.3.4/CMakeSystem.cmake"
+  "/usr/lib64/cmake/Boost-1.90.0/BoostConfig.cmake"
+  "/usr/lib64/cmake/Boost-1.90.0/BoostConfigVersion.cmake"
+  "/usr/lib64/cmake/boost_headers-1.90.0/boost_headers-config-version.cmake"
+  "/usr/lib64/cmake/boost_headers-1.90.0/boost_headers-config.cmake"
   "/usr/share/cmake/Modules/CMakeCXXInformation.cmake"
   "/usr/share/cmake/Modules/CMakeCommonLanguageInclude.cmake"
   "/usr/share/cmake/Modules/CMakeGenericSystem.cmake"
@@ -35,7 +39,9 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/usr/share/cmake/Modules/Platform/Linux-Initialize.cmake"
   "/usr/share/cmake/Modules/Platform/Linux.cmake"
   "/usr/share/cmake/Modules/Platform/UnixPaths.cmake"
-  "/usr/share/cmake/Modules/UsewxWidgets.cmake"
+  "/usr/share/cmake/jsoncons/jsonconsConfig.cmake"
+  "/usr/share/cmake/jsoncons/jsonconsConfigVersion.cmake"
+  "/usr/share/cmake/jsoncons/jsonconsTargets.cmake"
   )
 
 # The corresponding makefile is:

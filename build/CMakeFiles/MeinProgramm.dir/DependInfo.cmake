@@ -9,7 +9,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/GWAP/Documents/HTLWY/3AHIT/ITP/scheda-informationis/MyProjectBase.cpp" "CMakeFiles/MeinProgramm.dir/MyProjectBase.cpp.o" "gcc" "CMakeFiles/MeinProgramm.dir/MyProjectBase.cpp.o.d"
-  "/home/GWAP/Documents/HTLWY/3AHIT/ITP/scheda-informationis/main.cpp" "CMakeFiles/MeinProgramm.dir/main.cpp.o" "gcc" "CMakeFiles/MeinProgramm.dir/main.cpp.o.d"
+  "/home/GWAP/Documents/HTLWY/3AHIT/ITP/scheda-informationis/code/main.cpp" "CMakeFiles/MeinProgramm.dir/code/main.cpp.o" "gcc" "CMakeFiles/MeinProgramm.dir/code/main.cpp.o.d"
+  "/home/GWAP/Documents/HTLWY/3AHIT/ITP/scheda-informationis/code/netBridge.cpp" "CMakeFiles/MeinProgramm.dir/code/netBridge.cpp.o" "gcc" "CMakeFiles/MeinProgramm.dir/code/netBridge.cpp.o.d"
   "" "MeinProgramm" "gcc" "CMakeFiles/MeinProgramm.dir/link.d"
   )
 

@@ -1,7 +1,16 @@
 #include <wx/wx.h>
 #include <wx/scrolwin.h>
 #include <wx/statline.h>
+#include <wx/listctrl.h>
+#include <wx/weakref.h>
 #include "aeroTheme.h"
+#include "netBridge.h"
+
+#include <exception>
+#include <functional>
+#include <stdexcept>
+#include <utility>
+#include <vector>
 
 // Route every scrollbar action through one handler for the associated view.
 template <typename Handler>
@@ -16,6 +25,142 @@ static void BindScrollBarEvents(wxScrollBar* scrollbar, Handler handler) {
     scrollbar->Bind(wxEVT_SCROLL_THUMBRELEASE, handler);
     scrollbar->Bind(wxEVT_SCROLL_CHANGED, handler);
 }
+
+// Owns the TCP adapter and pumps its callbacks from wxWidgets' event loop.
+class TicketSession : public wxEvtHandler {
+public:
+    using TicketsHandler = std::function<void(std::vector<Ticket>)>;
+    using FailureHandler = std::function<void(const std::string&)>;
+
+    TicketSession() : pollTimer_(this), responseTimer_(this) {
+        Bind(wxEVT_TIMER, &TicketSession::OnPollTimer, this, pollTimer_.GetId());
+        Bind(wxEVT_TIMER, &TicketSession::OnResponseTimeout, this, responseTimer_.GetId());
+        manager_.setResponseHandler([this](const std::string& response) {
+            try {
+                auto tickets = netBridge::parseTickets(response);
+                responseTimer_.Stop();
+                auto callback = std::move(ticketsHandler_);
+                ticketsHandler_ = {};
+                failureHandler_ = {};
+                if (callback) callback(std::move(tickets));
+            } catch (...) {
+                Fail(std::current_exception());
+            }
+        });
+        manager_.setErrorHandler([this](networkManager::ExceptionPtr error) {
+            Fail(error);
+        });
+    }
+
+    void Login(const std::string& serverAddress, const LoginData& credentials,
+               TicketsHandler onTickets, FailureHandler onFailure) {
+        credentials_ = credentials;
+        if (!Configure(serverAddress, std::move(onFailure))) return;
+        ticketsHandler_ = std::move(onTickets);
+        try {
+            netBridge::sendFetchTickets(manager_, credentials_);
+            responseTimer_.Start(15000, true);
+        } catch (...) {
+            Fail(std::current_exception());
+        }
+    }
+
+    void FetchTickets(TicketsHandler onTickets, FailureHandler onFailure) {
+        failureHandler_ = std::move(onFailure);
+        ticketsHandler_ = std::move(onTickets);
+        try {
+            netBridge::sendFetchTickets(manager_, credentials_);
+            responseTimer_.Start(15000, true);
+        } catch (...) {
+            Fail(std::current_exception());
+        }
+    }
+
+    bool CreateTicket(const std::string& title, const std::string& question,
+                      FailureHandler onFailure) {
+        return SendMutation([&] { netBridge::sendCreateTicket(manager_, credentials_, title, question); },
+                            std::move(onFailure));
+    }
+
+    bool AnswerTicket(const int id, const std::string& answer, FailureHandler onFailure) {
+        return SendMutation([&] { netBridge::sendAnswerTicket(manager_, credentials_, id, answer); },
+                            std::move(onFailure));
+    }
+
+    bool DeleteTicket(const int id, FailureHandler onFailure) {
+        return SendMutation([&] { netBridge::sendDeleteTicket(manager_, credentials_, id); },
+                            std::move(onFailure));
+    }
+
+    const LoginData& Credentials() const { return credentials_; }
+
+private:
+    networkManager manager_;
+    wxTimer pollTimer_;
+    wxTimer responseTimer_;
+    LoginData credentials_;
+    FailureHandler failureHandler_;
+    TicketsHandler ticketsHandler_;
+    bool listening_ = false;
+
+    bool Configure(const std::string& serverAddress, FailureHandler onFailure) {
+        failureHandler_ = std::move(onFailure);
+        try {
+            manager_.connectTo(asio::ip::make_address(serverAddress), 8300);
+            if (!listening_) {
+                manager_.startListening(8300);
+                listening_ = true;
+                pollTimer_.Start(15);
+            }
+            return true;
+        } catch (...) {
+            Fail(std::current_exception());
+            return false;
+        }
+    }
+
+    bool SendMutation(const std::function<void()>& send, FailureHandler onFailure) {
+        try {
+            send();
+            return true;
+        } catch (...) {
+            if (onFailure) onFailure(ErrorMessage(std::current_exception()));
+            return false;
+        }
+    }
+
+    void Fail(const networkManager::ExceptionPtr& error) {
+        responseTimer_.Stop();
+        const std::string message = ErrorMessage(error);
+        auto callback = std::move(failureHandler_);
+        failureHandler_ = {};
+        ticketsHandler_ = {};
+        if (callback) callback(message);
+    }
+
+    static std::string ErrorMessage(const networkManager::ExceptionPtr& error) {
+        std::string message = "Unknown network error";
+        try {
+            if (error) std::rethrow_exception(error);
+        } catch (const std::exception& exception) {
+            message = exception.what();
+        } catch (...) {
+        }
+        return message;
+    }
+
+    void OnPollTimer(wxTimerEvent&) {
+        try {
+            manager_.poll();
+        } catch (...) {
+            Fail(std::current_exception());
+        }
+    }
+
+    void OnResponseTimeout(wxTimerEvent&) {
+        Fail(std::make_exception_ptr(std::runtime_error("Timed out waiting for the ticket list")));
+    }
+};
 
 // Shows a ticket's details, conversation, reply input, and footer actions.
 class TicketDetailFrame : public wxFrame {
@@ -568,12 +713,12 @@ public:
     }
 };
 
-// Collects credentials and reports failed attempts until authentication is added.
+// Loads the user's ticket list as the server's only available login check.
 class LoginDialog : public wxDialog {
 public:
-    explicit LoginDialog(wxWindow* parent)
+    LoginDialog(wxWindow* parent, TicketSession& session)
         : wxDialog(parent, wxID_ANY, _( "Ticket-Support" ), wxDefaultPosition,
-                   wxSize(480, 440), wxDEFAULT_DIALOG_STYLE) {
+                   wxSize(500, 520), wxDEFAULT_DIALOG_STYLE), session_(session) {
         auto* panel = new aero::Panel(this, aero::palette::skyTop,
                                       aero::palette::skyBottom, false, true);
 
@@ -586,36 +731,47 @@ public:
         title->SetForegroundColour(aero::palette::ink);
         layout->Add(title, 0, wxALIGN_CENTER_HORIZONTAL | wxBOTTOM, 24);
 
+        auto* serverLabel = new wxStaticText(panel, wxID_ANY, _( "Server IP-Adresse" ));
+        serverLabel->SetForegroundColour(aero::palette::mutedInk);
+        layout->Add(serverLabel, 0, wxALIGN_CENTER_HORIZONTAL | wxBOTTOM, 6);
+
+        serverInput_ = new wxTextCtrl(panel, wxID_ANY, wxEmptyString,
+                                      wxDefaultPosition, wxSize(320, -1));
+        serverInput_->SetMinSize(wxSize(320, 38));
+        serverInput_->SetHint(_( "e.g. 192.168.1.10" ));
+        layout->Add(serverInput_, 0, wxALIGN_CENTER_HORIZONTAL | wxBOTTOM, 14);
+
         auto* nameLabel = new wxStaticText(panel, wxID_ANY, _( "Name" ));
         nameLabel->SetForegroundColour(aero::palette::mutedInk);
         layout->Add(nameLabel, 0, wxALIGN_CENTER_HORIZONTAL | wxLEFT | wxRIGHT | wxBOTTOM, 6);
 
-        auto* nameInput = new wxTextCtrl(panel, wxID_ANY, wxEmptyString,
-                                         wxDefaultPosition, wxSize(320, -1));
-        nameInput->SetMinSize(wxSize(320, 38));
-        nameInput->SetBackgroundColour(wxColour(255, 255, 255));
-        nameInput->SetForegroundColour(aero::palette::ink);
-        layout->Add(nameInput, 0, wxALIGN_CENTER_HORIZONTAL | wxLEFT | wxRIGHT | wxBOTTOM, 16);
+        usernameInput_ = new wxTextCtrl(panel, wxID_ANY, wxEmptyString,
+                                        wxDefaultPosition, wxSize(320, -1));
+        usernameInput_->SetMinSize(wxSize(320, 38));
+        usernameInput_->SetBackgroundColour(wxColour(255, 255, 255));
+        usernameInput_->SetForegroundColour(aero::palette::ink);
+        layout->Add(usernameInput_, 0, wxALIGN_CENTER_HORIZONTAL | wxLEFT | wxRIGHT | wxBOTTOM, 16);
 
         auto* passwordLabel = new wxStaticText(panel, wxID_ANY, _( "Passwort" ));
         passwordLabel->SetForegroundColour(aero::palette::mutedInk);
         layout->Add(passwordLabel, 0, wxALIGN_CENTER_HORIZONTAL | wxLEFT | wxRIGHT | wxBOTTOM, 6);
 
-        auto* passwordInput = new wxTextCtrl(panel, wxID_ANY, wxEmptyString,
-                                             wxDefaultPosition, wxSize(320, -1), wxTE_PASSWORD);
-        passwordInput->SetMinSize(wxSize(320, 38));
-        passwordInput->SetBackgroundColour(wxColour(255, 255, 255));
-        passwordInput->SetForegroundColour(aero::palette::ink);
-        layout->Add(passwordInput, 0, wxALIGN_CENTER_HORIZONTAL | wxLEFT | wxRIGHT | wxBOTTOM, 24);
+        passwordInput_ = new wxTextCtrl(panel, wxID_ANY, wxEmptyString,
+                                        wxDefaultPosition, wxSize(320, -1), wxTE_PASSWORD);
+        passwordInput_->SetMinSize(wxSize(320, 38));
+        passwordInput_->SetBackgroundColour(wxColour(255, 255, 255));
+        passwordInput_->SetForegroundColour(aero::palette::ink);
+        layout->Add(passwordInput_, 0, wxALIGN_CENTER_HORIZONTAL | wxLEFT | wxRIGHT | wxBOTTOM, 18);
+
+        status_ = new wxStaticText(panel, wxID_ANY, wxEmptyString);
+        status_->SetForegroundColour(aero::palette::mutedInk);
+        layout->Add(status_, 0, wxALIGN_CENTER_HORIZONTAL | wxLEFT | wxRIGHT | wxBOTTOM, 12);
 
         auto* loginButton = new aero::Button(panel, wxID_ANY, _( "Einloggen" ),
                                              wxSize(240, 56));
         loginButton->SetFont(wxFont(14, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL,
                                     wxFONTWEIGHT_BOLD));
-        // Authentication is not implemented yet, so each attempt shows the error.
-        loginButton->Bind(wxEVT_BUTTON, [this](wxCommandEvent&) {
-            ShowInvalidCredentialsMessage();
-        });
+        loginButton->Bind(wxEVT_BUTTON, [this](wxCommandEvent&) { OnLogin(); });
         layout->Add(loginButton, 0, wxALIGN_CENTER_HORIZONTAL | wxLEFT | wxRIGHT, 24);
 
         layout->AddStretchSpacer(1);
@@ -628,33 +784,276 @@ public:
         CentreOnParent();
     }
 
+    const LoginData& Credentials() const { return credentials_; }
+    const std::vector<Ticket>& Tickets() const { return tickets_; }
+
 private:
-    // Display the login error without closing the dialog.
-    void ShowInvalidCredentialsMessage() {
-        wxDialog errorDialog(this, wxID_ANY, _( "Login fehlgeschlagen" ),
-                             wxDefaultPosition, wxSize(380, 190),
-                             wxDEFAULT_DIALOG_STYLE);
-        auto* panel = new aero::Panel(&errorDialog, aero::palette::skyTop,
+    TicketSession& session_;
+    wxTextCtrl* serverInput_ = nullptr;
+    wxTextCtrl* usernameInput_ = nullptr;
+    wxTextCtrl* passwordInput_ = nullptr;
+    wxStaticText* status_ = nullptr;
+    LoginData credentials_;
+    std::vector<Ticket> tickets_;
+    bool pending_ = false;
+
+    void OnLogin() {
+        if (pending_) return;
+        credentials_.Username = usernameInput_->GetValue().ToStdString();
+        credentials_.Password = passwordInput_->GetValue().ToStdString();
+        const std::string serverAddress = serverInput_->GetValue().ToStdString();
+        pending_ = true;
+        status_->SetLabel(_( "Connecting and loading tickets..." ));
+
+        const wxWeakRef<LoginDialog> weakThis(this);
+        session_.Login(serverAddress, credentials_,
+            [weakThis](std::vector<Ticket> tickets) mutable {
+                if (!weakThis) return;
+                weakThis->tickets_ = std::move(tickets);
+                weakThis->pending_ = false;
+                weakThis->EndModal(wxID_OK);
+            },
+            [weakThis](const std::string& error) {
+                if (!weakThis) return;
+                weakThis->pending_ = false;
+                weakThis->status_->SetLabel(wxString::FromUTF8(error.c_str()));
+            });
+    }
+};
+
+class LiveTicketDetailFrame : public wxFrame {
+public:
+    LiveTicketDetailFrame(wxWindow* parent, TicketSession& session, Ticket ticket)
+        : wxFrame(parent, wxID_ANY, _( "Ticket details" ), wxDefaultPosition,
+                  wxSize(720, 600)), session_(session), ticket_(std::move(ticket)) {
+        auto* panel = new aero::Panel(this, aero::palette::skyTop,
                                       aero::palette::skyBottom, false, true);
         auto* layout = new wxBoxSizer(wxVERTICAL);
-        auto* message = new wxStaticText(panel, wxID_ANY,
-                                         _( "falsche Anmeldedaten!" ));
-        message->SetForegroundColour(aero::palette::ink);
-        layout->AddStretchSpacer(1);
-        layout->Add(message, 0, wxALIGN_CENTER | wxLEFT | wxRIGHT | wxBOTTOM, 18);
-        auto* okButton = new aero::Button(panel, wxID_OK, _( "OK" ), wxSize(120, 42));
-        okButton->Bind(wxEVT_BUTTON, [&errorDialog](wxCommandEvent&) {
-            errorDialog.EndModal(wxID_OK);
-        });
-        layout->Add(okButton, 0, wxALIGN_CENTER | wxBOTTOM, 18);
-        layout->AddStretchSpacer(1);
-        panel->SetSizer(layout);
 
+        auto* title = new wxStaticText(panel, wxID_ANY,
+            wxString::Format("#%d  ", ticket_.id) + wxString::FromUTF8(ticket_.title.c_str()));
+        title->SetFont(wxFont(20, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL,
+                              wxFONTWEIGHT_BOLD));
+        title->SetForegroundColour(aero::palette::ink);
+        layout->Add(title, 0, wxALL, 18);
+
+        auto* metadata = new wxStaticText(panel, wxID_ANY,
+            _( "Customer: " ) + wxString::FromUTF8(ticket_.customer.c_str()) +
+            wxString::Format("    Status: %d    Date: ", ticket_.status) +
+            wxString::FromUTF8(ticket_.dateText.c_str()));
+        metadata->SetForegroundColour(aero::palette::mutedInk);
+        layout->Add(metadata, 0, wxLEFT | wxRIGHT | wxBOTTOM, 18);
+
+        auto* conversation = new wxTextCtrl(panel, wxID_ANY, FormatConversation(),
+            wxDefaultPosition, wxDefaultSize, wxTE_MULTILINE | wxTE_READONLY);
+        layout->Add(conversation, 1, wxEXPAND | wxLEFT | wxRIGHT, 18);
+
+        replyInput_ = new wxTextCtrl(panel, wxID_ANY, wxEmptyString,
+            wxDefaultPosition, wxSize(-1, 90), wxTE_MULTILINE);
+        replyInput_->SetHint(_( "Write a reply" ));
+        layout->Add(replyInput_, 0, wxEXPAND | wxALL, 18);
+
+        status_ = new wxStaticText(panel, wxID_ANY, wxEmptyString);
+        status_->SetForegroundColour(aero::palette::mutedInk);
+        layout->Add(status_, 0, wxLEFT | wxRIGHT | wxBOTTOM, 12);
+
+        auto* actions = new wxBoxSizer(wxHORIZONTAL);
+        auto* deleteButton = new aero::Button(panel, wxID_ANY, _( "Delete ticket" ), wxSize(170, 44));
+        auto* replyButton = new aero::Button(panel, wxID_ANY, _( "Send reply" ), wxSize(170, 44));
+        deleteButton->Bind(wxEVT_BUTTON, [this](wxCommandEvent&) { DeleteTicket(); });
+        replyButton->Bind(wxEVT_BUTTON, [this](wxCommandEvent&) { SendReply(); });
+        actions->Add(deleteButton, 0, wxRIGHT, 12);
+        actions->AddStretchSpacer(1);
+        actions->Add(replyButton, 0);
+        layout->Add(actions, 0, wxEXPAND | wxLEFT | wxRIGHT | wxBOTTOM, 18);
+
+        panel->SetSizer(layout);
         auto* frameLayout = new wxBoxSizer(wxVERTICAL);
         frameLayout->Add(panel, 1, wxEXPAND);
-        errorDialog.SetSizer(frameLayout);
-        errorDialog.CentreOnParent();
-        errorDialog.ShowModal();
+        SetSizer(frameLayout);
+        CentreOnParent();
+    }
+
+private:
+    TicketSession& session_;
+    Ticket ticket_;
+    wxTextCtrl* replyInput_ = nullptr;
+    wxStaticText* status_ = nullptr;
+
+    wxString FormatConversation() const {
+        wxString text;
+        if (ticket_.content.empty()) text += _( "No messages" );
+        for (const auto& message : ticket_.content) {
+            text += wxString::FromUTF8(message.name.c_str()) + ":\n";
+            text += wxString::FromUTF8(message.matter.c_str()) + "\n\n";
+        }
+        return text;
+    }
+
+    void SendReply() {
+        const std::string answer = replyInput_->GetValue().ToStdString();
+        if (answer.empty()) {
+            status_->SetLabel(_( "Enter a reply first." ));
+            return;
+        }
+        const wxWeakRef<LiveTicketDetailFrame> weakThis(this);
+        const bool sent = session_.AnswerTicket(ticket_.id, answer, [weakThis](const std::string& error) {
+            if (weakThis) weakThis->status_->SetLabel(wxString::FromUTF8(error.c_str()));
+        });
+        if (!sent) return;
+        status_->SetLabel(_( "Reply sent. Refresh the ticket list to confirm." ));
+        replyInput_->Clear();
+    }
+
+    void DeleteTicket() {
+        if (wxMessageBox(_( "Delete this ticket?" ), _( "Confirm deletion" ),
+                         wxYES_NO | wxICON_QUESTION, this) != wxYES) return;
+        const wxWeakRef<LiveTicketDetailFrame> weakThis(this);
+        const bool sent = session_.DeleteTicket(ticket_.id, [weakThis](const std::string& error) {
+            if (weakThis) weakThis->status_->SetLabel(wxString::FromUTF8(error.c_str()));
+        });
+        if (sent) status_->SetLabel(_( "Delete request sent. Refresh the ticket list to confirm." ));
+    }
+};
+
+class LiveTicketsFrame : public wxFrame {
+public:
+    LiveTicketsFrame(wxWindow* parent, TicketSession& session,
+                     const LoginData& credentials, std::vector<Ticket> tickets)
+        : wxFrame(parent, wxID_ANY, _( "Ticket-Support" ), wxDefaultPosition,
+                  wxSize(900, 650)), session_(session), credentials_(credentials),
+          tickets_(std::move(tickets)) {
+        auto* panel = new aero::Panel(this, aero::palette::skyTop,
+                                      aero::palette::skyBottom, false, true);
+        auto* layout = new wxBoxSizer(wxVERTICAL);
+
+        auto* header = new wxBoxSizer(wxHORIZONTAL);
+        auto* title = new wxStaticText(panel, wxID_ANY, _( "Tickets" ));
+        title->SetFont(wxFont(25, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL,
+                              wxFONTWEIGHT_BOLD));
+        title->SetForegroundColour(aero::palette::ink);
+        header->Add(title, 1, wxALIGN_CENTER_VERTICAL);
+        auto* userLabel = new wxStaticText(panel, wxID_ANY,
+            wxString::FromUTF8(credentials_.Username.c_str()));
+        userLabel->SetForegroundColour(aero::palette::mutedInk);
+        header->Add(userLabel, 0, wxALIGN_CENTER_VERTICAL);
+        layout->Add(header, 0, wxEXPAND | wxALL, 20);
+
+        list_ = new wxListCtrl(panel, wxID_ANY, wxDefaultPosition, wxDefaultSize,
+                               wxLC_REPORT | wxLC_SINGLE_SEL | wxLC_HRULES);
+        list_->InsertColumn(0, _( "ID" ), wxLIST_FORMAT_LEFT, 70);
+        list_->InsertColumn(1, _( "Title" ), wxLIST_FORMAT_LEFT, 300);
+        list_->InsertColumn(2, _( "Customer" ), wxLIST_FORMAT_LEFT, 180);
+        list_->InsertColumn(3, _( "Status" ), wxLIST_FORMAT_LEFT, 130);
+        layout->Add(list_, 1, wxEXPAND | wxLEFT | wxRIGHT, 20);
+        list_->Bind(wxEVT_LIST_ITEM_ACTIVATED, [this](wxListEvent& event) {
+            OpenTicket(event.GetIndex());
+        });
+
+        status_ = new wxStaticText(panel, wxID_ANY, wxEmptyString);
+        status_->SetForegroundColour(aero::palette::mutedInk);
+        layout->Add(status_, 0, wxEXPAND | wxLEFT | wxRIGHT | wxTOP, 20);
+
+        auto* actions = new wxBoxSizer(wxHORIZONTAL);
+        auto* createButton = new aero::Button(panel, wxID_ANY, _( "Create ticket" ), wxSize(180, 44));
+        auto* openButton = new aero::Button(panel, wxID_ANY, _( "Open selected" ), wxSize(180, 44));
+        auto* refreshButton = new aero::Button(panel, wxID_ANY, _( "Refresh" ), wxSize(140, 44));
+        createButton->Bind(wxEVT_BUTTON, [this](wxCommandEvent&) { CreateTicket(); });
+        openButton->Bind(wxEVT_BUTTON, [this](wxCommandEvent&) {
+            const long selected = list_->GetNextItem(-1, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
+            if (selected != -1) OpenTicket(selected);
+        });
+        refreshButton->Bind(wxEVT_BUTTON, [this](wxCommandEvent&) { RefreshTickets(); });
+        actions->Add(createButton, 0, wxRIGHT, 10);
+        actions->Add(openButton, 0, wxRIGHT, 10);
+        actions->AddStretchSpacer(1);
+        actions->Add(refreshButton, 0);
+        layout->Add(actions, 0, wxEXPAND | wxALL, 20);
+
+        panel->SetSizer(layout);
+        auto* frameLayout = new wxBoxSizer(wxVERTICAL);
+        frameLayout->Add(panel, 1, wxEXPAND);
+        SetSizer(frameLayout);
+        PopulateList();
+        CentreOnParent();
+    }
+
+private:
+    TicketSession& session_;
+    LoginData credentials_;
+    std::vector<Ticket> tickets_;
+    wxListCtrl* list_ = nullptr;
+    wxStaticText* status_ = nullptr;
+
+    static wxString StatusName(const int status) {
+        switch (status) {
+            case 0: return _( "unverified" );
+            case 1: return _( "verified" );
+            case 2: return _( "in progress" );
+            case 3: return _( "resolved" );
+            case 4: return _( "dropped" );
+            default: return wxString::Format("%d", status);
+        }
+    }
+
+    void PopulateList() {
+        list_->DeleteAllItems();
+        for (std::size_t i = 0; i < tickets_.size(); ++i) {
+            const Ticket& ticket = tickets_[i];
+            const long row = list_->InsertItem(static_cast<long>(i), wxString::Format("%d", ticket.id));
+            list_->SetItem(row, 1, wxString::FromUTF8(ticket.title.c_str()));
+            list_->SetItem(row, 2, wxString::FromUTF8(ticket.customer.c_str()));
+            list_->SetItem(row, 3, StatusName(ticket.status));
+        }
+        status_->SetLabel(wxString::FromUTF8(std::to_string(tickets_.size()).c_str()) +
+                          _( " ticket(s)" ));
+    }
+
+    void OpenTicket(const long row) {
+        if (row < 0 || static_cast<std::size_t>(row) >= tickets_.size()) return;
+        auto* detail = new LiveTicketDetailFrame(this, session_, tickets_[static_cast<std::size_t>(row)]);
+        detail->Show(true);
+    }
+
+    void RefreshTickets() {
+        status_->SetLabel(_( "Loading tickets..." ));
+        const wxWeakRef<LiveTicketsFrame> weakThis(this);
+        session_.FetchTickets([weakThis](std::vector<Ticket> tickets) mutable {
+            if (!weakThis) return;
+            weakThis->tickets_ = std::move(tickets);
+            weakThis->PopulateList();
+        }, [weakThis](const std::string& error) {
+            if (weakThis) weakThis->status_->SetLabel(wxString::FromUTF8(error.c_str()));
+        });
+    }
+
+    void CreateTicket() {
+        wxDialog dialog(this, wxID_ANY, _( "Create ticket" ), wxDefaultPosition,
+                        wxSize(500, 400), wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER);
+        auto* layout = new wxBoxSizer(wxVERTICAL);
+        layout->Add(new wxStaticText(&dialog, wxID_ANY, _( "Title" )), 0, wxALL, 10);
+        auto* titleInput = new wxTextCtrl(&dialog, wxID_ANY);
+        layout->Add(titleInput, 0, wxEXPAND | wxLEFT | wxRIGHT | wxBOTTOM, 10);
+        layout->Add(new wxStaticText(&dialog, wxID_ANY, _( "Question" )), 0, wxALL, 10);
+        auto* questionInput = new wxTextCtrl(&dialog, wxID_ANY, wxEmptyString,
+                                             wxDefaultPosition, wxSize(-1, 180), wxTE_MULTILINE);
+        layout->Add(questionInput, 1, wxEXPAND | wxLEFT | wxRIGHT | wxBOTTOM, 10);
+        layout->Add(dialog.CreateStdDialogButtonSizer(wxOK | wxCANCEL), 0,
+                    wxEXPAND | wxALL, 10);
+        dialog.SetSizerAndFit(layout);
+        if (dialog.ShowModal() != wxID_OK) return;
+
+        const std::string title = titleInput->GetValue().ToStdString();
+        const std::string question = questionInput->GetValue().ToStdString();
+        if (title.empty() || question.empty()) {
+            status_->SetLabel(_( "Both title and question are required." ));
+            return;
+        }
+        const wxWeakRef<LiveTicketsFrame> weakThis(this);
+        const bool sent = session_.CreateTicket(title, question, [weakThis](const std::string& error) {
+            if (weakThis) weakThis->status_->SetLabel(wxString::FromUTF8(error.c_str()));
+        });
+        if (sent) status_->SetLabel(_( "Ticket request sent. Refresh to see the result." ));
     }
 };
 
@@ -692,10 +1091,14 @@ public:
     }
 
 private:
-    // Open the modal login dialog and continue only if it reports success.
+    TicketSession session_;
+
+    // Load the first ticket list, then open the live ticket view.
     void OnOpenLogin(wxCommandEvent&) {
-        LoginDialog dialog(this);
-        dialog.ShowModal();
+        LoginDialog dialog(this, session_);
+        if (dialog.ShowModal() != wxID_OK) return;
+        auto* tickets = new LiveTicketsFrame(this, session_, dialog.Credentials(), dialog.Tickets());
+        tickets->Show(true);
     }
 };
 

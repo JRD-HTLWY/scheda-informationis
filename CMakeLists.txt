@@ -14,7 +14,15 @@ target_include_directories(MeinProgramm PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
-find_package(wxWidgets CONFIG REQUIRED)
-find_package(asio CONFIG REQUIRED)
+find_package(wxWidgets REQUIRED COMPONENTS core base)
+find_package(asio CONFIG QUIET)
 find_package(jsoncons CONFIG REQUIRED)
-target_link_libraries(MeinProgramm PRIVATE wx::core wx::base asio::asio jsoncons::jsoncons)
+
+target_link_libraries(MeinProgramm PRIVATE wxWidgets::wxWidgets jsoncons::jsoncons)
+if(asio_FOUND)
+    target_link_libraries(MeinProgramm PRIVATE asio::asio)
+else()
+    find_package(Boost CONFIG REQUIRED)
+    target_compile_definitions(MeinProgramm PRIVATE SCHEDA_USE_BOOST_ASIO)
+    target_link_libraries(MeinProgramm PRIVATE Boost::headers)
+endif()

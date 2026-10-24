@@ -153,29 +153,53 @@ MyProjectBase.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MeinProgramm.dir/build.make CMakeFiles/MeinProgramm.dir/MyProjectBase.cpp.s
 .PHONY : MyProjectBase.cpp.s
 
-main.o: main.cpp.o
-.PHONY : main.o
+code/main.o: code/main.cpp.o
+.PHONY : code/main.o
 
 # target to build an object file
-main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MeinProgramm.dir/build.make CMakeFiles/MeinProgramm.dir/main.cpp.o
-.PHONY : main.cpp.o
+code/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MeinProgramm.dir/build.make CMakeFiles/MeinProgramm.dir/code/main.cpp.o
+.PHONY : code/main.cpp.o
 
-main.i: main.cpp.i
-.PHONY : main.i
+code/main.i: code/main.cpp.i
+.PHONY : code/main.i
 
 # target to preprocess a source file
-main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MeinProgramm.dir/build.make CMakeFiles/MeinProgramm.dir/main.cpp.i
-.PHONY : main.cpp.i
+code/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MeinProgramm.dir/build.make CMakeFiles/MeinProgramm.dir/code/main.cpp.i
+.PHONY : code/main.cpp.i
 
-main.s: main.cpp.s
-.PHONY : main.s
+code/main.s: code/main.cpp.s
+.PHONY : code/main.s
 
 # target to generate assembly for a file
-main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MeinProgramm.dir/build.make CMakeFiles/MeinProgramm.dir/main.cpp.s
-.PHONY : main.cpp.s
+code/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MeinProgramm.dir/build.make CMakeFiles/MeinProgramm.dir/code/main.cpp.s
+.PHONY : code/main.cpp.s
+
+code/netBridge.o: code/netBridge.cpp.o
+.PHONY : code/netBridge.o
+
+# target to build an object file
+code/netBridge.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MeinProgramm.dir/build.make CMakeFiles/MeinProgramm.dir/code/netBridge.cpp.o
+.PHONY : code/netBridge.cpp.o
+
+code/netBridge.i: code/netBridge.cpp.i
+.PHONY : code/netBridge.i
+
+# target to preprocess a source file
+code/netBridge.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MeinProgramm.dir/build.make CMakeFiles/MeinProgramm.dir/code/netBridge.cpp.i
+.PHONY : code/netBridge.cpp.i
+
+code/netBridge.s: code/netBridge.cpp.s
+.PHONY : code/netBridge.s
+
+# target to generate assembly for a file
+code/netBridge.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MeinProgramm.dir/build.make CMakeFiles/MeinProgramm.dir/code/netBridge.cpp.s
+.PHONY : code/netBridge.cpp.s
 
 # Help Target
 help:
@@ -189,9 +213,12 @@ help:
 	@echo "... MyProjectBase.o"
 	@echo "... MyProjectBase.i"
 	@echo "... MyProjectBase.s"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
+	@echo "... code/main.o"
+	@echo "... code/main.i"
+	@echo "... code/main.s"
+	@echo "... code/netBridge.o"
+	@echo "... code/netBridge.i"
+	@echo "... code/netBridge.s"
 .PHONY : help
 
 

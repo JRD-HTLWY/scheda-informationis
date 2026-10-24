@@ -85,12 +85,12 @@ clean: CMakeFiles/MeinProgramm.dir/clean
 CMakeFiles/MeinProgramm.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MeinProgramm.dir/build.make CMakeFiles/MeinProgramm.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MeinProgramm.dir/build.make CMakeFiles/MeinProgramm.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/GWAP/Documents/HTLWY/3AHIT/ITP/scheda-informationis/build/CMakeFiles --progress-num=1,2,3 "Built target MeinProgramm"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/GWAP/Documents/HTLWY/3AHIT/ITP/scheda-informationis/build/CMakeFiles --progress-num=1,2,3,4 "Built target MeinProgramm"
 .PHONY : CMakeFiles/MeinProgramm.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/MeinProgramm.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/GWAP/Documents/HTLWY/3AHIT/ITP/scheda-informationis/build/CMakeFiles 3
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/GWAP/Documents/HTLWY/3AHIT/ITP/scheda-informationis/build/CMakeFiles 4
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/MeinProgramm.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/GWAP/Documents/HTLWY/3AHIT/ITP/scheda-informationis/build/CMakeFiles 0
 .PHONY : CMakeFiles/MeinProgramm.dir/rule
@@ -102,7 +102,7 @@ MeinProgramm: CMakeFiles/MeinProgramm.dir/rule
 # codegen rule for target.
 CMakeFiles/MeinProgramm.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MeinProgramm.dir/build.make CMakeFiles/MeinProgramm.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/GWAP/Documents/HTLWY/3AHIT/ITP/scheda-informationis/build/CMakeFiles --progress-num=1,2,3 "Finished codegen for target MeinProgramm"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/GWAP/Documents/HTLWY/3AHIT/ITP/scheda-informationis/build/CMakeFiles --progress-num=1,2,3,4 "Finished codegen for target MeinProgramm"
 .PHONY : CMakeFiles/MeinProgramm.dir/codegen
 
 # clean rule for target.

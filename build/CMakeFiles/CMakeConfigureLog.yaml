@@ -2188,3 +2188,1737 @@ events:
         - "/usr/pkg"
         - "/opt"
 ...
+
+---
+events:
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/FindwxWidgets.cmake:1138 (find_library)"
+      - "CMakeLists.txt:17 (find_package)"
+    mode: "library"
+    variable: "_wx_lib_found"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "wx_gtk3u_core-3.3"
+    candidate_directories:
+      - "/home/GWAP/app/wxWidgets/build-gtk/lib/"
+      - "/home/GWAP/.codex/packages/app-server-daemon/releases/0.164.0-x86_64-unknown-linux-musl/codex-path/"
+      - "/usr/tqt3/bin/"
+      - "/usr/local/sbin/"
+      - "/usr/local/bin/"
+      - "/usr/bin/"
+      - "/opt/bin/"
+      - "/usr/lib/llvm/22/bin/"
+      - "/usr/trinity/14/bin/"
+      - "/usr/local/lib64/"
+      - "/usr/local/lib/"
+      - "/usr/local/"
+      - "/usr/lib64/"
+      - "/usr/lib/"
+      - "/usr/"
+      - "/lib64/"
+      - "/lib/"
+      - "/opt/"
+      - "/usr/x86_64-pc-linux-gnu/lib/"
+      - "/usr/lib64/"
+      - "/usr/lib64/"
+      - "/usr/lib/"
+      - "/lib64/"
+      - "/lib/"
+    found: "/home/GWAP/app/wxWidgets/build-gtk/lib/libwx_gtk3u_core-3.3.so"
+    search_context:
+      ENV{PATH}:
+        - "/home/GWAP/.codex/packages/app-server-daemon/releases/0.164.0-x86_64-unknown-linux-musl/codex-path"
+        - "/usr/tqt3/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/opt/bin"
+        - "/usr/lib/llvm/22/bin"
+        - "/usr/trinity/14/bin"
+      CMAKE_INSTALL_PREFIX: "/usr/local"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/usr"
+        - "/usr/local"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "/usr/x86_64-pc-linux-gnu/lib//gcc"
+        - "/usr/x86_64-pc-linux-gnu/lib/"
+        - "/usr/lib64"
+        - "/usr/libx32"
+        - "/usr/lib32"
+        - "/usr/lib"
+        - "/lib"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/FindwxWidgets.cmake:1138 (find_library)"
+      - "CMakeLists.txt:17 (find_package)"
+    mode: "library"
+    variable: "_wx_lib_found"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "wx_baseu-3.3"
+    candidate_directories:
+      - "/home/GWAP/app/wxWidgets/build-gtk/lib/"
+      - "/home/GWAP/.codex/packages/app-server-daemon/releases/0.164.0-x86_64-unknown-linux-musl/codex-path/"
+      - "/usr/tqt3/bin/"
+      - "/usr/local/sbin/"
+      - "/usr/local/bin/"
+      - "/usr/bin/"
+      - "/opt/bin/"
+      - "/usr/lib/llvm/22/bin/"
+      - "/usr/trinity/14/bin/"
+      - "/usr/local/lib64/"
+      - "/usr/local/lib/"
+      - "/usr/local/"
+      - "/usr/lib64/"
+      - "/usr/lib/"
+      - "/usr/"
+      - "/lib64/"
+      - "/lib/"
+      - "/opt/"
+      - "/usr/x86_64-pc-linux-gnu/lib/"
+      - "/usr/lib64/"
+      - "/usr/lib64/"
+      - "/usr/lib/"
+      - "/lib64/"
+      - "/lib/"
+    found: "/home/GWAP/app/wxWidgets/build-gtk/lib/libwx_baseu-3.3.so"
+    search_context:
+      ENV{PATH}:
+        - "/home/GWAP/.codex/packages/app-server-daemon/releases/0.164.0-x86_64-unknown-linux-musl/codex-path"
+        - "/usr/tqt3/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/opt/bin"
+        - "/usr/lib/llvm/22/bin"
+        - "/usr/trinity/14/bin"
+      CMAKE_INSTALL_PREFIX: "/usr/local"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/usr"
+        - "/usr/local"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "/usr/x86_64-pc-linux-gnu/lib//gcc"
+        - "/usr/x86_64-pc-linux-gnu/lib/"
+        - "/usr/lib64"
+        - "/usr/libx32"
+        - "/usr/lib32"
+        - "/usr/lib"
+        - "/lib"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/FindwxWidgets.cmake:374 (find_file)"
+      - "/usr/share/cmake/Modules/FindwxWidgets.cmake:1157 (wx_extract_version)"
+      - "CMakeLists.txt:17 (find_package)"
+    mode: "file"
+    variable: "_wx_filename"
+    description: "Path to a file."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "wx/version.h"
+    candidate_directories:
+      - "/home/GWAP/app/wxWidgets/build-gtk/lib/wx/include/gtk3-unicode-3.3/"
+      - "/home/GWAP/app/wxWidgets/include/"
+    searched_directories:
+      - "/home/GWAP/app/wxWidgets/build-gtk/lib/wx/include/gtk3-unicode-3.3/wx/version.h"
+    found: "/home/GWAP/app/wxWidgets/include/wx/version.h"
+    search_context:
+      ENV{PATH}:
+        - "/home/GWAP/.codex/packages/app-server-daemon/releases/0.164.0-x86_64-unknown-linux-musl/codex-path"
+        - "/usr/tqt3/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/opt/bin"
+        - "/usr/lib/llvm/22/bin"
+        - "/usr/trinity/14/bin"
+      CMAKE_INSTALL_PREFIX: "/usr/local"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/usr"
+        - "/usr/local"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_INCLUDE_PATH:
+        - "/usr/include"
+  -
+    kind: "find_package-v1"
+    backtrace:
+      - "CMakeLists.txt:18 (find_package)"
+    name: "asio"
+    configs:
+      -
+        filename: "asio.cps"
+        kind: "cps"
+      -
+        filename: "asioConfig.cmake"
+        kind: "cmake"
+      -
+        filename: "asio-config.cmake"
+        kind: "cmake"
+    version_request:
+      exact: false
+    settings:
+      required: "required_explicit"
+      quiet: false
+      global: false
+      policy_scope: true
+      bypass_provider: false
+      names:
+        - "asio"
+      path_suffixes:
+        - ""
+      paths:
+        CMAKE_FIND_USE_CMAKE_PATH: true
+        CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+        CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+        CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+        CMAKE_FIND_USE_INSTALL_PREFIX: true
+        CMAKE_FIND_USE_PACKAGE_ROOT_PATH: true
+        CMAKE_FIND_USE_CMAKE_PACKAGE_REGISTRY: true
+        CMAKE_FIND_USE_SYSTEM_PACKAGE_REGISTRY: true
+        CMAKE_FIND_ROOT_PATH_MODE: "BOTH"
+    candidates:
+      -
+        path: "/home/GWAP/Documents/HTLWY/3AHIT/ITP/scheda-informationis/build/CMakeFiles/pkgRedirects/asioConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/home/GWAP/Documents/HTLWY/3AHIT/ITP/scheda-informationis/build/CMakeFiles/pkgRedirects/asio-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/home/GWAP/Documents/HTLWY/3AHIT/ITP/scheda-informationis/build/CMakeFiles/pkgRedirects/lib64/cps/asio.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/home/GWAP/Documents/HTLWY/3AHIT/ITP/scheda-informationis/build/CMakeFiles/pkgRedirects/lib/cps/asio.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/home/GWAP/Documents/HTLWY/3AHIT/ITP/scheda-informationis/build/CMakeFiles/pkgRedirects/share/cps/asio.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/home/GWAP/.codex/packages/app-server-daemon/releases/0.164.0-x86_64-unknown-linux-musl/codex-path/asioConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/home/GWAP/.codex/packages/app-server-daemon/releases/0.164.0-x86_64-unknown-linux-musl/codex-path/asio-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/home/GWAP/.codex/packages/app-server-daemon/releases/0.164.0-x86_64-unknown-linux-musl/codex-path/lib64/cps/asio.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/home/GWAP/.codex/packages/app-server-daemon/releases/0.164.0-x86_64-unknown-linux-musl/codex-path/lib/cps/asio.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/home/GWAP/.codex/packages/app-server-daemon/releases/0.164.0-x86_64-unknown-linux-musl/codex-path/share/cps/asio.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/tqt3/asioConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/tqt3/asio-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/tqt3/lib64/cps/asio.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/tqt3/lib/cps/asio.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/tqt3/share/cps/asio.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/local/asioConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/local/asio-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/local/lib64/cps/asio.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/local/lib/cps/asio.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/local/share/cps/asio.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/asioConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/asio-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cps/asio.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/lib/cps/asio.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/share/cps/asio.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/opt/asioConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/opt/asio-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/opt/lib64/cps/asio.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/opt/lib/cps/asio.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/opt/share/cps/asio.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/lib/llvm/22/asioConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib/llvm/22/asio-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib/llvm/22/lib64/cps/asio.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/lib/llvm/22/lib/cps/asio.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/lib/llvm/22/share/cps/asio.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/trinity/14/asioConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/trinity/14/asio-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/trinity/14/lib64/cps/asio.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/trinity/14/lib/cps/asio.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/trinity/14/share/cps/asio.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/asioConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/asio-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/lib64/cps/asio.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/lib/cps/asio.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/share/cps/asio.cps"
+        mode: "cps"
+        reason: "no_exist"
+    found: null
+    search_context:
+      ENV{PATH}:
+        - "/home/GWAP/.codex/packages/app-server-daemon/releases/0.164.0-x86_64-unknown-linux-musl/codex-path"
+        - "/usr/tqt3/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/opt/bin"
+        - "/usr/lib/llvm/22/bin"
+        - "/usr/trinity/14/bin"
+      CMAKE_INSTALL_PREFIX: "/usr/local"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/usr"
+        - "/usr/local"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+...
+
+---
+events:
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/FindwxWidgets.cmake:1138 (find_library)"
+      - "CMakeLists.txt:17 (find_package)"
+    mode: "library"
+    variable: "_wx_lib_found"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "wx_gtk3u_core-3.3"
+    candidate_directories:
+      - "/home/GWAP/app/wxWidgets/build-gtk/lib/"
+      - "/home/GWAP/.codex/packages/app-server-daemon/releases/0.164.0-x86_64-unknown-linux-musl/codex-path/"
+      - "/usr/tqt3/bin/"
+      - "/usr/local/sbin/"
+      - "/usr/local/bin/"
+      - "/usr/bin/"
+      - "/opt/bin/"
+      - "/usr/lib/llvm/22/bin/"
+      - "/usr/trinity/14/bin/"
+      - "/usr/local/lib64/"
+      - "/usr/local/lib/"
+      - "/usr/local/"
+      - "/usr/lib64/"
+      - "/usr/lib/"
+      - "/usr/"
+      - "/lib64/"
+      - "/lib/"
+      - "/opt/"
+      - "/usr/x86_64-pc-linux-gnu/lib/"
+      - "/usr/lib64/"
+      - "/usr/lib64/"
+      - "/usr/lib/"
+      - "/lib64/"
+      - "/lib/"
+    found: "/home/GWAP/app/wxWidgets/build-gtk/lib/libwx_gtk3u_core-3.3.so"
+    search_context:
+      ENV{PATH}:
+        - "/home/GWAP/.codex/packages/app-server-daemon/releases/0.164.0-x86_64-unknown-linux-musl/codex-path"
+        - "/usr/tqt3/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/opt/bin"
+        - "/usr/lib/llvm/22/bin"
+        - "/usr/trinity/14/bin"
+      CMAKE_INSTALL_PREFIX: "/usr/local"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/usr"
+        - "/usr/local"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "/usr/x86_64-pc-linux-gnu/lib//gcc"
+        - "/usr/x86_64-pc-linux-gnu/lib/"
+        - "/usr/lib64"
+        - "/usr/libx32"
+        - "/usr/lib32"
+        - "/usr/lib"
+        - "/lib"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/FindwxWidgets.cmake:1138 (find_library)"
+      - "CMakeLists.txt:17 (find_package)"
+    mode: "library"
+    variable: "_wx_lib_found"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "wx_baseu-3.3"
+    candidate_directories:
+      - "/home/GWAP/app/wxWidgets/build-gtk/lib/"
+      - "/home/GWAP/.codex/packages/app-server-daemon/releases/0.164.0-x86_64-unknown-linux-musl/codex-path/"
+      - "/usr/tqt3/bin/"
+      - "/usr/local/sbin/"
+      - "/usr/local/bin/"
+      - "/usr/bin/"
+      - "/opt/bin/"
+      - "/usr/lib/llvm/22/bin/"
+      - "/usr/trinity/14/bin/"
+      - "/usr/local/lib64/"
+      - "/usr/local/lib/"
+      - "/usr/local/"
+      - "/usr/lib64/"
+      - "/usr/lib/"
+      - "/usr/"
+      - "/lib64/"
+      - "/lib/"
+      - "/opt/"
+      - "/usr/x86_64-pc-linux-gnu/lib/"
+      - "/usr/lib64/"
+      - "/usr/lib64/"
+      - "/usr/lib/"
+      - "/lib64/"
+      - "/lib/"
+    found: "/home/GWAP/app/wxWidgets/build-gtk/lib/libwx_baseu-3.3.so"
+    search_context:
+      ENV{PATH}:
+        - "/home/GWAP/.codex/packages/app-server-daemon/releases/0.164.0-x86_64-unknown-linux-musl/codex-path"
+        - "/usr/tqt3/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/opt/bin"
+        - "/usr/lib/llvm/22/bin"
+        - "/usr/trinity/14/bin"
+      CMAKE_INSTALL_PREFIX: "/usr/local"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/usr"
+        - "/usr/local"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "/usr/x86_64-pc-linux-gnu/lib//gcc"
+        - "/usr/x86_64-pc-linux-gnu/lib/"
+        - "/usr/lib64"
+        - "/usr/libx32"
+        - "/usr/lib32"
+        - "/usr/lib"
+        - "/lib"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/FindwxWidgets.cmake:374 (find_file)"
+      - "/usr/share/cmake/Modules/FindwxWidgets.cmake:1157 (wx_extract_version)"
+      - "CMakeLists.txt:17 (find_package)"
+    mode: "file"
+    variable: "_wx_filename"
+    description: "Path to a file."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "wx/version.h"
+    candidate_directories:
+      - "/home/GWAP/app/wxWidgets/build-gtk/lib/wx/include/gtk3-unicode-3.3/"
+      - "/home/GWAP/app/wxWidgets/include/"
+    searched_directories:
+      - "/home/GWAP/app/wxWidgets/build-gtk/lib/wx/include/gtk3-unicode-3.3/wx/version.h"
+    found: "/home/GWAP/app/wxWidgets/include/wx/version.h"
+    search_context:
+      ENV{PATH}:
+        - "/home/GWAP/.codex/packages/app-server-daemon/releases/0.164.0-x86_64-unknown-linux-musl/codex-path"
+        - "/usr/tqt3/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/opt/bin"
+        - "/usr/lib/llvm/22/bin"
+        - "/usr/trinity/14/bin"
+      CMAKE_INSTALL_PREFIX: "/usr/local"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/usr"
+        - "/usr/local"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_INCLUDE_PATH:
+        - "/usr/include"
+  -
+    kind: "find_package-v1"
+    backtrace:
+      - "CMakeLists.txt:19 (find_package)"
+    name: "jsoncons"
+    configs:
+      -
+        filename: "jsoncons.cps"
+        kind: "cps"
+      -
+        filename: "jsonconsConfig.cmake"
+        kind: "cmake"
+      -
+        filename: "jsoncons-config.cmake"
+        kind: "cmake"
+    version_request:
+      exact: false
+    settings:
+      required: "required_explicit"
+      quiet: false
+      global: false
+      policy_scope: true
+      bypass_provider: false
+      names:
+        - "jsoncons"
+      path_suffixes:
+        - ""
+      paths:
+        CMAKE_FIND_USE_CMAKE_PATH: true
+        CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+        CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+        CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+        CMAKE_FIND_USE_INSTALL_PREFIX: true
+        CMAKE_FIND_USE_PACKAGE_ROOT_PATH: true
+        CMAKE_FIND_USE_CMAKE_PACKAGE_REGISTRY: true
+        CMAKE_FIND_USE_SYSTEM_PACKAGE_REGISTRY: true
+        CMAKE_FIND_ROOT_PATH_MODE: "BOTH"
+    candidates:
+      -
+        path: "/home/GWAP/Documents/HTLWY/3AHIT/ITP/scheda-informationis/build/CMakeFiles/pkgRedirects/jsonconsConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/home/GWAP/Documents/HTLWY/3AHIT/ITP/scheda-informationis/build/CMakeFiles/pkgRedirects/jsoncons-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/home/GWAP/Documents/HTLWY/3AHIT/ITP/scheda-informationis/build/CMakeFiles/pkgRedirects/lib64/cps/jsoncons.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/home/GWAP/Documents/HTLWY/3AHIT/ITP/scheda-informationis/build/CMakeFiles/pkgRedirects/lib/cps/jsoncons.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/home/GWAP/Documents/HTLWY/3AHIT/ITP/scheda-informationis/build/CMakeFiles/pkgRedirects/share/cps/jsoncons.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/home/GWAP/.codex/packages/app-server-daemon/releases/0.164.0-x86_64-unknown-linux-musl/codex-path/jsonconsConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/home/GWAP/.codex/packages/app-server-daemon/releases/0.164.0-x86_64-unknown-linux-musl/codex-path/jsoncons-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/home/GWAP/.codex/packages/app-server-daemon/releases/0.164.0-x86_64-unknown-linux-musl/codex-path/lib64/cps/jsoncons.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/home/GWAP/.codex/packages/app-server-daemon/releases/0.164.0-x86_64-unknown-linux-musl/codex-path/lib/cps/jsoncons.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/home/GWAP/.codex/packages/app-server-daemon/releases/0.164.0-x86_64-unknown-linux-musl/codex-path/share/cps/jsoncons.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/tqt3/jsonconsConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/tqt3/jsoncons-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/tqt3/lib64/cps/jsoncons.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/tqt3/lib/cps/jsoncons.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/tqt3/share/cps/jsoncons.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/local/jsonconsConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/local/jsoncons-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/local/lib64/cps/jsoncons.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/local/lib/cps/jsoncons.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/local/share/cps/jsoncons.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/jsonconsConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/jsoncons-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cps/jsoncons.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/lib/cps/jsoncons.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/share/cps/jsoncons.cps"
+        mode: "cps"
+        reason: "no_exist"
+    found:
+      path: "/usr/share/cmake/jsoncons/jsonconsConfig.cmake"
+      mode: "config"
+      version: "1.6.0"
+    search_context:
+      ENV{PATH}:
+        - "/home/GWAP/.codex/packages/app-server-daemon/releases/0.164.0-x86_64-unknown-linux-musl/codex-path"
+        - "/usr/tqt3/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/opt/bin"
+        - "/usr/lib/llvm/22/bin"
+        - "/usr/trinity/14/bin"
+      CMAKE_INSTALL_PREFIX: "/usr/local"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/usr"
+        - "/usr/local"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+  -
+    kind: "find_package-v1"
+    backtrace:
+      - "/usr/lib64/cmake/Boost-1.90.0/BoostConfig.cmake:141 (find_package)"
+      - "/usr/lib64/cmake/Boost-1.90.0/BoostConfig.cmake:215 (boost_find_component)"
+      - "/usr/share/cmake/Modules/FindBoost.cmake:610 (find_package)"
+      - "CMakeLists.txt:25 (find_package)"
+    name: "boost_headers"
+    configs:
+      -
+        filename: "boost_headers.cps"
+        kind: "cps"
+      -
+        filename: "boost_headersConfig.cmake"
+        kind: "cmake"
+      -
+        filename: "boost_headers-config.cmake"
+        kind: "cmake"
+    version_request:
+      version: "1.90.0"
+      version_complete: "1.90.0"
+      exact: true
+    settings:
+      required: "required_explicit"
+      quiet: true
+      global: false
+      policy_scope: true
+      bypass_provider: false
+      hints:
+        - "/usr/lib64/cmake"
+      names:
+        - "boost_headers"
+      path_suffixes:
+        - ""
+      paths:
+        CMAKE_FIND_USE_CMAKE_PATH: true
+        CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+        CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+        CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+        CMAKE_FIND_USE_INSTALL_PREFIX: true
+        CMAKE_FIND_USE_PACKAGE_ROOT_PATH: true
+        CMAKE_FIND_USE_CMAKE_PACKAGE_REGISTRY: true
+        CMAKE_FIND_USE_SYSTEM_PACKAGE_REGISTRY: true
+        CMAKE_FIND_ROOT_PATH_MODE: "BOTH"
+    candidates:
+      -
+        path: "/home/GWAP/Documents/HTLWY/3AHIT/ITP/scheda-informationis/build/CMakeFiles/pkgRedirects/boost_headersConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/home/GWAP/Documents/HTLWY/3AHIT/ITP/scheda-informationis/build/CMakeFiles/pkgRedirects/boost_headers-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/home/GWAP/Documents/HTLWY/3AHIT/ITP/scheda-informationis/build/CMakeFiles/pkgRedirects/lib64/cps/boost_headers.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/home/GWAP/Documents/HTLWY/3AHIT/ITP/scheda-informationis/build/CMakeFiles/pkgRedirects/lib/cps/boost_headers.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/home/GWAP/Documents/HTLWY/3AHIT/ITP/scheda-informationis/build/CMakeFiles/pkgRedirects/share/cps/boost_headers.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_headersConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_headers-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_headers-1.90.0/boost_headersConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+    found:
+      path: "/usr/lib64/cmake/boost_headers-1.90.0/boost_headers-config.cmake"
+      mode: "config"
+      version: "1.90.0"
+    search_context:
+      ENV{PATH}:
+        - "/home/GWAP/.codex/packages/app-server-daemon/releases/0.164.0-x86_64-unknown-linux-musl/codex-path"
+        - "/usr/tqt3/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/opt/bin"
+        - "/usr/lib/llvm/22/bin"
+        - "/usr/trinity/14/bin"
+      CMAKE_INSTALL_PREFIX: "/usr/local"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/usr"
+        - "/usr/local"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+  -
+    kind: "find_package-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/FindBoost.cmake:610 (find_package)"
+      - "CMakeLists.txt:25 (find_package)"
+    name: "Boost"
+    configs:
+      -
+        filename: "Boost.cps"
+        kind: "cps"
+      -
+        filename: "boost.cps"
+        kind: "cps"
+      -
+        filename: "BoostConfig.cmake"
+        kind: "cmake"
+      -
+        filename: "boost-config.cmake"
+        kind: "cmake"
+    version_request:
+      exact: false
+    settings:
+      required: "optional"
+      quiet: true
+      global: false
+      policy_scope: true
+      bypass_provider: false
+      names:
+        - "Boost"
+      path_suffixes:
+        - ""
+      paths:
+        CMAKE_FIND_USE_CMAKE_PATH: true
+        CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+        CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+        CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+        CMAKE_FIND_USE_INSTALL_PREFIX: true
+        CMAKE_FIND_USE_PACKAGE_ROOT_PATH: true
+        CMAKE_FIND_USE_CMAKE_PACKAGE_REGISTRY: true
+        CMAKE_FIND_USE_SYSTEM_PACKAGE_REGISTRY: true
+        CMAKE_FIND_ROOT_PATH_MODE: "BOTH"
+    candidates:
+      -
+        path: "/home/GWAP/Documents/HTLWY/3AHIT/ITP/scheda-informationis/build/CMakeFiles/pkgRedirects/BoostConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/home/GWAP/Documents/HTLWY/3AHIT/ITP/scheda-informationis/build/CMakeFiles/pkgRedirects/boost-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/home/GWAP/Documents/HTLWY/3AHIT/ITP/scheda-informationis/build/CMakeFiles/pkgRedirects/lib64/cps/Boost.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/home/GWAP/Documents/HTLWY/3AHIT/ITP/scheda-informationis/build/CMakeFiles/pkgRedirects/lib64/cps/boost.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/home/GWAP/Documents/HTLWY/3AHIT/ITP/scheda-informationis/build/CMakeFiles/pkgRedirects/lib/cps/Boost.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/home/GWAP/Documents/HTLWY/3AHIT/ITP/scheda-informationis/build/CMakeFiles/pkgRedirects/lib/cps/boost.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/home/GWAP/Documents/HTLWY/3AHIT/ITP/scheda-informationis/build/CMakeFiles/pkgRedirects/share/cps/Boost.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/home/GWAP/Documents/HTLWY/3AHIT/ITP/scheda-informationis/build/CMakeFiles/pkgRedirects/share/cps/boost.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/home/GWAP/.codex/packages/app-server-daemon/releases/0.164.0-x86_64-unknown-linux-musl/codex-path/BoostConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/home/GWAP/.codex/packages/app-server-daemon/releases/0.164.0-x86_64-unknown-linux-musl/codex-path/boost-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/home/GWAP/.codex/packages/app-server-daemon/releases/0.164.0-x86_64-unknown-linux-musl/codex-path/lib64/cps/Boost.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/home/GWAP/.codex/packages/app-server-daemon/releases/0.164.0-x86_64-unknown-linux-musl/codex-path/lib64/cps/boost.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/home/GWAP/.codex/packages/app-server-daemon/releases/0.164.0-x86_64-unknown-linux-musl/codex-path/lib/cps/Boost.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/home/GWAP/.codex/packages/app-server-daemon/releases/0.164.0-x86_64-unknown-linux-musl/codex-path/lib/cps/boost.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/home/GWAP/.codex/packages/app-server-daemon/releases/0.164.0-x86_64-unknown-linux-musl/codex-path/share/cps/Boost.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/home/GWAP/.codex/packages/app-server-daemon/releases/0.164.0-x86_64-unknown-linux-musl/codex-path/share/cps/boost.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/tqt3/BoostConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/tqt3/boost-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/tqt3/lib64/cps/Boost.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/tqt3/lib64/cps/boost.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/tqt3/lib/cps/Boost.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/tqt3/lib/cps/boost.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/tqt3/share/cps/Boost.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/tqt3/share/cps/boost.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/local/BoostConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/local/boost-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/local/lib64/cps/Boost.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/local/lib64/cps/boost.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/local/lib/cps/Boost.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/local/lib/cps/boost.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/local/share/cps/Boost.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/local/share/cps/boost.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/BoostConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/boost-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cps/Boost.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cps/boost.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/lib/cps/Boost.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/lib/cps/boost.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/share/cps/Boost.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/share/cps/boost.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_wserialization-1.90.0/BoostConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_wserialization-1.90.0/boost-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_wave-1.90.0/BoostConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_wave-1.90.0/boost-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_url-1.90.0/BoostConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_url-1.90.0/boost-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_unit_test_framework-1.90.0/BoostConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_unit_test_framework-1.90.0/boost-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_type_erasure-1.90.0/BoostConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_type_erasure-1.90.0/boost-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_timer-1.90.0/BoostConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_timer-1.90.0/boost-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_thread-1.90.0/BoostConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_thread-1.90.0/boost-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_test_exec_monitor-1.90.0/BoostConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_test_exec_monitor-1.90.0/boost-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_stacktrace_noop-1.90.0/BoostConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_stacktrace_noop-1.90.0/boost-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_stacktrace_basic-1.90.0/BoostConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_stacktrace_basic-1.90.0/boost-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_stacktrace_addr2line-1.90.0/BoostConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_stacktrace_addr2line-1.90.0/boost-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_serialization-1.90.0/BoostConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_serialization-1.90.0/boost-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_regex-1.90.0/BoostConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_regex-1.90.0/boost-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_random-1.90.0/BoostConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_random-1.90.0/boost-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_program_options-1.90.0/BoostConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_program_options-1.90.0/boost-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_process-1.90.0/BoostConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_process-1.90.0/boost-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_prg_exec_monitor-1.90.0/BoostConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_prg_exec_monitor-1.90.0/boost-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_nowide-1.90.0/BoostConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_nowide-1.90.0/boost-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_math_tr1l-1.90.0/BoostConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_math_tr1l-1.90.0/boost-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_math_tr1f-1.90.0/BoostConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_math_tr1f-1.90.0/boost-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_math_tr1-1.90.0/BoostConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_math_tr1-1.90.0/boost-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_math_c99l-1.90.0/BoostConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_math_c99l-1.90.0/boost-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_math_c99f-1.90.0/BoostConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_math_c99f-1.90.0/boost-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_math_c99-1.90.0/BoostConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_math_c99-1.90.0/boost-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_math-1.90.0/BoostConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_math-1.90.0/boost-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_log_setup-1.90.0/BoostConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_log_setup-1.90.0/boost-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_log-1.90.0/BoostConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_log-1.90.0/boost-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_locale-1.90.0/BoostConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_locale-1.90.0/boost-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_json-1.90.0/BoostConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_json-1.90.0/boost-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_iostreams-1.90.0/BoostConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_iostreams-1.90.0/boost-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_headers-1.90.0/BoostConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_headers-1.90.0/boost-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_graph_parallel-1.90.0/BoostConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_graph_parallel-1.90.0/boost-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_graph-1.90.0/BoostConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_graph-1.90.0/boost-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_filesystem-1.90.0/BoostConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_filesystem-1.90.0/boost-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_fiber-1.90.0/BoostConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_fiber-1.90.0/boost-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_exception-1.90.0/BoostConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_exception-1.90.0/boost-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_date_time-1.90.0/BoostConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_date_time-1.90.0/boost-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_coroutine-1.90.0/BoostConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_coroutine-1.90.0/boost-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_contract-1.90.0/BoostConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_contract-1.90.0/boost-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_context-1.90.0/BoostConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_context-1.90.0/boost-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_container-1.90.0/BoostConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_container-1.90.0/boost-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_cobalt_io_ssl-1.90.0/BoostConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_cobalt_io_ssl-1.90.0/boost-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_cobalt_io-1.90.0/BoostConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_cobalt_io-1.90.0/boost-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_cobalt-1.90.0/BoostConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_cobalt-1.90.0/boost-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_chrono-1.90.0/BoostConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_chrono-1.90.0/boost-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_charconv-1.90.0/BoostConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_charconv-1.90.0/boost-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_atomic-1.90.0/BoostConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cmake/boost_atomic-1.90.0/boost-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+    found:
+      path: "/usr/lib64/cmake/Boost-1.90.0/BoostConfig.cmake"
+      mode: "config"
+      version: "1.90.0"
+    search_context:
+      ENV{PATH}:
+        - "/home/GWAP/.codex/packages/app-server-daemon/releases/0.164.0-x86_64-unknown-linux-musl/codex-path"
+        - "/usr/tqt3/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/opt/bin"
+        - "/usr/lib/llvm/22/bin"
+        - "/usr/trinity/14/bin"
+      CMAKE_INSTALL_PREFIX: "/usr/local"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/usr"
+        - "/usr/local"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/FindBoost.cmake:538 (find_path)"
+      - "/usr/share/cmake/Modules/FindBoost.cmake:643 (_boost_set_legacy_variables_from_config)"
+      - "CMakeLists.txt:25 (find_package)"
+    mode: "path"
+    variable: "Boost_INCLUDE_DIR"
+    description: "Path to a file."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "boost/version.hpp"
+      - "boost/config.hpp"
+    candidate_directories:
+      - "/usr/include/"
+    found: "/usr/include/"
+    search_context:
+      ENV{PATH}:
+        - "/home/GWAP/.codex/packages/app-server-daemon/releases/0.164.0-x86_64-unknown-linux-musl/codex-path"
+        - "/usr/tqt3/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/opt/bin"
+        - "/usr/lib/llvm/22/bin"
+        - "/usr/trinity/14/bin"
+      CMAKE_INSTALL_PREFIX: "/usr/local"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/usr"
+        - "/usr/local"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_INCLUDE_PATH:
+        - "/usr/include"
+...
+
+---
+events:
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/FindwxWidgets.cmake:1138 (find_library)"
+      - "CMakeLists.txt:17 (find_package)"
+    mode: "library"
+    variable: "_wx_lib_found"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "wx_gtk3u_core-3.3"
+    candidate_directories:
+      - "/home/GWAP/app/wxWidgets/build-gtk/lib/"
+      - "/home/GWAP/.codex/packages/app-server-daemon/releases/0.164.0-x86_64-unknown-linux-musl/codex-path/"
+      - "/usr/tqt3/bin/"
+      - "/usr/local/sbin/"
+      - "/usr/local/bin/"
+      - "/usr/bin/"
+      - "/opt/bin/"
+      - "/usr/lib/llvm/22/bin/"
+      - "/usr/trinity/14/bin/"
+      - "/usr/local/lib64/"
+      - "/usr/local/lib/"
+      - "/usr/local/"
+      - "/usr/lib64/"
+      - "/usr/lib/"
+      - "/usr/"
+      - "/lib64/"
+      - "/lib/"
+      - "/opt/"
+      - "/usr/x86_64-pc-linux-gnu/lib/"
+      - "/usr/lib64/"
+      - "/usr/lib64/"
+      - "/usr/lib/"
+      - "/lib64/"
+      - "/lib/"
+    found: "/home/GWAP/app/wxWidgets/build-gtk/lib/libwx_gtk3u_core-3.3.so"
+    search_context:
+      ENV{PATH}:
+        - "/home/GWAP/.codex/packages/app-server-daemon/releases/0.164.0-x86_64-unknown-linux-musl/codex-path"
+        - "/usr/tqt3/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/opt/bin"
+        - "/usr/lib/llvm/22/bin"
+        - "/usr/trinity/14/bin"
+      CMAKE_INSTALL_PREFIX: "/usr/local"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/usr"
+        - "/usr/local"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "/usr/x86_64-pc-linux-gnu/lib//gcc"
+        - "/usr/x86_64-pc-linux-gnu/lib/"
+        - "/usr/lib64"
+        - "/usr/libx32"
+        - "/usr/lib32"
+        - "/usr/lib"
+        - "/lib"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/FindwxWidgets.cmake:1138 (find_library)"
+      - "CMakeLists.txt:17 (find_package)"
+    mode: "library"
+    variable: "_wx_lib_found"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "wx_baseu-3.3"
+    candidate_directories:
+      - "/home/GWAP/app/wxWidgets/build-gtk/lib/"
+      - "/home/GWAP/.codex/packages/app-server-daemon/releases/0.164.0-x86_64-unknown-linux-musl/codex-path/"
+      - "/usr/tqt3/bin/"
+      - "/usr/local/sbin/"
+      - "/usr/local/bin/"
+      - "/usr/bin/"
+      - "/opt/bin/"
+      - "/usr/lib/llvm/22/bin/"
+      - "/usr/trinity/14/bin/"
+      - "/usr/local/lib64/"
+      - "/usr/local/lib/"
+      - "/usr/local/"
+      - "/usr/lib64/"
+      - "/usr/lib/"
+      - "/usr/"
+      - "/lib64/"
+      - "/lib/"
+      - "/opt/"
+      - "/usr/x86_64-pc-linux-gnu/lib/"
+      - "/usr/lib64/"
+      - "/usr/lib64/"
+      - "/usr/lib/"
+      - "/lib64/"
+      - "/lib/"
+    found: "/home/GWAP/app/wxWidgets/build-gtk/lib/libwx_baseu-3.3.so"
+    search_context:
+      ENV{PATH}:
+        - "/home/GWAP/.codex/packages/app-server-daemon/releases/0.164.0-x86_64-unknown-linux-musl/codex-path"
+        - "/usr/tqt3/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/opt/bin"
+        - "/usr/lib/llvm/22/bin"
+        - "/usr/trinity/14/bin"
+      CMAKE_INSTALL_PREFIX: "/usr/local"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/usr"
+        - "/usr/local"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "/usr/x86_64-pc-linux-gnu/lib//gcc"
+        - "/usr/x86_64-pc-linux-gnu/lib/"
+        - "/usr/lib64"
+        - "/usr/libx32"
+        - "/usr/lib32"
+        - "/usr/lib"
+        - "/lib"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/FindwxWidgets.cmake:374 (find_file)"
+      - "/usr/share/cmake/Modules/FindwxWidgets.cmake:1157 (wx_extract_version)"
+      - "CMakeLists.txt:17 (find_package)"
+    mode: "file"
+    variable: "_wx_filename"
+    description: "Path to a file."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "wx/version.h"
+    candidate_directories:
+      - "/home/GWAP/app/wxWidgets/build-gtk/lib/wx/include/gtk3-unicode-3.3/"
+      - "/home/GWAP/app/wxWidgets/include/"
+    searched_directories:
+      - "/home/GWAP/app/wxWidgets/build-gtk/lib/wx/include/gtk3-unicode-3.3/wx/version.h"
+    found: "/home/GWAP/app/wxWidgets/include/wx/version.h"
+    search_context:
+      ENV{PATH}:
+        - "/home/GWAP/.codex/packages/app-server-daemon/releases/0.164.0-x86_64-unknown-linux-musl/codex-path"
+        - "/usr/tqt3/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/opt/bin"
+        - "/usr/lib/llvm/22/bin"
+        - "/usr/trinity/14/bin"
+      CMAKE_INSTALL_PREFIX: "/usr/local"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/usr"
+        - "/usr/local"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_INCLUDE_PATH:
+        - "/usr/include"
+...

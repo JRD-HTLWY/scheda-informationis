@@ -2,8 +2,9 @@ MeinProgramm: \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15/../../../../lib64/Scrt1.o \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15/../../../../lib64/crti.o \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15/crtbeginS.o \
-  CMakeFiles/MeinProgramm.dir/main.cpp.o \
+  CMakeFiles/MeinProgramm.dir/code/main.cpp.o \
   CMakeFiles/MeinProgramm.dir/MyProjectBase.cpp.o \
+  CMakeFiles/MeinProgramm.dir/code/netBridge.cpp.o \
   /home/GWAP/app/wxWidgets/build-gtk/lib/libwx_gtk3u_core-3.3.so \
   /home/GWAP/app/wxWidgets/build-gtk/lib/libwx_baseu-3.3.so \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15/libstdc++.so \
@@ -126,9 +127,11 @@ MeinProgramm: \
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/15/crtbeginS.o:
 
-CMakeFiles/MeinProgramm.dir/main.cpp.o:
+CMakeFiles/MeinProgramm.dir/code/main.cpp.o:
 
 CMakeFiles/MeinProgramm.dir/MyProjectBase.cpp.o:
+
+CMakeFiles/MeinProgramm.dir/code/netBridge.cpp.o:
 
 /home/GWAP/app/wxWidgets/build-gtk/lib/libwx_gtk3u_core-3.3.so:
 

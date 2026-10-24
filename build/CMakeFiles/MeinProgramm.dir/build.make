@@ -72,19 +72,19 @@ include CMakeFiles/MeinProgramm.dir/flags.make
 CMakeFiles/MeinProgramm.dir/codegen:
 .PHONY : CMakeFiles/MeinProgramm.dir/codegen
 
-CMakeFiles/MeinProgramm.dir/main.cpp.o: CMakeFiles/MeinProgramm.dir/flags.make
-CMakeFiles/MeinProgramm.dir/main.cpp.o: /home/GWAP/Documents/HTLWY/3AHIT/ITP/scheda-informationis/main.cpp
-CMakeFiles/MeinProgramm.dir/main.cpp.o: CMakeFiles/MeinProgramm.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/GWAP/Documents/HTLWY/3AHIT/ITP/scheda-informationis/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/MeinProgramm.dir/main.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MeinProgramm.dir/main.cpp.o -MF CMakeFiles/MeinProgramm.dir/main.cpp.o.d -o CMakeFiles/MeinProgramm.dir/main.cpp.o -c /home/GWAP/Documents/HTLWY/3AHIT/ITP/scheda-informationis/main.cpp
+CMakeFiles/MeinProgramm.dir/code/main.cpp.o: CMakeFiles/MeinProgramm.dir/flags.make
+CMakeFiles/MeinProgramm.dir/code/main.cpp.o: /home/GWAP/Documents/HTLWY/3AHIT/ITP/scheda-informationis/code/main.cpp
+CMakeFiles/MeinProgramm.dir/code/main.cpp.o: CMakeFiles/MeinProgramm.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/GWAP/Documents/HTLWY/3AHIT/ITP/scheda-informationis/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/MeinProgramm.dir/code/main.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MeinProgramm.dir/code/main.cpp.o -MF CMakeFiles/MeinProgramm.dir/code/main.cpp.o.d -o CMakeFiles/MeinProgramm.dir/code/main.cpp.o -c /home/GWAP/Documents/HTLWY/3AHIT/ITP/scheda-informationis/code/main.cpp
 
-CMakeFiles/MeinProgramm.dir/main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/MeinProgramm.dir/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/GWAP/Documents/HTLWY/3AHIT/ITP/scheda-informationis/main.cpp > CMakeFiles/MeinProgramm.dir/main.cpp.i
+CMakeFiles/MeinProgramm.dir/code/main.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/MeinProgramm.dir/code/main.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/GWAP/Documents/HTLWY/3AHIT/ITP/scheda-informationis/code/main.cpp > CMakeFiles/MeinProgramm.dir/code/main.cpp.i
 
-CMakeFiles/MeinProgramm.dir/main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/MeinProgramm.dir/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/GWAP/Documents/HTLWY/3AHIT/ITP/scheda-informationis/main.cpp -o CMakeFiles/MeinProgramm.dir/main.cpp.s
+CMakeFiles/MeinProgramm.dir/code/main.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/MeinProgramm.dir/code/main.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/GWAP/Documents/HTLWY/3AHIT/ITP/scheda-informationis/code/main.cpp -o CMakeFiles/MeinProgramm.dir/code/main.cpp.s
 
 CMakeFiles/MeinProgramm.dir/MyProjectBase.cpp.o: CMakeFiles/MeinProgramm.dir/flags.make
 CMakeFiles/MeinProgramm.dir/MyProjectBase.cpp.o: /home/GWAP/Documents/HTLWY/3AHIT/ITP/scheda-informationis/MyProjectBase.cpp
@@ -100,20 +100,36 @@ CMakeFiles/MeinProgramm.dir/MyProjectBase.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/MeinProgramm.dir/MyProjectBase.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/GWAP/Documents/HTLWY/3AHIT/ITP/scheda-informationis/MyProjectBase.cpp -o CMakeFiles/MeinProgramm.dir/MyProjectBase.cpp.s
 
+CMakeFiles/MeinProgramm.dir/code/netBridge.cpp.o: CMakeFiles/MeinProgramm.dir/flags.make
+CMakeFiles/MeinProgramm.dir/code/netBridge.cpp.o: /home/GWAP/Documents/HTLWY/3AHIT/ITP/scheda-informationis/code/netBridge.cpp
+CMakeFiles/MeinProgramm.dir/code/netBridge.cpp.o: CMakeFiles/MeinProgramm.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/GWAP/Documents/HTLWY/3AHIT/ITP/scheda-informationis/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/MeinProgramm.dir/code/netBridge.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MeinProgramm.dir/code/netBridge.cpp.o -MF CMakeFiles/MeinProgramm.dir/code/netBridge.cpp.o.d -o CMakeFiles/MeinProgramm.dir/code/netBridge.cpp.o -c /home/GWAP/Documents/HTLWY/3AHIT/ITP/scheda-informationis/code/netBridge.cpp
+
+CMakeFiles/MeinProgramm.dir/code/netBridge.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/MeinProgramm.dir/code/netBridge.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/GWAP/Documents/HTLWY/3AHIT/ITP/scheda-informationis/code/netBridge.cpp > CMakeFiles/MeinProgramm.dir/code/netBridge.cpp.i
+
+CMakeFiles/MeinProgramm.dir/code/netBridge.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/MeinProgramm.dir/code/netBridge.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/GWAP/Documents/HTLWY/3AHIT/ITP/scheda-informationis/code/netBridge.cpp -o CMakeFiles/MeinProgramm.dir/code/netBridge.cpp.s
+
 # Object files for target MeinProgramm
 MeinProgramm_OBJECTS = \
-"CMakeFiles/MeinProgramm.dir/main.cpp.o" \
-"CMakeFiles/MeinProgramm.dir/MyProjectBase.cpp.o"
+"CMakeFiles/MeinProgramm.dir/code/main.cpp.o" \
+"CMakeFiles/MeinProgramm.dir/MyProjectBase.cpp.o" \
+"CMakeFiles/MeinProgramm.dir/code/netBridge.cpp.o"
 
 # External object files for target MeinProgramm
 MeinProgramm_EXTERNAL_OBJECTS =
 
-MeinProgramm: CMakeFiles/MeinProgramm.dir/main.cpp.o
+MeinProgramm: CMakeFiles/MeinProgramm.dir/code/main.cpp.o
 MeinProgramm: CMakeFiles/MeinProgramm.dir/MyProjectBase.cpp.o
+MeinProgramm: CMakeFiles/MeinProgramm.dir/code/netBridge.cpp.o
 MeinProgramm: CMakeFiles/MeinProgramm.dir/build.make
 MeinProgramm: CMakeFiles/MeinProgramm.dir/compiler_depend.ts
 MeinProgramm: CMakeFiles/MeinProgramm.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/GWAP/Documents/HTLWY/3AHIT/ITP/scheda-informationis/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable MeinProgramm"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/GWAP/Documents/HTLWY/3AHIT/ITP/scheda-informationis/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable MeinProgramm"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/MeinProgramm.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
