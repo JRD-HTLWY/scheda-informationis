@@ -24,16 +24,13 @@ uint32_t globaleID = 0;
 const uint32_t port = 8300;
 
 atomic<bool> stopGefordert{false};
-asio::cancellation_signal stopSignal;
 
-void init(){
+void init(){    //nur die Nachrichten, nicht die Konten
     //init der JSON-Datei
     fstream jsons("alleNachrichten.txt", ios::out | ios::trunc);
 
     json initJSONArray = json::array();
 
-    //string initJSONArrayString;
-    //initJSONArray.dump(initJSONArrayString);
     jsons << initJSONArray.to_string();
 
     jsons.close();
@@ -124,14 +121,17 @@ void sendeTickets(tcp::socket& socket, string nutzername, bool support){
     json sendeDaten = json::array();
 
     if(support){
-        asio::write(socket, asio::buffer(alleNachrichten.to_string() + "\n"));//alle Tickets
+        string senden = alleNachrichten.to_string() + "\n";
+        asio::write(socket, asio::buffer(senden));//alle Tickets
+    }
     else{
         for(uint32_t i = 0; i < alleNachrichten.size(); i++){//schickt nur Kundendaten
             if(alleNachrichten[i]["customer"] == nutzername){
                 sendeDaten.push_back(alleNachrichten[i]);
             }
         }
-        asio::write(socket, asio::buffer(sendeDaten.to_string() + "\n")); //senden
+        string senden = sendeDaten.to_string() + "\n";
+        asio::write(socket, asio::buffer(senden)); //senden
     }
 
     jsonDatei.close();
@@ -200,15 +200,11 @@ void befehlLesen(){
         tcp::socket socket(io);
         asio::streambuf buffer;
         asio::error_code ec;
-        asio::steady_timer timer(io);
         acceptor.non_blocking(true);
-
-        timer.expires_after(chrono::milliseconds(5000));
 
         acceptor.accept(socket, ec);
 
         if(ec == asio::error::would_block || ec == asio::error::try_again){
-            this_thread::sleep_for(chrono::milliseconds(5000));
             continue;
         }
 
@@ -219,12 +215,6 @@ void befehlLesen(){
 
 
         auto endpoint = socket.remote_endpoint();
-
-        timer.async_wait([&](asio::error_code ecd){
-            if(!ecd){
-                socket.close();
-            }
-        });
 
         asio::read_until(socket, buffer, '\n', ec);
 
@@ -245,8 +235,14 @@ void befehlLesen(){
         string befehl = jsonString.substr(0, jsonString.find("@"));
         jsonString = jsonString.substr(jsonString.find("@")+1);
         string name = jsonString.substr(0, jsonString.find("@"));
+        if(name.find('@') != string::npos){
+            continue;
+        }
         jsonString = jsonString.substr(jsonString.find("@")+1);
         string passwort = jsonString.substr(0, jsonString.find("@"));
+        if(passwort.find('@') != string::npos){
+            continue;
+        }
         jsonString = jsonString.substr(jsonString.find("@")+1);//fertiges JSON ohne Anmeldeinfos
 
         json jsonJ;
@@ -286,7 +282,38 @@ void befehlLesen(){
         //acceptor.accept(socket);
 }
 
+void idUeberpruefung(){
+    fstream tickets("alleNachrichten.txt", ios::in | ios::out);
+    string zeile;
+
+    if(!getline(tickets, zeile)){
+        json initJSONArray = json::array();
+        tickets << initJSONArray.to_string();
+        return;
+    }
+    stringstream ticketsS;
+    ticketsS << tickets.rdbuf();
+    tickets.close();
+    json ticketsJSON;
+    try{
+        ticketsJSON = json::parse(ticketsS.str());
+    }
+    catch(const exception& e){
+        return;
+    }
+
+    uint32_t groessteZahl = 0;
+    for(uint32_t i = 0; i < ticketsJSON.size(); i++){
+        if(ticketsJSON[i]["id"].as<int>() > groessteZahl){
+            groessteZahl = ticketsJSON[i]["id"].as<int>();
+        }
+    }
+    globaleID = groessteZahl + 1;
+}
+
 int main(){
+    idUeberpruefung();
+
     thread zweiterThread(befehlLesen);
     cout << "scheda-informationis-Server ist gestartet!\n";
     while(true){
