@@ -12,13 +12,6 @@ All tickets are saved to <> in a json-array in the following format:
 }
 ```
 
-Status is an enum and can have the following states:
-- 0: unverified
-- 1: verified
-- 2: in progress
-- 3: resolved
-- 4: dropped
-
 
 Technologies used in this project:
 - wxWidgets
