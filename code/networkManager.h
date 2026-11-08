@@ -20,11 +20,8 @@ namespace asio = boost::asio;
 
 /**
  * Small adapter for the ticket server's one-request-per-connection protocol.
- * Requests go to the configured server endpoint. The current server sends ticket
- * lists back by opening a second connection to the client, so this class also
- * accepts one response connection on the configured local port.
- *
- * Call poll() regularly from the UI event loop to deliver response callbacks.
+ * Requests and their responses use the same TCP connection. Call poll()
+ * regularly from the UI event loop to deliver asynchronous callbacks.
  */
 class networkManager
 {
@@ -49,9 +46,6 @@ public:
 
     ~networkManager()
     {
-        ErrorCode ignored;
-        responseAcceptor_.close(ignored);
-        if (responseSocket_) responseSocket_->close(ignored);
     }
 
     /** Configures the numeric IPv4 or IPv6 address used for outgoing requests. */
@@ -61,41 +55,64 @@ public:
         hasServerEndpoint_ = true;
     }
 
-    /** Sends one complete newline-delimited request on a fresh TCP connection. */
-    void sendRequest(const String& request)
+    /** Sends a newline-delimited request, optionally reading one response line. */
+    void sendRequest(const String& request, const bool expectResponse = false)
     {
         if (!hasServerEndpoint_)
             throw std::logic_error("The server endpoint has not been configured");
         if (request.empty() || request.back() != '\n')
             throw std::invalid_argument("Requests must end with a newline");
 
-        Tcp::socket socket(context_);
-        socket.connect(serverEndpoint_);
-        asio::write(socket, asio::buffer(request));
-        ErrorCode ignored;
-        socket.shutdown(Tcp::socket::shutdown_send, ignored);
-        socket.close(ignored);
-    }
+        auto socket = std::make_shared<Tcp::socket>(context_);
+        auto response = std::make_shared<String>();
+        auto message = std::make_shared<String>(request);
+        socket->async_connect(serverEndpoint_,
+            [this, socket, response, message, expectResponse](const ErrorCode& error) {
+                if (error)
+                {
+                    reportError(std::make_exception_ptr(std::runtime_error(error.message())));
+                    return;
+                }
 
-    /** Starts accepting server callbacks on the client's local TCP port. */
-    void startListening(const Port port = 8300)
-    {
-        if (listening_) throw std::logic_error("The response listener is already running");
-        try
-        {
-            responseAcceptor_.open(Tcp::v4());
-            responseAcceptor_.set_option(asio::socket_base::reuse_address(true));
-            responseAcceptor_.bind(Tcp::endpoint(Tcp::v4(), port));
-            responseAcceptor_.listen();
-            listening_ = true;
-            acceptResponse();
-        }
-        catch (...)
-        {
-            ErrorCode ignored;
-            responseAcceptor_.close(ignored);
-            throw;
-        }
+                asio::async_write(*socket, asio::buffer(*message),
+                    [this, socket, response, message, expectResponse](const ErrorCode& writeError, std::size_t) {
+                        if (writeError)
+                        {
+                            reportError(std::make_exception_ptr(std::runtime_error(writeError.message())));
+                            closeSocket(socket);
+                            return;
+                        }
+
+                        ErrorCode ignored;
+                        socket->shutdown(Tcp::socket::shutdown_send, ignored);
+                        if (!expectResponse)
+                        {
+                            closeSocket(socket);
+                            return;
+                        }
+
+                        asio::async_read_until(*socket,
+                            asio::dynamic_buffer(*response, maxResponseBytes_), '\n',
+                            [this, socket, response](const ErrorCode& readError, std::size_t) {
+                                if (readError)
+                                {
+                                    reportError(std::make_exception_ptr(std::runtime_error(readError.message())));
+                                }
+                                else if (responseHandler_)
+                                {
+                                    try
+                                    {
+                                        responseHandler_(*response);
+                                    }
+                                    catch (...)
+                                    {
+                                        reportError(std::current_exception());
+                                    }
+                                }
+                                closeSocket(socket);
+                            });
+                    });
+            });
     }
 
     void setResponseHandler(ResponseHandler handler)
@@ -120,68 +137,13 @@ private:
 
     asio::io_context context_;
     Tcp::endpoint serverEndpoint_;
-    Tcp::acceptor responseAcceptor_{context_};
-    std::shared_ptr<Tcp::socket> responseSocket_;
-    String responseBuffer_;
     ResponseHandler responseHandler_;
     ErrorHandler errorHandler_;
     bool hasServerEndpoint_ = false;
-    bool listening_ = false;
-
-    void acceptResponse()
+    static void closeSocket(const std::shared_ptr<Tcp::socket>& socket)
     {
-        if (!listening_) return;
-
-        responseSocket_ = std::make_shared<Tcp::socket>(context_);
-        responseBuffer_.clear();
-        responseAcceptor_.async_accept(*responseSocket_, [this](const ErrorCode& error) {
-            if (!listening_) return;
-            if (error)
-            {
-                reportError(std::make_exception_ptr(std::runtime_error(error.message())));
-                acceptResponse();
-                return;
-            }
-
-            readResponse();
-        });
-    }
-
-    void readResponse()
-    {
-        asio::async_read(*responseSocket_, asio::dynamic_buffer(responseBuffer_, maxResponseBytes_),
-                         asio::transfer_all(), [this](const ErrorCode& error, std::size_t) {
-            if (error != asio::error::eof && error)
-            {
-                reportError(std::make_exception_ptr(std::runtime_error(error.message())));
-                closeResponseSocket();
-                acceptResponse();
-                return;
-            }
-
-            if (responseHandler_)
-            {
-                try
-                {
-                    responseHandler_(responseBuffer_);
-                }
-                catch (...)
-                {
-                    reportError(std::current_exception());
-                }
-            }
-
-            closeResponseSocket();
-            acceptResponse();
-        });
-    }
-
-    void closeResponseSocket()
-    {
-        if (!responseSocket_) return;
         ErrorCode ignored;
-        responseSocket_->close(ignored);
-        responseSocket_.reset();
+        socket->close(ignored);
     }
 
     void reportError(const ExceptionPtr& error) const noexcept

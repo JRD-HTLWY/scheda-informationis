@@ -24,11 +24,12 @@ namespace
     }
 
     void sendCommand(networkManager& manager, const LoginData& data,
-                     const std::string& command, const Json& payload)
+                     const std::string& command, const Json& payload,
+                     const bool expectResponse = false)
     {
         validateCredentials(data);
         manager.sendRequest(command + "@" + data.Username + "@" + data.Password + "@" +
-                            payload.to_string() + "\n");
+                            payload.to_string() + "\n", expectResponse);
     }
 
     std::string readString(const Json& object, const char* key)
@@ -153,7 +154,7 @@ namespace
 
 void netBridge::sendFetchTickets(networkManager& manager, const LoginData& data)
 {
-    sendCommand(manager, data, "sendeTickets", Json::object());
+    sendCommand(manager, data, "sendeTickets", Json::object(), true);
 }
 
 void netBridge::sendCreateTicket(networkManager& manager, const LoginData& data,

@@ -1,3 +1,0 @@
-/home/GWAP/Documents/HTLWY/3AHIT/ITP/scheda-informationis/build/CMakeFiles/MeinProgramm.dir
-/home/GWAP/Documents/HTLWY/3AHIT/ITP/scheda-informationis/build/CMakeFiles/edit_cache.dir
-/home/GWAP/Documents/HTLWY/3AHIT/ITP/scheda-informationis/build/CMakeFiles/rebuild_cache.dir
