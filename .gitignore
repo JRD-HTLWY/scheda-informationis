@@ -1,0 +1,8 @@
+# Local build output
+/build/
+/clientApp/build/
+/server/build/
+
+# Server runtime data
+/konten.txt
+/alleNachrichten.txt
