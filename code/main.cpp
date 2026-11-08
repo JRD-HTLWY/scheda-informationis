@@ -107,7 +107,7 @@ void empfangeTickets(string name, string titel, string frage){
     neueNachricht["content"] = content;
 
     alleNachrichtenJSON.push_back(neueNachricht);
-    fstream jsons2("alleNachrichten.txt", ios::trunc);
+    fstream jsons2("alleNachrichten.txt", ios::out | ios::trunc);
     jsons2 << alleNachrichtenJSON.to_string();//final hinzugefuegt
     jsons2.close();
 }
@@ -165,7 +165,7 @@ void antworteTicket(int id, string name, string antwort){
         }
     }
 
-    fstream alleNachrichten2("alleNachrichten.txt", ios::trunc);
+    fstream alleNachrichten2("alleNachrichten.txt", ios::out | ios::trunc);
     alleNachrichten2 << alleNachrichtenJSON.to_string();
     alleNachrichten2.close();
 }
@@ -187,7 +187,7 @@ void loescheTicket(string name, int id){
         }
     }
 
-    fstream alleNachrichten2("alleNachrichten.txt", ios::trunc);
+    fstream alleNachrichten2("alleNachrichten.txt", ios::out | ios::trunc);
     alleNachrichten2 << neuesJSON.to_string();
 
     alleNachrichten2.close();
@@ -283,26 +283,29 @@ void befehlLesen(){
 }
 
 void idUeberpruefung(){
-    fstream tickets("alleNachrichten.txt", ios::in | ios::out);
-    string zeile;
-
-    if(!getline(tickets, zeile)){
-        json initJSONArray = json::array();
-        tickets << initJSONArray.to_string();
-        return;
-    }
+    fstream tickets("alleNachrichten.txt", ios::in);
     stringstream ticketsS;
     ticketsS << tickets.rdbuf();
     tickets.close();
+
+    if(ticketsS.str().empty()){
+        fstream initFile("alleNachrichten.txt", ios::out | ios::trunc);
+        json initJSONArray = json::array();
+        initFile << initJSONArray.to_string();
+        globaleID = 0;
+        return;
+    }
+
     json ticketsJSON;
     try{
         ticketsJSON = json::parse(ticketsS.str());
     }
     catch(const exception& e){
+        cerr << "Ticketdatei konnte beim Start nicht gelesen werden.\n";
         return;
     }
 
-    uint32_t groessteZahl = 0;
+    int groessteZahl = -1;
     for(uint32_t i = 0; i < ticketsJSON.size(); i++){
         if(ticketsJSON[i]["id"].as<int>() > groessteZahl){
             groessteZahl = ticketsJSON[i]["id"].as<int>();
@@ -347,7 +350,7 @@ int main(){
                     }
                 }
                 kontenDatei.close();
-                fstream kontenDatei2("konten.txt", ios::trunc);
+                fstream kontenDatei2("konten.txt", ios::out | ios::trunc);
 
                 for(uint32_t i = 0; i < neueDatei.size(); i++){
                     kontenDatei2 << neueDatei[i] << "\n";
@@ -368,7 +371,7 @@ int main(){
                     }
                 }
                 kontenDatei.close();
-                fstream kontenDatei2("konten.txt", ios::trunc);
+                fstream kontenDatei2("konten.txt", ios::out | ios::trunc);
 
                 for(uint32_t i = 0; i < neueDatei.size(); i++){
                     kontenDatei2 << neueDatei[i] << "\n";
