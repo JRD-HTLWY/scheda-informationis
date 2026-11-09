@@ -18,7 +18,7 @@ find_package(wxWidgets REQUIRED COMPONENTS core base)
 find_package(asio CONFIG QUIET)
 find_package(jsoncons CONFIG REQUIRED)
 
-target_link_libraries(MeinProgramm PRIVATE wxWidgets::wxWidgets jsoncons::jsoncons)
+target_link_libraries(MeinProgramm PRIVATE wxWidgets::wxWidgets)
 if(asio_FOUND)
     target_link_libraries(MeinProgramm PRIVATE asio::asio)
 else()

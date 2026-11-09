@@ -37,7 +37,7 @@ void init(){    //nur die Nachrichten, nicht die Konten
 }
 
 bool anmelden(string nutzername, string passwort){
-    fstream kontenDatei("konten.txt", ios::in | ios::app);
+    fstream kontenDatei("konten.txt", ios::in | ios::out | ios::app);
     string zeile;
 
     string name;
@@ -49,7 +49,6 @@ bool anmelden(string nutzername, string passwort){
         passw = zeile.substr(zeile.find("@") + 1, zeile.rfind("@")-(zeile.find("@") + 1));
 
         if(name == nutzername){
-            neuesKonto = false;
             if(passw == passwort){
                 return true;
             }
@@ -59,10 +58,11 @@ bool anmelden(string nutzername, string passwort){
         }
     }
 
-    if(neuesKonto){
-        //Konto anlegen
-        kontenDatei << nutzername + "@" + passwort + "@\n";
-    }
+    //Konto anlegen
+    kontenDatei.clear();
+    kontenDatei << nutzername + "@" + passwort + "@\n";
+    kontenDatei.close();
+    cout << "Konto angelegt:" << nutzername << " ,Passwort:" << passwort << "\n";
 
     return true;
 }
