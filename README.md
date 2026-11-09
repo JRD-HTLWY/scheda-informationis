@@ -30,7 +30,7 @@ Start the server from the repository root:
 In another terminal, also from the repository root, start the client:
 
 ```sh
-./clientApp/build/MeinProgramm
+./clientApp/build/clientApp
 ```
 
 Enter `127.0.0.1` as the server address. The server uses `konten.txt` and
